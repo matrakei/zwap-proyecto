@@ -1,16 +1,28 @@
 .header {
-    background-color: white;
+    background-color: #F1F2F1;
     padding: 10px 20px;
     font-size: 20px;
     gap: 15px;
     
-    display: flex;              /* Alineamos elementos en fila */
-    justify-content: space-between;  /* Título a la izquierda, botón a la derecha */
-    align-items: center;        /* Centrado vertical */
+    display: flex;              
+    justify-content: space-between;  
+    align-items: center;        
 }
 
 .titulo {
-    margin: 0; /* Para que el h1 no tenga espacio extra */
+    margin: 0; 
+}
+
+/* 📌 Nuevo: contenedor de logo + texto */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+/* 📌 Nuevo: estilo de la imagen */
+.logo {
+    height: 30px;
+    width: auto;
 }
 
 .home-button {
@@ -18,10 +30,13 @@
     color: black;
     border: none;
     padding: 8px 16px;
-    border-radius: 4px;
+    border-radius: 12px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .home-button:hover {
@@ -33,14 +48,28 @@
     color: black;
     border: none;
     padding: 8px 16px;
-    border-radius: 4px;
+    border-radius: 12px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+    display: flex;               /* 📌 Para alinear imagen y texto */
+    align-items: center;         /* 📌 Centrado vertical */
+    gap: 10px;                   /* 📌 Espacio entre imagen y texto */
 }
 
 .buttons-right {
     display: flex;
-    gap: 15px; /* espacio entre los botones */
-  }
-  
+    gap: 15px;
+}
+
+/* 📌 Imagen dentro del botón de perfil */
+.perfil-img {
+    height: 20px;
+    width: 20px;
+    object-fit: cover;
+    border-radius: 50%; /* Para que sea redonda */
+}
