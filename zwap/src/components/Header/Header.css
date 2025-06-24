@@ -3,11 +3,9 @@
     padding: 10px 20px;
     font-size: 20px;
     gap: 15px;
-
     display: flex;              /* Alineamos elementos en fila */
     justify-content: space-between;  /* Título a la izquierda, botón a la derecha */
     align-items: center;        /* Centrado vertical */
-
 }
 
 .titulo {
