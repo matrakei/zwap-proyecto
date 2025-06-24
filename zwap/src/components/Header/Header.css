@@ -3,7 +3,6 @@
     padding: 10px 20px;
     font-size: 20px;
     gap: 15px;
-    
     display: flex;              /* Alineamos elementos en fila */
     justify-content: space-between;  /* Título a la izquierda, botón a la derecha */
     align-items: center;        /* Centrado vertical */
@@ -22,6 +21,10 @@
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    font-style: Medium italic;
+    font-weight: 500;
+    margin: 0;    
 }
 
 .home-button:hover {
@@ -37,6 +40,10 @@
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    font-style: Medium italic;
+    font-weight: 500;
+    margin: 0;
 }
 
 .buttons-right {

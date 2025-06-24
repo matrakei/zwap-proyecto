@@ -1,17 +1,18 @@
-import { Header } from './components/Header/Header'
-import {Footer} from './components/Footer/Footer'
-import './App.css'
+import './App.css';
+import { Header } from './components/Header/Header';
+import { Footer } from './components/Footer/Footer';
+import { Formulario } from './components/Formulario/Formulario';
 
 function App() {
   return (
-    <>
+    <div className="app-container">
       <Header />
-      <section>
-        <p>este es el section</p>
-      </section>
+      <main>
+        <Formulario />
+      </main>
       <Footer />
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
