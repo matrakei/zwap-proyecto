@@ -11,7 +11,6 @@ export const Header = () => {
 
       <div className="buttons-right">
         <button className="home-button">Home</button>
-
         <button className="perfil-button">
          Nombre y apellido
          <img src={perfil} alt="Perfil" className="perfil-img" />
