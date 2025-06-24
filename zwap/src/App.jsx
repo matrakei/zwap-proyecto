@@ -1,4 +1,4 @@
-import './App.css';
+import './index.css';
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 import { Formulario } from './components/Formulario/Formulario';
