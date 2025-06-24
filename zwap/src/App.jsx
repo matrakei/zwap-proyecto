@@ -8,7 +8,7 @@ function App() {
     <div className="app-container">
       <Header />
       <main>
-        <Formulario />
+      <Formulario />
       </main>
       <Footer />
     </div>
