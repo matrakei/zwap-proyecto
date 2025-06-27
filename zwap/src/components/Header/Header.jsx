@@ -1,6 +1,7 @@
 import './Header.css';
-import logo from '../../assets/logo.png';
-import perfil from '../../assets/perfil.png';
+import logo from "../../assets/logo.png";
+import perfil from "../../assets/perfil.png";
+
 
 export const Header = () => {
   return (
