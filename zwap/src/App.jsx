@@ -5,7 +5,7 @@ import { Footer } from './components/Footer/Footer';
 import { Formulario } from './components/Step1/Formulario/Formulario';
 import Step2 from './components/Step2/Step2'; // ← Agregaremos este nuevo archivo
 
-function App() {
+function App() {  
   return (
     <div className="app-container">
       <Header />
