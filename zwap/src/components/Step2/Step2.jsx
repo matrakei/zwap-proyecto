@@ -10,9 +10,9 @@ export default function Step2() {
           Sobre la propiedad
           <select>
             <option>Seleccioná el N° de ambientes</option>
-            <option>1</option>
             <option>2</option>
-            <option>3+</option>
+            <option>3</option>
+            <option>4+</option>
           </select>
         </label>
 
@@ -28,9 +28,10 @@ export default function Step2() {
         <label>
           <select>
             <option>Seleccioná el N° de metros cuadrados</option>
-            <option>10</option>
-            <option>20</option>
-            <option>30+</option>
+            <option>20-40</option>
+            <option>40-60</option>
+            <option>60-80</option>
+            <option>+100</option>
           </select>
         </label>
 
@@ -47,13 +48,19 @@ export default function Step2() {
         <button type="submit" className="step2-button">Siguiente</button>
       </form>
 
-      <div className="step-indicator">
-        <span className="step done">✔</span>
-        <span className="step current">●</span>
-        <span className="step">○</span>
-        <span className="step">○</span>
-        <span className="step">○</span>
+      <div className="steps">
+  {Array.from({ length: 5 }).map((_, i) => (
+    <div
+      key={i}
+      className={`step ${i === 1 ? 'active' : ''} ${i < 1 ? 'done' : ''}`}
+    >
+      <div className="circle">
+        {i < 1 ? '✔️' : ''}
       </div>
+      <span>Step {i + 1}</span>
+    </div>
+  ))}
+  </div>
     </div>
   );
 }
