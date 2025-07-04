@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 import { Formulario } from './components/Step1/Formulario/Formulario';
-import Step2 from './components/Step2/Step2'; // ← Agregaremos este nuevo archivo
+import Step2 from './components/Step2/Step2'; 
 
 function App() {  
   return (

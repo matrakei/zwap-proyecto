@@ -1,0 +1,28 @@
+STEPS 
+
+<div className="steps">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <div key={i} className={`step ${i === 0 ? 'active' : ''}`}>
+            <div className="circle" />
+            <span>Step {i + 1}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+LABEL CON OPCIONES:
+<label>
+          <select>
+            <option>Seleccioná el N° de pisos</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3+</option>
+          </select>
+        </label>
+
+LABEL CON INPUT:
+<label>
+          (Poner nombre de el input)
+          <input type="text" placeholder="Type here..." />
+        </label>
