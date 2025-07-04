@@ -2,8 +2,8 @@ import './index.css';
 import { Routes, Route } from 'react-router-dom';
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
-import { Formulario } from './components/Step1/Formulario/Formulario';
-import Step2 from './components/Step2/Step2'; 
+import {Formulario}   from './components/Step1/Formulario/Formulario';
+import  Step2  from './components/Step2/Step2'; 
 
 function App() {  
   return (
