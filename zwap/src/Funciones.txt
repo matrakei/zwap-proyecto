@@ -1,5 +1,9 @@
-STEPS 
 
+NAVEGAR ENTRE PAGINAS:
+export const Formulario = () => {
+  const navigate = useNavigate();
+
+STEPS:
 <div className="steps">
         {Array.from({ length: 5 }).map((_, i) => (
           <div key={i} className={`step ${i === 0 ? 'active' : ''}`}>
