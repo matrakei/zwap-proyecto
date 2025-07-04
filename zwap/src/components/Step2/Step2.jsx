@@ -25,10 +25,14 @@ export default function Step2() {
           </select>
         </label>
 
-        
         <label>
-          Escribí el N° de metros cuadrados
-          <input type="text" placeholder="Type here..." />
+          <select>
+            <option>Seleccioná el N° de metros cuadrados</option>
+            <option>20-40</option>
+            <option>40-60</option>
+            <option>60-80</option>
+            <option>+100</option>
+          </select>
         </label>
 
         <label>
