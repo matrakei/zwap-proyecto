@@ -1,0 +1,76 @@
+.step3-container {
+    background-color: #ccc;
+    padding: 30px;
+    max-width: 500px;
+    margin: 40px auto;
+    border-radius: 10px;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .step3-title {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .step3-subtitle {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+  
+  .step3-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+  }
+  
+  .step3-button {
+    display: block;
+    margin: 20px auto;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-style: Medium italic;
+    font-weight: 500;
+  }
+  
+  .steps {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+    font-size: 16px;
+  }
+  
+  .step .circle {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+  }
+  
+  .step.active .circle {
+    background-color: black;
+    color: white;
+  }
+  
+  .step.done .circle {
+    background-color: green;
+    color: white;
+  }
+  

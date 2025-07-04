@@ -1,11 +1,19 @@
 import './Step2.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Step2() {
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); // ← evita que se recargue la página
+    navigate('/step3'); // ← te lleva a Step3
+  };
+
   return (
     <div className="step2-container">
       <h2 className="step2-title">Características del hogar</h2>
 
-      <form className="step2-form">
+      <form className="step2-form" onSubmit={handleSubmit}>
         <label>
           Sobre la propiedad
           <select>
@@ -25,9 +33,8 @@ export default function Step2() {
           </select>
         </label>
 
-
         <label>
-          Seleccioná el N° de metros cuadrados
+          Escribí el N° de metros cuadrados
           <input type="text" placeholder="Type here..." />
         </label>
 
@@ -45,18 +52,16 @@ export default function Step2() {
       </form>
 
       <div className="steps">
-  {Array.from({ length: 5 }).map((_, i) => (
-    <div
-      key={i}
-      className={`step ${i === 1 ? 'active' : ''} ${i < 1 ? 'done' : ''}`}
-    >
-      <div className="circle">
-        {i < 1 ? '✔️' : ''}
+        {Array.from({ length: 5 }).map((_, i) => (
+          <div
+            key={i}
+            className={`step ${i === 1 ? 'active' : ''} ${i < 1 ? 'done' : ''}`}
+          >
+            <div className="circle">{i < 1 ? '✔️' : ''}</div>
+            <span>Step {i + 1}</span>
+          </div>
+        ))}
       </div>
-      <span>Step {i + 1}</span>
-    </div>
-  ))}
-  </div>
     </div>
   );
 }
