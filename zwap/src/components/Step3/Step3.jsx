@@ -2,22 +2,14 @@ import './Step3.css';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-export default function Step3() {
+export const Step3 = () => {
   const navigate = useNavigate();
-  const [services, setServices] = useState([]);
-
-  const handleToggle = (service) => {
-    setServices((prev) =>
-      prev.includes(service)
-        ? prev.filter((s) => s !== service)
-        : [...prev, service]
-    );
-  };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    navigate('/step4');
+    e.preventDefault(); // Previene recarga
+    navigate('/perfil/step4'); // Corrige navegación al Step3
   };
+
 
   const options = [
     "Pileta",

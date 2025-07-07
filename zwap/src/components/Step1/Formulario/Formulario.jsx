@@ -32,8 +32,8 @@ export const Formulario = () => {
         </label>
       </div>
 
-      {/* 👇 BOTÓN actualizado con navegación */}
-      <button className="next-button" onClick={() => navigate('/step2')}>
+      
+     <button className="next-button" onClick={() => navigate('/perfil/step2')}>
         Siguiente
       </button>
 

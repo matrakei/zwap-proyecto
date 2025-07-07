@@ -1,72 +1,75 @@
 .header {
-    background-color: #F1F2F1;
-    padding: 10px 20px;
-    font-size: 20px;
-    gap: 15px;
-    display: flex;              /* Alineamos elementos en fila */
-    justify-content: space-between;  /* Título a la izquierda, botón a la derecha */
-    align-items: center;        /* Centrado vertical */
+  background-color: #F1F2F1;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
 }
 
-.titulo {
-    margin: 0; 
-}
-
-/* 📌 Nuevo: contenedor de logo + texto */
 .logo-container {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
-/* 📌 Nuevo: estilo de la imagen */
 .logo {
-    height: 30px;
-    width: auto;
+  height: 30px;
+  width: auto;
 }
 
-.home-button {
-    background-color: #7E7070;
-    color: black;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-family: 'Poppins', sans-serif;
-    font-style: Medium italic;
-    font-weight: 500;
-    margin: 0;    
+.nav-center {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex: 1;
 }
 
-.home-button:hover {
-    background-color: #0056b3;
+.nav-button {
+  background: none;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  color: black;
+  cursor: pointer;
+  position: relative;
+  padding: 5px;
+  text-decoration: none;
+}
+
+.nav-button.active::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  background-color: black;
+  width: 100%;
+  bottom: -3px;
+  left: 0;
 }
 
 .perfil-button {
-    background-color: #7E7070;
-    color: black;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-family: 'Poppins', sans-serif;
-    font-style: Medium italic;
-    font-weight: 500;
-    margin: 0;
+  background-color: #39B3B8;
+  color: black;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-style: Medium italic;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
 }
 
-.buttons-right {
-    display: flex;
-    gap: 15px;
-}
-
-/* 📌 Imagen dentro del botón de perfil */
 .perfil-img {
-    height: 20px;
-    width: 20px;
-    object-fit: cover;
-    border-radius: 50%; /* Para que sea redonda */
+  height: 20px;
+  width: 20px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
 }
