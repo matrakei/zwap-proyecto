@@ -1,12 +1,12 @@
 import './Step2.css';
 import { useNavigate } from 'react-router-dom';
 
-export const Step2 = () => {
+export default function Step2() {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Previene recarga
-    navigate('/perfil/step3'); // Corrige navegación al Step3
+    e.preventDefault(); // ← evita que se recargue la página
+    navigate('/step3'); // ← te lleva a Step3
   };
 
   return (
@@ -57,13 +57,11 @@ export const Step2 = () => {
             key={i}
             className={`step ${i === 1 ? 'active' : ''} ${i < 1 ? 'done' : ''}`}
           >
-            <div className="circle">
-              {i < 1 ? '✔️' : ''}
-            </div>
+            <div className="circle">{i < 1 ? '✔️' : ''}</div>
             <span>Step {i + 1}</span>
           </div>
         ))}
       </div>
     </div>
   );
-};
+}
