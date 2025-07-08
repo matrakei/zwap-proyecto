@@ -45,7 +45,7 @@ export default function Step4() {
         onDragOver={(e) => e.preventDefault()}
         onDrop={handleDrop}
       >
-        <p>📁 Arrastrá archivos a esta zona</p>
+        <p>📁 Arrastrá archivos a esta zona </p>
         <input
           type="file"
           accept=".jpg,.png"
@@ -55,7 +55,7 @@ export default function Step4() {
           id="fileInput"
         />
         <label htmlFor="fileInput" className="upload-button">
-          Seleccionar archivos desde el ordenador
+          O seleccioná tus archivos desde el ordenador
         </label>
       </div>
 

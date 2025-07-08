@@ -1,5 +1,5 @@
 .step4-container {
-  background-color: #c1c1c1;
+  background-color: #62B8BC;
   padding: 40px;
   width: 500px;
   margin: 50px auto;
@@ -19,7 +19,7 @@
   border: 2px dashed #888;
   padding: 40px;
   border-radius: 10px;
-  background: #f9f9f9;
+  background: #62B8BC;
   margin-bottom: 20px;
   cursor: pointer;
 }
