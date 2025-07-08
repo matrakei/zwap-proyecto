@@ -1,8 +1,8 @@
 import './Formulario.css';
-import { useNavigate } from 'react-router-dom'; // 👉 Importá useNavigate
+import { useNavigate } from 'react-router-dom';
 
 export const Formulario = () => {
-  const navigate = useNavigate(); // 👉 Crear el hook de navegación
+  const navigate = useNavigate();
 
   return (
     <div className="form-container">
@@ -32,8 +32,7 @@ export const Formulario = () => {
         </label>
       </div>
 
-      {/* 👇 BOTÓN actualizado con navegación */}
-      <button className="next-button" onClick={() => navigate('/step2')}>
+      <button className="next-button" onClick={() => navigate('/perfil/step2')}>
         Siguiente
       </button>
 

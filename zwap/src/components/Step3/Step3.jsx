@@ -16,7 +16,7 @@ export default function Step3() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/step4');
+    navigate('/perfil/step4');
   };
 
   const options = [

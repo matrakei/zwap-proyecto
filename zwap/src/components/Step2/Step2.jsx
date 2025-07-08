@@ -5,8 +5,8 @@ export default function Step2() {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // ← evita que se recargue la página
-    navigate('/step3'); // ← te lleva a Step3
+    e.preventDefault();
+    navigate('/perfil/step3');
   };
 
   return (
