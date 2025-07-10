@@ -18,18 +18,8 @@ export default function Step4() {
   };
 
   const handleSubmit = () => {
-    const formData = new FormData();
-    files.forEach((file) => {
-      formData.append('images', file);
-    });
-
-    fetch('https://tu-backend.com/api/upload', {
-      method: 'POST',
-      body: formData
-    })
-      .then((res) => res.json())
-      .then(() => navigate('/perfil/step5'))
-      .catch((err) => console.error('Error al subir:', err));
+    // 🔁 SALTAMOS el fetch para probar navegación directa
+    navigate('/perfil/step5');
   };
 
   return (

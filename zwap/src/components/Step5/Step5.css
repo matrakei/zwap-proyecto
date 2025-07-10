@@ -1,0 +1,107 @@
+.step5-container {
+    background-color: #62B8BC;
+    padding: 40px;
+    width: 500px;
+    margin: 50px auto;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+  }
+  
+  .step5-header {
+    text-align: left;
+  }
+  
+  .etiqueta {
+    font-size: 14px;
+    background-color: #39B3B8;
+    padding: 5px 10px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  
+  .step5-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 5px 0;
+    text-align: left;
+  }
+  
+  .step5-location,
+  .step5-type,
+  .step5-size {
+    font-size: 16px;
+    margin: 3px 0;
+  }
+
+  .step5-description {
+    text-align: left;
+    margin-top: 20px;
+  }
+  
+  .step5-description p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 10px 0;
+  }
+  
+  .step5-services {
+    margin-top: 20px;
+    text-align: left;
+  }
+  
+  .step5-services ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .step5-services li {
+    margin: 5px 0;
+    font-size: 15px;
+  }
+  
+  .step5-button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .steps {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+  
+  .step {
+    text-align: center;
+  }
+  
+  .circle {
+    height: 24px;
+    width: 24px;
+    background: white;
+    border: 2px solid black;
+    border-radius: 50%;
+    margin: 0 auto;
+  }
+  
+  .step.done .circle {
+    background-color: green;
+    color: white;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .step.active .circle {
+    background-color: black;
+  }
+  
