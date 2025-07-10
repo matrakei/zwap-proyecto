@@ -1,6 +1,14 @@
 import './Step5.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Step5() {
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    // Aquí puedes manejar la lógica de envío del formulario
+    navigate('/perfil/step6'); 
+  };
+
   return (
     <div className="step5-container">
       <div className="step5-header">

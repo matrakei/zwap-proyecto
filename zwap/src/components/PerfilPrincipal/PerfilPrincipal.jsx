@@ -20,10 +20,10 @@ export default function PerfilPrincipal() {
         <h2>Micaela Pérez</h2>
         <p className="perfil-descripcion">
           Me encanta viajar, con mis amigos o sola. Tengo dos mascotas e intento
-          traerlos en mis viajes
+          llevarlas a mis viajes
         </p>
-        <p><strong>Mail:</strong> micaelaperez@gmail.com</p>
-        <p><strong>Teléfono:</strong> 11 9876 2700</p>
+        <p><strong>Mail:</strong> Micaperéz@gmail.com</p>
+        <p><strong>Teléfono:</strong> 11 58272610</p>
         <button className="btn-editar">Editar</button>
       </div>
 

@@ -18,7 +18,6 @@ export default function Step4() {
   };
 
   const handleSubmit = () => {
-    // 🔁 SALTAMOS el fetch para probar navegación directa
     navigate('/perfil/step5');
   };
 

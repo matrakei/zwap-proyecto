@@ -7,7 +7,7 @@ import  Step2  from './components/Step2/Step2';
 import Step3 from './components/Step3/Step3';
 import Step4 from './components/Step4/Step4';
 import Step5 from './components/Step5/Step5';
-import PerfilPrincipal from './components/PerfilPrincipal/PerfilPrincipal';
+import {PerfilPrincipal} from './components/PerfilPrincipal/PerfilPrincipal';
 
 
 
@@ -30,6 +30,6 @@ function App() {
       <Footer />
     </div>
   );
-}
+} 
 
 export default App;

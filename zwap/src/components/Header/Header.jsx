@@ -20,7 +20,7 @@ export const Header = () => {
         <NavLink to="/" className="nav-button"> Home</NavLink>
         <NavLink to="/favoritos" className="nav-button"> Favoritos</NavLink>
         <NavLink
-          to="/perfil/step1"
+          to="/perfil"
           className={`nav-button ${isPerfilActive ? 'active' : ''}`}
         >
            Perfil
