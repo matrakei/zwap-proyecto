@@ -62,15 +62,17 @@
   }
   
   .step5-button {
+    display: block;
+    margin: 20px auto;
     background-color: black;
     color: white;
-    border: none;
     padding: 10px 20px;
-    border-radius: 20px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
     font-family: 'Poppins', sans-serif;
+    font-style: Medium italic;
+    font-weight: 500;
   }
   
   .steps {

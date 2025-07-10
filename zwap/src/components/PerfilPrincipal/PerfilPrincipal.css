@@ -1,0 +1,119 @@
+.perfil-container {
+    display: flex;
+    padding: 40px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #dff6f6;
+    gap: 40px;
+  }
+  
+  .perfil-izquierda {
+    width: 250px;
+    background-color: #a5d9de;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .perfil-foto {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+  }
+  
+  .perfil-descripcion {
+    font-size: 14px;
+    margin: 10px 0;
+  }
+  
+  .btn-editar {
+    background: black;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .perfil-derecha {
+    flex: 1;
+  }
+  
+  .estadisticas {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .card-estadistica {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    flex: 1;
+    text-align: center;
+    position: relative;
+  }
+  
+  .btn-mas {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .progreso-circular {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+  
+  .subtexto {
+    font-size: 13px;
+    color: gray;
+  }
+  
+  .favorito {
+    background-color: #def0f4;
+  }
+  
+  .publicaciones h3 {
+    margin-bottom: 10px;
+  }
+  
+  .grid-publicaciones {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+  }
+  
+  .card-publicacion {
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .img-publicacion {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  
+  .card-publicacion.nueva {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #cceff1;
+    font-size: 36px;
+    cursor: pointer;
+  }
+  
