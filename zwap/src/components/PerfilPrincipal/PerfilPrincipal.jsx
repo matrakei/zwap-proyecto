@@ -1,5 +1,6 @@
 import './PerfilPrincipal.css';
 import { useNavigate } from 'react-router-dom';
+import casaImage from '../../assets/Fotos de prueba/casaa.jpg'; 
 
 export function PerfilPrincipal() {
   const navigate = useNavigate();
@@ -61,7 +62,7 @@ export function PerfilPrincipal() {
             {[...Array(5)].map((_, i) => (
               <div key={i} className="card-publicacion">
                 <img
-                  src="https://via.placeholder.com/150"
+                  src={casaImage} // Usa la imagen importada
                   alt="Casa"
                   className="img-publicacion"
                 />

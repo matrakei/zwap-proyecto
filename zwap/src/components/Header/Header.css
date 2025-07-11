@@ -17,15 +17,16 @@
     margin: 0; 
 }
 
-/* 📌 Nuevo: contenedor de logo + texto */
+
 .logo-container {
-    display: flex;
-    align-items: center;
   display: flex;
   align-items: center;
+  display: flex;
+  align-items: center;
+  background-color: #D3E6E7;
 }
 
-/* 📌 Nuevo: estilo de la imagen */
+
 .logo {
     height: 30px;
     width: auto;
@@ -115,10 +116,10 @@
 
 /* 📌 Imagen dentro del botón de perfil */
 .perfil-img {
-    height: 20px;
-    width: 20px;
-    object-fit: cover;
-    border-radius: 50%; /* Para que sea redonda */
+  height: 20px;
+  width: 20px;
+  object-fit: cover;
+  border-radius: 50%; 
   height: 20px;
   width: 20px;
   object-fit: cover;
