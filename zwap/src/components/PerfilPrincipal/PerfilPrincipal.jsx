@@ -1,7 +1,7 @@
 import './PerfilPrincipal.css';
 import { useNavigate } from 'react-router-dom';
 
-export default function PerfilPrincipal() {
+export function PerfilPrincipal() {
   const navigate = useNavigate();
 
   const irACrearPublicacion = () => {
