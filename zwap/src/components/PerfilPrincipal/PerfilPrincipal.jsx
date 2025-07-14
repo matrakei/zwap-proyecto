@@ -16,6 +16,7 @@ export function PerfilPrincipal() {
 
   const [favoritos, setFavoritos] = useState([]);
   const [showObjetivo, setShowObjetivo] = useState(false);
+  const [objetivoIntercambios, setObjetivoIntercambios] = useState(5); // Nuevo estado
 
   const irACrearPublicacion = () => {
     navigate('/perfil/step1');
@@ -47,13 +48,19 @@ export function PerfilPrincipal() {
               <b>Objetivo</b> <span style={{ color: "#39B3B8" }}>Zwap</span>
             </h2>
             <p>¿Cuántos intercambios querés lograr con Zwap?</p>
-            <select>
-              <option>0</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+            <select
+              value={objetivoIntercambios}
+              onChange={e => {
+                setObjetivoIntercambios(Number(e.target.value));
+                setShowObjetivo(false);
+              }}
+            >
+              <option value={0}>0</option>
+              <option value={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
+              <option value={4}>4</option>
+              <option value={5}>5</option>
             </select>
           </div>
         </div>
@@ -82,7 +89,7 @@ export function PerfilPrincipal() {
 
           <div className="card-estadistica intercambio">
             <button className="btn-mas" onClick={() => setShowObjetivo(true)}>+</button>
-            <span className="numero-estadistica">5</span>
+            <span className="numero-estadistica">{objetivoIntercambios}</span>
             <span className="titulo-estadistica">Intercambios</span>
             <span className="subtexto-estadistica">En 4 países</span>
           </div>
@@ -140,4 +147,5 @@ export function PerfilPrincipal() {
         </div>
       </div>
     </div>
-)}
+  );
+}
