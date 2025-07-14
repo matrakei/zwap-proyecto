@@ -201,10 +201,21 @@
   right: 12px;
   background: transparent;
   border: none;
-  font-size: 22px;
-  color: #39B3B8;
-  cursor: pointer;
-} 
+  font-size: 30px;
+  color: #7AC8CC;
+  cursor: pointer; 
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  border-radius: 16px;
+  border: 2px solid #7AC8CC;
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  min-height: 30px;
+  box-sizing: border-box;
+  transition: filter 0.2s;
+}
 
 .progreso-circular {
   font-size: 24px;
@@ -307,7 +318,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #cceff1;
-  font-size: 36px;
+  background-color: #8D999A;
+  font-size: 80px;
   cursor: pointer;
+  border: 3px solid #000;
+  width: 90px;
+  height: 90px;
+  margin-left: 55px;
+  margin-top: 80px;
 }
