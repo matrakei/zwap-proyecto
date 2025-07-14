@@ -1,17 +1,44 @@
 import './PerfilPrincipal.css';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import casaImage from '../../assets/Fotos de prueba/casaa.jpg'; 
+import casaImage from '../../assets/Fotos de prueba/casaa.jpg';
 
 export function PerfilPrincipal() {
   const navigate = useNavigate();
+
+  
+  const publicaciones = [
+    { id: 1, titulo: "Casa del lago", autor: "usuario1", disponible: true },
+    { id: 2, titulo: "Casa de la montaña", autor: "usuario2", disponible: false },
+    { id: 3, titulo: "Cabaña nevada", autor: "usuario1", disponible: true },
+    { id: 4, titulo: "Refugio playero", autor: "usuario3", disponible: true },
+    { id: 5, titulo: "Domo en el bosque", autor: "usuario4", disponible: false }
+  ];
+
+  const [favoritos, setFavoritos] = useState([]);
 
   const irACrearPublicacion = () => {
     navigate('/perfil/step1');
   };
 
+  const toggleFavorito = (id) => {
+    setFavoritos((prev) =>
+      prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]
+    );
+  };
+
+  const favoritosCount = favoritos.length;
+  const usuariosFavoritos = [
+    ...new Set(
+      favoritos
+        .map((id) => publicaciones.find((pub) => pub.id === id)?.autor)
+        .filter(Boolean)
+    )
+  ].length;
+
   return (
     <div className="perfil-container">
-      {/* Columna izquierda: perfil */}
+      {/* Columna izquierda */}
       <div className="perfil-izquierda">
         <img
           className="perfil-foto"
@@ -28,51 +55,65 @@ export function PerfilPrincipal() {
         <button className="btn-editar">Editar</button>
       </div>
 
-      {/* Columna derecha: publicaciones y objetivos */}
+      {/* Columna derecha */}
       <div className="perfil-derecha">
         <div className="estadisticas">
-          <div className="card-estadistica">
-            <div className="top-estadistica">
-              <p>5 Intercambios</p>
-              <button className="btn-mas">+</button>
-            </div>
-            <div className="progreso-circular">25%</div>
-            <p className="subtexto">en 2 países</p>
-          </div>
+          
+          <div className="card-estadistica intercambio">
+           <button className="btn-mas">+</button>
+           <span className="numero-estadistica">5</span>
+           <span className="titulo-estadistica">Intercambios</span>
+           <span className="subtexto-estadistica">En 4 países</span>
+         </div>
 
-          <div className="card-estadistica">
-            <div className="top-estadistica">
-              <p>2 Pendientes</p>
-              <button className="btn-mas">+</button>
-            </div>
-            <div className="progreso-circular">70%</div>
-            <p className="subtexto">en 2 países</p>
+
+          <div className="card-estadistica pendiente">
+           <button className="btn-mas">+</button>
+           <span className="numero-estadistica">2</span>
+           <span className="titulo-estadistica">Pendientes</span>
+           <span className="subtexto-estadistica">En 2 países</span>
           </div>
 
           <div className="card-estadistica favorito">
-            <p>6 Favoritos</p>
-            <p className="subtexto">de 4 usuarios</p>
+           <span style={{position: "absolute", top: 12, right: 14, fontSize: 28, color: "#111"}}>♥</span>
+           <span className="numero-estadistica">{favoritosCount}</span>
+           <span className="titulo-estadistica">Favoritos</span>
+           <span className="subtexto-estadistica">de {usuariosFavoritos} usuarios</span>
           </div>
+        
+        
         </div>
 
         <div className="publicaciones">
           <h3>Mis Publicaciones</h3>
           <div className="grid-publicaciones">
-            {/* Card de ejemplo */}
-            {[...Array(5)].map((_, i) => (
-              <div key={i} className="card-publicacion">
-                <img
-                  src={casaImage} // Usa la imagen importada
-                  alt="Casa"
-                  className="img-publicacion"
-                />
-                <p className="estado">🟢 Disponible</p>
-                <h4>Nombre de la casa {i + 1}</h4>
-                <p>Texto 1 · Texto 2 · Texto 3</p>
-                <p>Provincia, País</p>
+            {publicaciones.map((pub) => (
+              <div key={pub.id} className="card-publicacion">
+                <div className="imagen-container">
+                  <img
+                    src={casaImage}
+                    alt={pub.titulo}
+                    className="img-publicacion"
+                  />
+                  <button
+                    className="btn-favorito"
+                    onClick={() => toggleFavorito(pub.id)}
+                  >
+                    {favoritos.includes(pub.id) ? '♥' : '♡'}
+                  </button>
+                  <div className="estado-badge">
+                    {pub.disponible ? ' DISPONIBLE' : ' NO DISPONIBLE'}
+                  </div>
+                </div>
+                <div className="info-publicacion">
+                  <h4>{pub.titulo} </h4>
+                  <p className="subtexto-card">Texto 1 · Texto 2 · Texto 3</p>
+                  <p className="subtexto-card">📍 Luján de Cuyo, Mendoza</p>
+                  <div className="autor-publicacion">👤 {pub.autor}</div>
+                </div>
               </div>
             ))}
-            {/* Botón para crear nueva publicación */}
+
             <div className="card-publicacion nueva" onClick={irACrearPublicacion}>
               <span className="mas-grande">+</span>
             </div>
