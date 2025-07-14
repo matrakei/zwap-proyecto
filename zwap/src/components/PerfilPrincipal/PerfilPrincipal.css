@@ -175,6 +175,37 @@
   cursor: pointer;
 }
 
+.modal-objetivo {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-objetivo-content {
+  background: #d3e6e7;
+  border: 1.5px solid #39B3B8;
+  border-radius: 8px;
+  padding: 32px 28px 24px 28px;
+  min-width: 340px;
+  position: relative;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.13);
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  color: #39B3B8;
+  cursor: pointer;
+} 
+
 .progreso-circular {
   font-size: 24px;
   font-weight: bold;

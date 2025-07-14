@@ -6,7 +6,6 @@ import casaImage from '../../assets/Fotos de prueba/casaa.jpg';
 export function PerfilPrincipal() {
   const navigate = useNavigate();
 
-  
   const publicaciones = [
     { id: 1, titulo: "Casa del lago", autor: "usuario1", disponible: true },
     { id: 2, titulo: "Casa de la montaña", autor: "usuario2", disponible: false },
@@ -16,6 +15,7 @@ export function PerfilPrincipal() {
   ];
 
   const [favoritos, setFavoritos] = useState([]);
+  const [showObjetivo, setShowObjetivo] = useState(false);
 
   const irACrearPublicacion = () => {
     navigate('/perfil/step1');
@@ -38,6 +38,27 @@ export function PerfilPrincipal() {
 
   return (
     <div className="perfil-container">
+      {/* Modal Objetivo Zwap */}
+      {showObjetivo && (
+        <div className="modal-objetivo">
+          <div className="modal-objetivo-content">
+            <button className="modal-close" onClick={() => setShowObjetivo(false)}>×</button>
+            <h2>
+              <b>Objetivo</b> <span style={{ color: "#39B3B8" }}>Zwap</span>
+            </h2>
+            <p>¿Cuántos intercambios querés lograr con Zwap?</p>
+            <select>
+              <option>0</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+        </div>
+      )}
+
       {/* Columna izquierda */}
       <div className="perfil-izquierda">
         <img
@@ -58,30 +79,28 @@ export function PerfilPrincipal() {
       {/* Columna derecha */}
       <div className="perfil-derecha">
         <div className="estadisticas">
-          
-          <div className="card-estadistica intercambio">
-           <button className="btn-mas">+</button>
-           <span className="numero-estadistica">5</span>
-           <span className="titulo-estadistica">Intercambios</span>
-           <span className="subtexto-estadistica">En 4 países</span>
-         </div>
 
+          <div className="card-estadistica intercambio">
+            <button className="btn-mas" onClick={() => setShowObjetivo(true)}>+</button>
+            <span className="numero-estadistica">5</span>
+            <span className="titulo-estadistica">Intercambios</span>
+            <span className="subtexto-estadistica">En 4 países</span>
+          </div>
 
           <div className="card-estadistica pendiente">
-           <button className="btn-mas">+</button>
-           <span className="numero-estadistica">2</span>
-           <span className="titulo-estadistica">Pendientes</span>
-           <span className="subtexto-estadistica">En 2 países</span>
+            <button className="btn-mas">+</button>
+            <span className="numero-estadistica">2</span>
+            <span className="titulo-estadistica">Pendientes</span>
+            <span className="subtexto-estadistica">En 2 países</span>
           </div>
 
           <div className="card-estadistica favorito">
-           <span style={{position: "absolute", top: 12, right: 14, fontSize: 28, color: "#111"}}>♥</span>
-           <span className="numero-estadistica">{favoritosCount}</span>
-           <span className="titulo-estadistica">Favoritos</span>
-           <span className="subtexto-estadistica">de {usuariosFavoritos} usuarios</span>
+            <span style={{ position: "absolute", top: 12, right: 14, fontSize: 28, color: "#111" }}>♥</span>
+            <span className="numero-estadistica">{favoritosCount}</span>
+            <span className="titulo-estadistica">Favoritos</span>
+            <span className="subtexto-estadistica">de {usuariosFavoritos} usuarios</span>
           </div>
-        
-        
+
         </div>
 
         <div className="publicaciones">
@@ -121,5 +140,4 @@ export function PerfilPrincipal() {
         </div>
       </div>
     </div>
-  );
-}
+)}

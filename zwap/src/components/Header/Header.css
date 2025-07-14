@@ -29,8 +29,8 @@
 
 
 .logo {
-    height: 30px;
-    width: auto;
+  height: 30px;
+  width: auto;
   height: 30px;
   width: auto;
 }
@@ -57,7 +57,7 @@
 }
 
 .home-button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 .nav-button {
   background: none;
@@ -72,18 +72,18 @@
 }
 
 .perfil-button {
-    background-color: #7E7070;
-    color: black;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-family: 'Poppins', sans-serif;
-    font-style: Medium italic;
-    font-weight: 500;
-    margin: 0;
+  background-color: #7E7070;
+  color: black;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  font-style: Medium italic;
+  font-weight: 500;
+  margin: 0;
 }
 .nav-button.active::after {
   content: "";
@@ -96,8 +96,8 @@
 }
 
 .buttons-right {
-    display: flex;
-    gap: 15px;
+  display: flex;
+  gap: 15px;
 }
 .perfil-button {
   background-color: #39B3B8;
@@ -115,7 +115,7 @@
   cursor: pointer;
 }
 
-/* 📌 Imagen dentro del botón de perfil */
+/* Imagen dentro del botón de perfil */
 .perfil-img {
   height: 20px;
   width: 20px;
