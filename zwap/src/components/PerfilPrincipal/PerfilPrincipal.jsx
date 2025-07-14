@@ -7,11 +7,11 @@ export function PerfilPrincipal() {
   const navigate = useNavigate();
 
   const publicaciones = [
-    { id: 1, titulo: "Casa del lago", autor: "usuario1", disponible: true },
-    { id: 2, titulo: "Casa de la montaña", autor: "usuario2", disponible: false },
-    { id: 3, titulo: "Cabaña nevada", autor: "usuario1", disponible: true },
-    { id: 4, titulo: "Refugio playero", autor: "usuario3", disponible: true },
-    { id: 5, titulo: "Domo en el bosque", autor: "usuario4", disponible: false }
+    { id: 1, titulo: "Casa 1", autor: "usuario1", disponible: true },
+    { id: 2, titulo: "Casa 2", autor: "usuario2", disponible: false },
+    { id: 3, titulo: "Casa 3", autor: "usuario1", disponible: true },
+    { id: 4, titulo: "Casa 4", autor: "usuario3", disponible: true },
+    { id: 5, titulo: "Casa 5", autor: "usuario4", disponible: false }
   ];
 
   const [favoritos, setFavoritos] = useState([]);
