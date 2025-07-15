@@ -16,7 +16,7 @@ export function PerfilPrincipal() {
 
   const [favoritos, setFavoritos] = useState([]);
   const [showObjetivo, setShowObjetivo] = useState(false);
-  const [objetivoIntercambios, setObjetivoIntercambios] = useState(5); // Nuevo estado
+  const [objetivoIntercambios, setObjetivoIntercambios] = useState(5);
 
   const irACrearPublicacion = () => {
     navigate('/perfil/step1');
@@ -39,7 +39,6 @@ export function PerfilPrincipal() {
 
   return (
     <div className="perfil-container">
-      {/* Modal Objetivo Zwap */}
       {showObjetivo && (
         <div className="modal-objetivo">
           <div className="modal-objetivo-content">
@@ -55,18 +54,14 @@ export function PerfilPrincipal() {
                 setShowObjetivo(false);
               }}
             >
-              <option value={0}>0</option>
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
+              {[...Array(6).keys()].map((val) => (
+                <option key={val} value={val}>{val}</option>
+              ))}
             </select>
           </div>
         </div>
       )}
 
-      {/* Columna izquierda */}
       <div className="perfil-izquierda">
         <img
           className="perfil-foto"
@@ -83,10 +78,8 @@ export function PerfilPrincipal() {
         <button className="btn-editar">Editar</button>
       </div>
 
-      {/* Columna derecha */}
       <div className="perfil-derecha">
         <div className="estadisticas">
-
           <div className="card-estadistica intercambio">
             <button className="btn-mas" onClick={() => setShowObjetivo(true)}>+</button>
             <span className="numero-estadistica">{objetivoIntercambios}</span>
@@ -102,12 +95,11 @@ export function PerfilPrincipal() {
           </div>
 
           <div className="card-estadistica favorito">
-            <span style={{ position: "absolute", top: 12, right: 14, fontSize: 28, color: "#111" }}>♥</span>
+            <span className="si--heart-fill" style={{ position: 'absolute', top: 12, right: 14 }}></span>
             <span className="numero-estadistica">{favoritosCount}</span>
             <span className="titulo-estadistica">Favoritos</span>
             <span className="subtexto-estadistica">de {usuariosFavoritos} usuarios</span>
           </div>
-
         </div>
 
         <div className="publicaciones">
@@ -125,7 +117,11 @@ export function PerfilPrincipal() {
                     className="btn-favorito"
                     onClick={() => toggleFavorito(pub.id)}
                   >
-                    {favoritos.includes(pub.id) ? '♥' : '♡'}
+                    {favoritos.includes(pub.id) ? (
+                      <span className="si--heart-fill"></span>
+                    ) : (
+                      <span className="si--heart-line"></span>
+                    )}
                   </button>
                   <div className="estado-badge">
                     {pub.disponible ? ' DISPONIBLE' : ' NO DISPONIBLE'}
