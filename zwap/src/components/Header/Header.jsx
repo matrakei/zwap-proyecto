@@ -1,5 +1,5 @@
 import './Header.css';
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo con color.png";
 import perfil from "../../assets/perfil.png";
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
@@ -17,13 +17,17 @@ export const Header = () => {
       </div>
 
       <nav className="nav-center">
-        <NavLink to="/" className="nav-button"> Home</NavLink>
-        <NavLink to="/favoritos" className="nav-button"> Favoritos</NavLink>
+        <NavLink to="/" className="nav-button">
+          <span className="fluent--home-48-regular"></span> Home
+        </NavLink>
+        <NavLink to="/favoritos" className="nav-button">
+          <span className="ion--heart-outline"></span> Favoritos
+        </NavLink>
         <NavLink
           to="/perfil"
           className={`nav-button ${isPerfilActive ? 'active' : ''}`}
         >
-           Perfil
+          <span className="material-symbols--person-rounded"></span> Perfil
         </NavLink>
       </nav>
 

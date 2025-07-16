@@ -39,15 +39,16 @@ export default function Step5() {
         </p>
       </div>
 
-      <div className="step5-services">
-        <p><strong>Servicios, comodidades y restricciones:</strong></p>
-        <ul>
-          <li>✅ Wi-Fi</li>
-          <li>✅ Aire acondicionado</li>
-          <li>✅ Calefacción</li>
-          <li>✅ Cocina equipada</li>
-        </ul>
+      <div className="step5-services"> 
+       <p><strong>Servicios, comodidades y restricciones:</strong></p>
+       <ul>
+        <li><span className="mdi--tick"></span> Wi-Fi</li>
+       <li><span className="mdi--tick"></span> Aire acondicionado</li>
+       <li><span className="mdi--tick"></span> Calefacción</li>
+       <li><span className="mdi--tick"></span> Cocina equipada</li>
+       </ul>
       </div>
+
 
       <button className="step5-button">Publicar</button>
 

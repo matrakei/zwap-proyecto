@@ -63,20 +63,34 @@ export function PerfilPrincipal() {
       )}
 
       <div className="perfil-izquierda">
-        <img
-          className="perfil-foto"
-          src="https://via.placeholder.com/150"
-          alt="Foto de perfil"
-        />
-        <h2>Micaela Pérez</h2>
-        <p className="perfil-descripcion">
-          Me encanta viajar, con mis amigos o sola. Tengo dos mascotas e intento
-          llevarlas a mis viajes
-        </p>
-        <p><strong>Mail:</strong> Micaperéz@gmail.com</p>
-        <p><strong>Teléfono:</strong> 11 58272610</p>
-        <button className="btn-editar">Editar</button>
-      </div>
+  <img
+    className="perfil-foto"
+    src="https://via.placeholder.com/150"
+    alt="Foto de perfil"
+  />
+  <h2>Micaela Pérez</h2>
+
+  <div className="perfil-info-bloque">
+    <p className="info-label">Descripción</p>
+    <p className="info-texto">
+      Me encanta viajar, con mis amigos o sola. Tengo dos mascotas e intento
+      llevarlas a mis viajes
+    </p>
+  </div>
+
+  <div className="perfil-info-bloque">
+    <p className="info-label">Mail</p>
+    <p className="info-texto">Micaperéz@gmail.com</p>
+  </div>
+
+  <div className="perfil-info-bloque">
+    <p className="info-label">Teléfono</p>
+    <p className="info-texto">11 58272610</p>
+  </div>
+
+  <button className="btn-editar">Editar</button>
+</div>
+
 
       <div className="perfil-derecha">
         <div className="estadisticas">
