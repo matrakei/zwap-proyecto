@@ -3,6 +3,29 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import casaImage from '../../assets/Fotos de prueba/casaa.jpg';
 
+// Importación de SVGs de carga (0% a 100%)
+import Cargar0 from '../../assets/porcentajes/Cargar 0.svg';
+import Cargar5 from '../../assets/porcentajes/Cargar 5.svg';
+import Cargar10 from '../../assets/porcentajes/Cargar 10.svg';
+import Cargar15 from '../../assets/porcentajes/Cargar 15.svg';
+import Cargar20 from '../../assets/porcentajes/Cargar 20.svg';
+import Cargar25 from '../../assets/porcentajes/Cargar 25.svg';
+import Cargar30 from '../../assets/porcentajes/Cargar 30.svg';
+import Cargar35 from '../../assets/porcentajes/Cargar 35.svg';
+import Cargar40 from '../../assets/porcentajes/Cargar 40.svg';
+import Cargar45 from '../../assets/porcentajes/Cargar 45.svg';
+import Cargar50 from '../../assets/porcentajes/Cargar 50.svg';
+import Cargar55 from '../../assets/porcentajes/Cargar 55.svg';
+import Cargar60 from '../../assets/porcentajes/Cargar 60.svg';
+import Cargar65 from '../../assets/porcentajes/Cargar 65.svg';
+import Cargar70 from '../../assets/porcentajes/Cargar 70.svg';
+import Cargar75 from '../../assets/porcentajes/Cargar 75.svg';
+import Cargar80 from '../../assets/porcentajes/Cargar 80.svg';
+import Cargar85 from '../../assets/porcentajes/Cargar 85.svg';
+import Cargar90 from '../../assets/porcentajes/Cargar 90.svg';
+import Cargar95 from '../../assets/porcentajes/Cargar 95.svg';
+import Cargar100 from '../../assets/porcentajes/Cargar 100.svg';
+
 export function PerfilPrincipal() {
   const navigate = useNavigate();
 
@@ -17,6 +40,7 @@ export function PerfilPrincipal() {
   const [favoritos, setFavoritos] = useState([]);
   const [showObjetivo, setShowObjetivo] = useState(false);
   const [objetivoIntercambios, setObjetivoIntercambios] = useState(5);
+  const cantidadIntercambios = 2; // este valor debería actualizarse dinámicamente en tu sistema
 
   const irACrearPublicacion = () => {
     navigate('/perfil/step1');
@@ -36,6 +60,39 @@ export function PerfilPrincipal() {
         .filter(Boolean)
     )
   ].length;
+
+  const porcentaje = Math.min(
+    100,
+    Math.round((cantidadIntercambios / objetivoIntercambios) * 100)
+  );
+
+  const porcentajeRedondeado = Math.round(porcentaje / 5) * 5;
+
+  const imagenesPorcentaje = {
+    0: Cargar0,
+    5: Cargar5,
+    10: Cargar10,
+    15: Cargar15,
+    20: Cargar20,
+    25: Cargar25,
+    30: Cargar30,
+    35: Cargar35,
+    40: Cargar40,
+    45: Cargar45,
+    50: Cargar50,
+    55: Cargar55,
+    60: Cargar60,
+    65: Cargar65,
+    70: Cargar70,
+    75: Cargar75,
+    80: Cargar80,
+    85: Cargar85,
+    90: Cargar90,
+    95: Cargar95,
+    100: Cargar100,
+  };
+
+  const imagenPorcentaje = imagenesPorcentaje[porcentajeRedondeado];
 
   return (
     <div className="perfil-container">
@@ -63,34 +120,33 @@ export function PerfilPrincipal() {
       )}
 
       <div className="perfil-izquierda">
-  <img
-    className="perfil-foto"
-    src="https://via.placeholder.com/150"
-    alt="Foto de perfil"
-  />
-  <h2>Micaela Pérez</h2>
+        <img
+          className="perfil-foto"
+          src="https://via.placeholder.com/150"
+          alt="Foto de perfil"
+        />
+        <h2>Micaela Pérez</h2>
 
-  <div className="perfil-info-bloque">
-    <p className="info-label">Descripción</p>
-    <p className="info-texto">
-      Me encanta viajar, con mis amigos o sola. Tengo dos mascotas e intento
-      llevarlas a mis viajes
-    </p>
-  </div>
+        <div className="perfil-info-bloque">
+          <p className="info-label">Descripción</p>
+          <p className="info-texto">
+            Me encanta viajar, con mis amigos o sola. Tengo dos mascotas e intento
+            llevarlas a mis viajes
+          </p>
+        </div>
 
-  <div className="perfil-info-bloque">
-    <p className="info-label">Mail</p>
-    <p className="info-texto">Micaperéz@gmail.com</p>
-  </div>
+        <div className="perfil-info-bloque">
+          <p className="info-label">Mail</p>
+          <p className="info-texto">Micaperéz@gmail.com</p>
+        </div>
 
-  <div className="perfil-info-bloque">
-    <p className="info-label">Teléfono</p>
-    <p className="info-texto">11 58272610</p>
-  </div>
+        <div className="perfil-info-bloque">
+          <p className="info-label">Teléfono</p>
+          <p className="info-texto">11 58272610</p>
+        </div>
 
-  <button className="btn-editar">Editar</button>
-</div>
-
+        <button className="btn-editar">Editar</button>
+      </div>
 
       <div className="perfil-derecha">
         <div className="estadisticas">
@@ -99,11 +155,12 @@ export function PerfilPrincipal() {
             <span className="numero-estadistica">{objetivoIntercambios}</span>
             <span className="titulo-estadistica">Intercambios</span>
             <span className="subtexto-estadistica">En 4 países</span>
+            <img src={imagenPorcentaje} alt={`Progreso ${porcentajeRedondeado}%`} className="svg-progreso" />
           </div>
 
           <div className="card-estadistica pendiente">
             <button className="btn-mas">+</button>
-            <span className="numero-estadistica">2</span>
+            <span className="numero-estadistica">{cantidadIntercambios}</span>
             <span className="titulo-estadistica">Pendientes</span>
             <span className="subtexto-estadistica">En 2 países</span>
           </div>
