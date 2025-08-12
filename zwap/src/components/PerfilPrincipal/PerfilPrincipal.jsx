@@ -155,15 +155,16 @@ export function PerfilPrincipal() {
             <span className="numero-estadistica">{objetivoIntercambios}</span>
             <span className="titulo-estadistica">Intercambios</span>
             <span className="subtexto-estadistica">En 4 países</span>
-            <img src={imagenPorcentaje} alt={`Progreso ${porcentajeRedondeado}%`} className="svg-progreso" />
+
+            <img 
+              src={imagenPorcentaje} 
+              alt={`${porcentajeRedondeado}%`} 
+              className="imagen-porcentaje" 
+              title={`${porcentajeRedondeado}% del objetivo alcanzado`}
+            />
           </div>
 
-          <div className="card-estadistica pendiente">
-            <button className="btn-mas">+</button>
-            <span className="numero-estadistica">{cantidadIntercambios}</span>
-            <span className="titulo-estadistica">Pendientes</span>
-            <span className="subtexto-estadistica">En 2 países</span>
-          </div>
+          
 
           <div className="card-estadistica favorito">
             <span className="si--heart-fill" style={{ position: 'absolute', top: 12, right: 14 }}></span>
