@@ -260,7 +260,7 @@
   height: 160px;
   object-fit: cover;
   display: block;
-  border-radius: 10px 10px 0 0;
+  border: 1px solid #000;
 }
 
 .btn-favorito {
@@ -302,14 +302,14 @@
 .estado-badge {
   position: absolute;
   bottom: 10px;
-  left: 50%;
+  left:30%;
   transform: translateX(-50%);
-  background-color: #e0e0e0;
+  background-color: #FFF;
   color: #333;
   padding: 4px 10px;
   border-radius: 12px;
   font-size: 12px;
-  font-weight: bold;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.5);
 }
 
 .info-publicacion {
