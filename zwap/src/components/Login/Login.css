@@ -1,0 +1,114 @@
+.registro-container {
+    display: flex;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Columna Izquierda */
+  .col-izquierda {
+    flex: 1;
+    background-color: #6ec3c3;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    padding: 20px;
+  }
+  
+  .col-izquierda h1 {
+    font-size: 3rem;
+  }
+  
+  .col-izquierda p {
+    max-width: 300px;
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .btn-login {
+    background: none;
+    border: 2px solid white;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Columna Derecha */
+  .col-derecha {
+    flex: 1;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 60px;
+  }
+  
+  .col-derecha h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .social-icons img {
+    width: 30px;
+    cursor: pointer;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .btn-siguiente {
+    background: black;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Pasos */
+  .pasos {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+  }
+  
+  .paso {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .circulo {
+    width: 20px;
+    height: 20px;
+    border: 2px solid black;
+    border-radius: 50%;
+  }
+  
+  .paso.activo .circulo {
+    background: black;
+  }
+  
+  .linea {
+    width: 40px;
+    height: 2px;
+    background: black;
+  }
+  
