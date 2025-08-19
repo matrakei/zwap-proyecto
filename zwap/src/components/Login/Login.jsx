@@ -1,11 +1,11 @@
 import './Login.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import googleIcon from "./google.png";
-import microsoftIcon from "./microsoft.png";
-import appleIcon from "./apple.png";
+import googleIcon from '../../assets/Login/google.png';
+import microsoftIcon from '../../assets/Login/microsoft.png';
+import appleIcon from '../../assets/Login/apple.png';
 
-export default function Registro() {
+export  function Login() {
   return (
     <div className="registro-container">
       {/* Columna Izquierda */}

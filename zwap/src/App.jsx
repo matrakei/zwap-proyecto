@@ -8,7 +8,7 @@ import Step3 from './components/Step3/Step3';
 import Step4 from './components/Step4/Step4';
 import Step5 from './components/Step5/Step5';
 import {PerfilPrincipal} from './components/PerfilPrincipal/PerfilPrincipal';
-import {Login} from './components/Login/Login';
+import { Login } from './components/Login/Login';
 
 
 
@@ -18,8 +18,7 @@ function App() {
       <Header />
       <main>
         <Routes>
-          <Route path="/" element={<div>Home</div>} />
-          <Route path="login" element={<Login />} />
+          <Route path="/" element={<Login />} />
           <Route path="/favoritos" element={<div>Favoritos</div>} />
           <Route path="/perfil" element={<PerfilPrincipal />} />
           <Route path="/perfil/step1" element={<Formulario />} />

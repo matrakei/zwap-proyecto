@@ -7,7 +7,6 @@ export const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Detectar si estamos dentro de la sección "perfil" (steps)
   const isPerfilActive = location.pathname.startsWith('/perfil');
 
   return (

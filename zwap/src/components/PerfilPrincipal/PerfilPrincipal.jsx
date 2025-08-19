@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import casaImage from '../../assets/Fotos de prueba/casaa.jpg';
 
-// Importación de SVGs de carga (0% a 100%)
 import Cargar0 from '../../assets/porcentajes/Cargar 0.svg';
 import Cargar5 from '../../assets/porcentajes/Cargar 5.svg';
 import Cargar10 from '../../assets/porcentajes/Cargar 10.svg';
