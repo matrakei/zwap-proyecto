@@ -1,7 +1,7 @@
 import './PerfilPrincipal.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import casaImage from '../../assets/Fotos de prueba/casaa.jpg';
+import casaImage from '../../assets/Fotos de prueba/casa2.jpg';
 
 import Cargar0 from '../../assets/porcentajes/Cargar 0.svg';
 import Cargar5 from '../../assets/porcentajes/Cargar 5.svg';
