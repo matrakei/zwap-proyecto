@@ -1,6 +1,7 @@
 .registro-container {
     display: flex;
     height: 100vh;
+    background-color: #FFF;
     font-family: "Poppins", sans-serif;
   }
   
@@ -39,7 +40,7 @@
   /* Columna Derecha */
   .col-derecha {
     flex: 1;
-    background: #D3E6E7;
+    background: #FFF;
     display: flex;
     flex-direction: column;
     justify-content: center;
