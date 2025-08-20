@@ -16,7 +16,7 @@ export const Header = () => {
       </div>  
 
       <nav className="nav-center">
-        <NavLink to="/" className="nav-button">
+        <NavLink to="/home" className="nav-button">
           <span className="fluent--home-48-regular"></span> Home
         </NavLink>
         <NavLink to="/favoritos" className="nav-button">
@@ -31,11 +31,12 @@ export const Header = () => {
       </nav>
 
       <div className="user-info">
-        <button className="perfil-button">
-          Nombre y apellido
-          <img src={perfilImage} alt="Perfil" className="perfil-img" />
-        </button>
+        <NavLink to="/" className="perfil-button">
+         Nombre y apellido
+        <img src={perfilImage} alt="Perfil" className="perfil-img" />
+        </NavLink>
       </div>
+
     </header>
   );
 };
