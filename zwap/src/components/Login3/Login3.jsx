@@ -9,7 +9,7 @@ export function Login3() {
 
   const handleSubmit = (e) => {
     e.preventDefault(); // evita que se recargue la página
-    navigate("/login4"); // te lleva a Login2
+    navigate("/login4"); // te lleva a Login4
   };
 
   return (

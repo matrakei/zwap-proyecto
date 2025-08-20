@@ -2,6 +2,7 @@ import './PerfilPrincipal.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import casaImage from '../../assets/Fotos de prueba/casa2.jpg';
+import perfilImage from '../../assets/Fotos de prueba/perfil.png';
 
 import Cargar0 from '../../assets/porcentajes/Cargar 0.svg';
 import Cargar5 from '../../assets/porcentajes/Cargar 5.svg';
@@ -121,7 +122,7 @@ export function PerfilPrincipal() {
       <div className="perfil-izquierda">
         <img
           className="perfil-foto"
-          src="https://via.placeholder.com/150"
+          src={perfilImage}
           alt="Foto de perfil"
         />
         <h2>Micaela Pérez</h2>

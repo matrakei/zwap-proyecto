@@ -58,7 +58,7 @@ export default function Step3() {
             key={i}
             className={`step ${i < 2 ? 'done' : ''} ${i === 2 ? 'active' : ''}`}
           >
-            <div className="circle">{i < 2 ? '✔️' : ''}</div>
+            <div className="circle">{i < 2 ? '✓' : ''}</div>
             <span>Step {i + 1}</span>
           </div>
         ))}

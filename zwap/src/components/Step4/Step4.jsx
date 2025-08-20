@@ -64,7 +64,7 @@ export default function Step4() {
             key={i}
             className={`step ${i < 3 ? 'done' : ''} ${i === 3 ? 'active' : ''}`}
           >
-            <div className="circle">{i < 3 ? '✔️' : ''}</div>
+            <div className="circle">{i < 3 ? '✓' : ''}</div>
             <span>Step {i + 1}</span>
           </div>
         ))}

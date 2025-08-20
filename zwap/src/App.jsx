@@ -12,6 +12,8 @@ import { Login } from './components/Login/Login';
 import { Login2 } from './components/Login2/Login2';
 import { Login3 } from './components/Login3/Login3';
 import { Login4 } from './components/Login4/Login4';
+import { Login5 } from './components/Login5/Login5';
+import { Login6 } from './components/Login6/Login6';
 
 
 function App() {
@@ -21,7 +23,10 @@ function App() {
   const hideHeaderFooter = location.pathname === "/" 
   || location.pathname === "/login2"
   || location.pathname === "/login3"
-  || location.pathname === "/login4";
+  || location.pathname === "/login4"
+  || location.pathname === "/login5"
+  || location.pathname === "/login6"
+  ;
 
   return (
     <div className="app-container">
@@ -33,6 +38,8 @@ function App() {
           <Route path="/login2" element={<Login2 />} />
           <Route path="/login3" element={<Login3 />} />
           <Route path="/login4" element={<Login4 />} />
+          <Route path="/login5" element={<Login5 />} />
+          <Route path="/login6" element={<Login6 />} />
           <Route path="/favoritos" element={<div>Favoritos</div>} />
           <Route path="/perfil" element={<PerfilPrincipal />} />
           <Route path="/perfil/step1" element={<Formulario />} />

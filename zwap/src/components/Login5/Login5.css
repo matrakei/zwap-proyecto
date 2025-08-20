@@ -1,10 +1,12 @@
+/* --- CONTENEDOR GENERAL --- */
 .registro-container {
   display: flex;
   height: 100vh;
   background-color: #FFF;
   font-family: "Poppins", sans-serif;
-  }
-  
+}
+
+/* --- COLUMNA IZQUIERDA --- */
 .col-izquierda {
   flex: 1;
   background-color: #6ec3c3;
@@ -17,17 +19,17 @@
   border-bottom-right-radius: 50%;
   padding: 20px;
 }
-  
+
 .col-izquierda h1 {
   font-size: 3rem;
 }
-  
+
 .col-izquierda p {
   max-width: 300px;
   text-align: center;
   margin: 20px 0;
 }
-  
+
 .btn-login {
   background: none;
   border: 2px solid white;
@@ -37,15 +39,15 @@
   cursor: pointer;
   font-family: "Poppins", sans-serif;
 }
-  
-  /* Columna Derecha */
+
+/* --- COLUMNA DERECHA --- */
 .col-derecha {
- flex: 1;
- background: #FFF;
- display: flex;
- flex-direction: column;
- justify-content: center;
- padding: 0 60px;
+  flex: 1;
+  background: #FFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 60px;
 }
 
 .col-derecha h2 {
@@ -53,6 +55,8 @@
   margin-bottom: 20px;
   color: black;
 }
+
+/* --- ICONOS SOCIALES --- */
 .social-icons {
   display: flex;
   gap: 15px;
@@ -75,33 +79,55 @@
   transform: scale(1.1);
 }
 
-.DNI {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  text-align: left;
-}
-  
-form input {
-  padding: 8px;
-  border: 1px solid #ccc;
-  font-family: "Poppins", sans-serif;
-}
-  
-.btn-siguiente {
-  background: black;
-  color: white;
-  padding: 10px;
-  border: none;
+/* --- DROPZONE --- */
+.dropzone2 {
+  border: 2px dashed #888;
+  padding: 40px;
+  border-radius: 10px;
+  background: #FFF;
+  margin: 20px 0;
+  text-align: center;
   cursor: pointer;
-  font-family: "Poppins", sans-serif;
 }
-  
+
+.upload-button {
+  display: inline-block;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+/* --- LISTA DE ARCHIVOS --- */
+.file-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+/* --- BOTÓN CONFIRMAR --- */
+.btn-siguiente {
+  display: block;
+  margin: 20px auto;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-style: Medium italic;
+  font-weight: 500;
+}
+
+/* --- STEPS --- */
 .step {
   text-align: center;
   font-size: 12px;
 }
-  
+
 .circle {
   width: 20px;
   height: 20px;
@@ -110,14 +136,7 @@ form input {
   margin: 0 auto 5px;
   gap: 10px;
 }
-  
+
 .step.active .circle {
   background-color: black;
 }
-  
-.linea {
-  width: 40px;
-  height: 2px;
-  background: black;
-}
-  
