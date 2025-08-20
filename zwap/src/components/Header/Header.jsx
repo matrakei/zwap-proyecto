@@ -1,6 +1,6 @@
 import './Header.css';
 import logo from "../../assets/logo con color.png";
-import perfil from "../../assets/perfil.png";
+import perfilImage from "../../assets/Fotos de prueba/perfil.png";
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 export const Header = () => {
@@ -13,7 +13,7 @@ export const Header = () => {
     <header className="header">
       <div className="logo-container">
         <img src={logo} alt="Logo Zwap" className="logo" />
-      </div>
+      </div>  
 
       <nav className="nav-center">
         <NavLink to="/" className="nav-button">
@@ -33,7 +33,7 @@ export const Header = () => {
       <div className="user-info">
         <button className="perfil-button">
           Nombre y apellido
-          <img src={perfil} alt="Perfil" className="perfil-img" />
+          <img src={perfilImage} alt="Perfil" className="perfil-img" />
         </button>
       </div>
     </header>
