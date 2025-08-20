@@ -27,20 +27,22 @@ export function Login4() {
       {/* Columna Derecha */}
       <div className="col-derecha">
         <h2>Registrarse</h2>
+
         <div className="social-icons">
           <img src={googleIcon} alt="Google" />
           <img src={microsoftIcon} alt="Microsoft" />
           <img src={appleIcon} alt="Apple" />
         </div>
 
-        <form className="Dni"  onSubmit={handleSubmit}>
+        <form className="DNI"  onSubmit={handleSubmit}>
         <label>
           Tipo de Documento
           <select>
-            <option>Dni</option>
-            <option>a</option>
-            <option>b</option>
-            <option>c</option>
+            <option>DNI</option>
+            <option>Cédula de identidad</option>
+            <option>National Identity Card</option>
+            <option>Carte Nationale d'Identité</option>
+            <option>Personalausweis</option>
           </select>
         </label>
           <input type="text" placeholder="Numero de Documento" />
