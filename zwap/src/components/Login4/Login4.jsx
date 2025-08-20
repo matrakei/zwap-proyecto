@@ -1,15 +1,15 @@
-import './Login.css';
+import './Login4.css';
 import { useNavigate } from 'react-router-dom';
 import googleIcon from '../../assets/Login/google.png';
 import microsoftIcon from '../../assets/Login/microsoft.png';
 import appleIcon from '../../assets/Login/apple.png';
 
-export function Login() {
+export function Login4() {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault(); // evita que se recargue la página
-    navigate("/login2"); // te lleva a Login2
+    navigate("/login4"); // te lleva a Login2
   };
 
   return (
@@ -33,10 +33,17 @@ export function Login() {
           <img src={appleIcon} alt="Apple" />
         </div>
 
-        <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Nombre completo" />
-          <input type="text" placeholder="Nombre de usuario" />
-          <input type="email" placeholder="Correo electrónico" />
+        <form className="Dni"  onSubmit={handleSubmit}>
+        <label>
+          Tipo de Documento
+          <select>
+            <option>Dni</option>
+            <option>a</option>
+            <option>b</option>
+            <option>c</option>
+          </select>
+        </label>
+          <input type="text" placeholder="Numero de Documento" />
           <button type="submit" className="btn-siguiente">
             Siguiente
           </button>
@@ -44,7 +51,7 @@ export function Login() {
 
         <div className="steps">
           {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className={`step ${i === 0 ? 'active' : ''}`}>
+            <div key={i} className={`step ${i === 1 ? 'active' : ''}`}>
               <div className="circle" />
               <span>Step {i + 1}</span>
             </div>

@@ -1,15 +1,15 @@
-import './Login.css';
+import './Login3.css';
 import { useNavigate } from 'react-router-dom';
 import googleIcon from '../../assets/Login/google.png';
 import microsoftIcon from '../../assets/Login/microsoft.png';
 import appleIcon from '../../assets/Login/apple.png';
 
-export function Login() {
+export function Login3() {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault(); // evita que se recargue la página
-    navigate("/login2"); // te lleva a Login2
+    navigate("/login4"); // te lleva a Login2
   };
 
   return (
@@ -34,9 +34,10 @@ export function Login() {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Nombre completo" />
-          <input type="text" placeholder="Nombre de usuario" />
-          <input type="email" placeholder="Correo electrónico" />
+          <input type="text" placeholder="Estado" />
+          <input type="text" placeholder="Ciudad" />
+          <input type="email" placeholder="Fecha de nacimiento" />
+          <input type="email" placeholder="Descripcón(Opcional)" />
           <button type="submit" className="btn-siguiente">
             Siguiente
           </button>

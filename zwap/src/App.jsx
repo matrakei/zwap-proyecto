@@ -1,24 +1,38 @@
 import './index.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
-import {Formulario}   from './components/Step1/Formulario/Formulario';
-import Step2  from './components/Step2/Step2'; 
+import { Formulario } from './components/Step1/Formulario/Formulario';
+import Step2 from './components/Step2/Step2'; 
 import Step3 from './components/Step3/Step3';
 import Step4 from './components/Step4/Step4';
 import Step5 from './components/Step5/Step5';
-import {PerfilPrincipal} from './components/PerfilPrincipal/PerfilPrincipal';
+import { PerfilPrincipal } from './components/PerfilPrincipal/PerfilPrincipal';
 import { Login } from './components/Login/Login';
-
+import { Login2 } from './components/Login2/Login2';
+import { Login3 } from './components/Login3/Login3';
+import { Login4 } from './components/Login4/Login4';
 
 
 function App() {
+  const location = useLocation();
+
+  
+  const hideHeaderFooter = location.pathname === "/" 
+  || location.pathname === "/login2"
+  || location.pathname === "/login3"
+  || location.pathname === "/login4";
+
   return (
     <div className="app-container">
-      <Header />
+      {!hideHeaderFooter && <Header />}
+      
       <main>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/login2" element={<Login2 />} />
+          <Route path="/login3" element={<Login3 />} />
+          <Route path="/login4" element={<Login4 />} />
           <Route path="/favoritos" element={<div>Favoritos</div>} />
           <Route path="/perfil" element={<PerfilPrincipal />} />
           <Route path="/perfil/step1" element={<Formulario />} />
@@ -28,9 +42,10 @@ function App() {
           <Route path="/perfil/step5" element={<Step5 />} />
         </Routes>
       </main>
-      <Footer />
+      
+      {!hideHeaderFooter && <Footer />}
     </div>
   );
-} 
+}
 
 export default App;
