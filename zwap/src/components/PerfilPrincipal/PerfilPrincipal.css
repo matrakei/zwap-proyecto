@@ -249,7 +249,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  border: #000;
+  width: 205px;
 }
 
 .imagen-container {
