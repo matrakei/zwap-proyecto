@@ -8,6 +8,7 @@ import Step3 from './components/Step3/Step3';
 import Step4 from './components/Step4/Step4';
 import Step5 from './components/Step5/Step5';
 import { PerfilPrincipal } from './components/PerfilPrincipal/PerfilPrincipal';
+import { Home } from './components/Home/Home';
 import { Login } from './components/Login/Login';
 import { Login2 } from './components/Login2/Login2';
 import { Login3 } from './components/Login3/Login3';
@@ -40,6 +41,7 @@ function App() {
           <Route path="/login4" element={<Login4 />} />
           <Route path="/login5" element={<Login5 />} />
           <Route path="/login6" element={<Login6 />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/favoritos" element={<div>Favoritos</div>} />
           <Route path="/perfil" element={<PerfilPrincipal />} />
           <Route path="/perfil/step1" element={<Formulario />} />
