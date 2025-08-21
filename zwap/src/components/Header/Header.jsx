@@ -1,5 +1,5 @@
 import './Header.css';
-import logo from "../../assets/logo con color.png";
+import logo from "../../assets/Group 13.png";
 import perfilImage from "../../assets/Fotos de prueba/perfil.png";
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 

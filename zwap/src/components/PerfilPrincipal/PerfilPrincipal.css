@@ -2,7 +2,7 @@
   display: flex;
   padding: 40px;
   font-family: 'Poppins', sans-serif;
-  background-color: #D3E6E7;
+  background-color: #FFF;
   gap: 40px;
 }
 
@@ -258,11 +258,13 @@
 }
 
 .img-publicacion {
-  width: 100%;
-  height: 160px;
+  width: 99%;
+  height: 200px;
   object-fit: cover;
   display: block;
   border: 1px solid #000;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .btn-favorito {
@@ -303,8 +305,8 @@
 
 .estado-badge {
   position: absolute;
-  bottom: 10px;
-  left:30%;
+  bottom: 1px;
+  left:29%;
   transform: translateX(-50%);
   background-color: #FFF;
   color: #333;
@@ -322,6 +324,8 @@
   border: 1px solid #000;
   border-radius: 0 0 10px 10px;
   background-color: rgba(57, 179, 184, 0.58);
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .info-publicacion h4 {
