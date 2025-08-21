@@ -72,7 +72,6 @@ export function Home() {
               type="text"
               className="search-input"
               placeholder="Buscar..."
-              autoFocus
             />
           )}
         </div>
