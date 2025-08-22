@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import googleIcon from '../../assets/Login/google.png';
 import microsoftIcon from '../../assets/Login/microsoft.png';
 import appleIcon from '../../assets/Login/apple.png';
+import { useState, useEffect } from 'react';
 
 export function Login6() {
   const navigate = useNavigate();
@@ -12,11 +13,23 @@ export function Login6() {
     navigate("/home"); // te lleva a Home
   };
 
+  // 👇 Textos que se van rotando
+  const mensajes = ["¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!", "¡Привет!", "¡こんにちは!"];
+  const [indice, setIndice] = useState(0);
+
+  useEffect(() => {
+    const intervalo = setInterval(() => {
+      setIndice((prev) => (prev + 1) % mensajes.length);
+    }, 2000); // cada 2 segundos
+
+    return () => clearInterval(intervalo);
+  }, []);
+
   return (
     <div className="registro-container">
       {/* Columna Izquierda */}
       <div className="col-izquierda">
-        <h1>¡Hola!</h1>
+        <h1>{mensajes[indice]}</h1>
         <p>
           Regístrese con sus datos personales para usar todas las funciones de
           la plataforma

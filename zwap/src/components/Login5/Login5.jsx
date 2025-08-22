@@ -1,5 +1,5 @@
 import './Login5.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import googleIcon from '../../assets/Login/google.png';
 import microsoftIcon from '../../assets/Login/microsoft.png';
@@ -7,7 +7,17 @@ import appleIcon from '../../assets/Login/apple.png';
 
 export function Login5() {
   const [files, setFiles] = useState([]);
+  const [greetingIndex, setGreetingIndex] = useState(0);
+  const greetings = ["¡Hola!", "Hello!", "Bonjour!", "Ciao!", "Hallo!", "Olá!", "Привет!", "こんにちは", "مرحبا", "你好"];
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setGreetingIndex((prev) => (prev + 1) % greetings.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleDrop = (e) => {
     e.preventDefault();
@@ -29,7 +39,7 @@ export function Login5() {
     <div className="registro-container">
       {/* Columna Izquierda */}
       <div className="col-izquierda">
-        <h1>¡Hola!</h1>
+        <h1>{greetings[greetingIndex]}</h1>
         <p>
           Regístrese con sus datos personales para usar todas las funciones de
           la plataforma
