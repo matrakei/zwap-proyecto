@@ -9,7 +9,7 @@ export function Login6() {
 
   const handleSubmit = (e) => {
     e.preventDefault(); // evita que se recargue la página
-    navigate("/login7"); // te lleva a Login7
+    navigate("/home"); // te lleva a Home
   };
 
   return (
