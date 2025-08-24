@@ -54,10 +54,33 @@ export function PerfilPrincipal() {
     casa6, casa7, casa8, casa9, casa10,
   ];
 
-  // Asignar imagen a cada publicación
+  // Agregar array de ubicaciones
+  const ubicaciones = [
+    'Argentina, Buenos Aires',
+    'Brasil, Brasília',
+    'Chile, Santiago',
+    'Canadá, Ottawa',
+    'Reino Unido, Londres',
+    'Francia, París',
+    'Alemania, Berlín',
+    'Italia, Roma',
+    'España, Madrid',
+    'Rusia, Moscú',
+    'China, Pekín',
+    'Japón, Tokio',
+    'India, Nueva Delhi',
+    'Australia, Canberra',
+    'Sudáfrica, Pretoria',
+    'Arabia Saudita, Riad',
+    'Turquía, Ankara',
+    'Corea del Sur, Seúl'
+  ];
+
+  // Asignar imagen y ubicación a cada publicación
   const publicacionesConImagen = publicaciones.map((pub, index) => ({
     ...pub,
     imagen: imagenes[index % imagenes.length],
+    ubicacion: ubicaciones[index % ubicaciones.length],
   }));
 
   const [favoritos, setFavoritos] = useState([]);
@@ -222,7 +245,7 @@ export function PerfilPrincipal() {
                 <div className="info-publicacion">
                   <h4>{pub.titulo}</h4>
                   <p className="subtexto-card">Texto 1 · Texto 2 · Texto 3</p>
-                  <p className="subtexto-card">📍 Luján de Cuyo, Mendoza</p>
+                  <p className="subtexto-card">📍 {pub.ubicacion}</p>
                   <div className="autor-publicacion">👤 {pub.autor}</div>
                 </div>
               </div>
