@@ -75,7 +75,7 @@
   transform: scale(1.1);
 }
 
-.DNI {
+.Formulario {
   display: flex;
   flex-direction: column;
   gap: 15px;

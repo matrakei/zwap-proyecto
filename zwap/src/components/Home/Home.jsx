@@ -1,14 +1,56 @@
 import './Home.css';
 import { useState } from 'react';
-import casaImage from '../../assets/Fotos de prueba/casa2.jpg';
 import search from '../../assets/Home/Group 199.png';
+import casa1 from '../../assets/Home/Casa1.png';
+import casa2 from '../../assets/Home/Casa2.png';
+import casa3 from '../../assets/Home/Casa3.png';
+import casa4 from '../../assets/Home/Casa4.png';
+import casa5 from '../../assets/Home/Casa5.png';
+import casa6 from '../../assets/Home/Casa6.png';
+import casa7 from '../../assets/Home/Casa7.png';
+import casa8 from '../../assets/Home/Casa8.png';
+import casa9 from '../../assets/Home/Casa9.png';
+import casa10 from '../../assets/Home/Casa10.png';
 
 export function Home() {
+ 
+  const imagenes = [
+    casa1, casa2, casa3, casa4, casa5,
+    casa6, casa7, casa8, casa9, casa10,
+  ];
+
+ 
+  const autores = ['usuario1','usuario2','usuario3','usuario4','usuario5'];
+  const ubicaciones = [
+    'Argentina, Buenos Aires',
+    'Brasil, Brasília',
+    'Chile, Santiago',
+    'Canadá, Ottawa',
+    'Reino Unido, Londres',
+    'Francia, París',
+    'Alemania, Berlín',
+    'Italia, Roma',
+    'España, Madrid',
+    'Rusia, Moscú',
+    'China, Pekín',
+    'Japón, Tokio',
+    'India, Nueva Delhi',
+    'Australia, Canberra',
+    'Sudáfrica, Pretoria',
+    'Arabia Saudita, Riad',
+    'Turquía, Ankara',
+    'Corea del Sur, Seúl'
+  ];
+
+  
   const publicaciones = Array.from({ length: 12 }, (_, i) => ({
     id: i + 1,
     titulo: `Casa ${i + 1}`,
-    descripcion: "Hermosa casa con jardín y pileta",
-    imagen: casaImage,
+    descripcion: 'Hermosa casa con jardín y pileta',
+    imagen: imagenes[i % imagenes.length],
+    autor: autores[i % autores.length],
+    disponible: i % 3 !== 0, 
+    ubicacion: ubicaciones[i % ubicaciones.length],
   }));
 
   const [favoritos, setFavoritos] = useState([]);
@@ -68,11 +110,7 @@ export function Home() {
           </button>
 
           {showInput && (
-            <input
-              type="text"
-              className="search-input"
-              placeholder="Buscar..."
-            />
+            <input type="text" className="search-input" placeholder="Buscar..." />
           )}
         </div>
       </div>
@@ -83,13 +121,14 @@ export function Home() {
           <div key={pub.id} className="card-publicacion">
             <div className="imagen-container">
               <img
-                src={casaImage}
+                src={pub.imagen}
                 alt={pub.titulo}
                 className="img-publicacion"
               />
               <button
                 className="btn-favorito"
                 onClick={() => toggleFavorito(pub.id)}
+                aria-label="Marcar favorito"
               >
                 {favoritos.includes(pub.id) ? (
                   <span className="si--heart-fill"></span>
@@ -101,10 +140,11 @@ export function Home() {
                 {pub.disponible ? ' DISPONIBLE' : ' NO DISPONIBLE'}
               </div>
             </div>
+
             <div className="info-publicacion">
-              <h4>{pub.titulo} </h4>
+              <h4>{pub.titulo}</h4>
               <p className="subtexto-card">Texto 1 · Texto 2 · Texto 3</p>
-              <p className="subtexto-card">📍 Ubicación random</p>
+              <p className="subtexto-card">📍 {pub.ubicacion}</p>
               <div className="autor-publicacion">👤 {pub.autor}</div>
             </div>
           </div>

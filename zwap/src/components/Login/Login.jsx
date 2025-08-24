@@ -46,9 +46,9 @@ export function Login() {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Nombre completo" />
+          <input type="text" placeholder="Nombre Completo" />
           <input type="text" placeholder="Nombre de usuario" />
-          <input type="email" placeholder="Correo electrónico" />
+          <input type="text" placeholder="Correo electrónico" />
           <button type="submit" className="btn-siguiente">
             Siguiente
           </button>

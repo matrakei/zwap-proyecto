@@ -44,10 +44,10 @@ export function Login4() {
           <img src={appleIcon} alt="Apple" />
         </div>
 
-        <form className="DNI" onSubmit={handleSubmit}>
+        <form className="Formulario" onSubmit={handleSubmit}>
           <label>
             Tipo de Documento
-            <select>
+            <select className="DNI">
               <option>DNI</option>
               <option>Cédula de identidad</option>
               <option>National Identity Card</option>

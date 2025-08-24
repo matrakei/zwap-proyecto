@@ -57,13 +57,15 @@ export function Login2() {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Nombre completo" />
-          <input type="text" placeholder="Nombre de usuario" />
-          <input type="email" placeholder="Correo electrónico" />
+          <input type="text" placeholder="Codigo de pais" />
+          <input type="text" placeholder="Número de telefono" />
+          <input type="text" placeholder="Nacionalidad" />
+          <input type="text" placeholder="Pais de residencia" />
           <button type="submit" className="btn-siguiente">
             Siguiente
           </button>
         </form>
+
 
         <div className="steps">
           {Array.from({ length: 3 }).map((_, i) => (

@@ -1,9 +1,21 @@
 import './PerfilPrincipal.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import casaImage from '../../assets/Fotos de prueba/casa2.jpg';
 import perfilImage from '../../assets/Fotos de prueba/perfil.png';
 
+// Importar imágenes de publicaciones
+import casa1 from '../../assets/Home/Casa1.png';
+import casa2 from '../../assets/Home/Casa2.png';
+import casa3 from '../../assets/Home/Casa3.png';
+import casa4 from '../../assets/Home/Casa4.png';
+import casa5 from '../../assets/Home/Casa5.png';
+import casa6 from '../../assets/Home/Casa6.png';
+import casa7 from '../../assets/Home/Casa7.png';
+import casa8 from '../../assets/Home/Casa8.png';
+import casa9 from '../../assets/Home/Casa9.png';
+import casa10 from '../../assets/Home/Casa10.png';
+
+// Importar imágenes de porcentaje
 import Cargar0 from '../../assets/porcentajes/Cargar 0.svg';
 import Cargar5 from '../../assets/porcentajes/Cargar 5.svg';
 import Cargar10 from '../../assets/porcentajes/Cargar 10.svg';
@@ -37,10 +49,21 @@ export function PerfilPrincipal() {
     { id: 5, titulo: "Casa 5", autor: "usuario4", disponible: false }
   ];
 
+  const imagenes = [
+    casa1, casa2, casa3, casa4, casa5,
+    casa6, casa7, casa8, casa9, casa10,
+  ];
+
+  // Asignar imagen a cada publicación
+  const publicacionesConImagen = publicaciones.map((pub, index) => ({
+    ...pub,
+    imagen: imagenes[index % imagenes.length],
+  }));
+
   const [favoritos, setFavoritos] = useState([]);
   const [showObjetivo, setShowObjetivo] = useState(false);
   const [objetivoIntercambios, setObjetivoIntercambios] = useState(5);
-  const cantidadIntercambios = 2; // este valor debería actualizarse dinámicamente en tu sistema
+  const cantidadIntercambios = 2; // valor de ejemplo
 
   const irACrearPublicacion = () => {
     navigate('/perfil/step1');
@@ -65,7 +88,6 @@ export function PerfilPrincipal() {
     100,
     Math.round((cantidadIntercambios / objetivoIntercambios) * 100)
   );
-
   const porcentajeRedondeado = Math.round(porcentaje / 5) * 5;
 
   const imagenesPorcentaje = {
@@ -164,8 +186,6 @@ export function PerfilPrincipal() {
             />
           </div>
 
-          
-
           <div className="card-estadistica favorito">
             <span className="si--heart-fill" style={{ position: 'absolute', top: 12, right: 14 }}></span>
             <span className="numero-estadistica">{favoritosCount}</span>
@@ -177,11 +197,11 @@ export function PerfilPrincipal() {
         <div className="publicaciones">
           <h3>Mis Publicaciones</h3>
           <div className="grid-publicaciones">
-            {publicaciones.map((pub) => (
+            {publicacionesConImagen.map((pub) => (
               <div key={pub.id} className="card-publicacion">
                 <div className="imagen-container">
                   <img
-                    src={casaImage}
+                    src={pub.imagen}
                     alt={pub.titulo}
                     className="img-publicacion"
                   />
@@ -200,7 +220,7 @@ export function PerfilPrincipal() {
                   </div>
                 </div>
                 <div className="info-publicacion">
-                  <h4>{pub.titulo} </h4>
+                  <h4>{pub.titulo}</h4>
                   <p className="subtexto-card">Texto 1 · Texto 2 · Texto 3</p>
                   <p className="subtexto-card">📍 Luján de Cuyo, Mendoza</p>
                   <div className="autor-publicacion">👤 {pub.autor}</div>
