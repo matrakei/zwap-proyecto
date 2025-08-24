@@ -1,60 +1,60 @@
 .user-info {
-    display: flex;
-    align-items: center;
-  }
+  display: flex;
+  align-items: center;
+}
   
-  .filtros-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 20px;
-    margin: 20px auto;
-    border-radius: 20px;
-    max-width: 1000px;
-    gap: 16px;
-  }
+.filtros-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  margin: 20px auto;
+  border-radius: 20px;
+  max-width: 1000px;
+  gap: 16px;
+}
   
-  .filtros-bar select{
-    background-color: #39B3B894;
-    padding: 8px 12px;
-    border-radius: 20px;
-    outline: none;
-    font-size: 14px;
-    flex: 1;
-    margin: 20px auto;
-    transition: background-color 0.3s ease;
-    font-family: 'Poppins', sans-serif;
-  }
+.filtros-bar select{
+  background-color: #39B3B894;
+  padding: 8px 12px;
+  border-radius: 20px;
+  outline: none;
+  font-size: 14px;
+  flex: 1;
+  margin: 20px auto;
+  transition: background-color 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
   
-  .filtros-bar input {
-    padding: 8px 1px;
-    background-color: #18898d94;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    outline: none;
-    font-size: 14px;
-    flex: 1;
-    margin: 20px auto;
-  }
+.filtros-bar input {
+  padding: 8px 1px;
+  background-color: #18898d94;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+  font-size: 14px;
+  flex: 1;
+  margin: 20px auto;
+}
   
-  .search-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px;
-    border-radius: 20px;
-    transition: background-color 0.3s ease;
-    background-color: #39B3B894;
-  }
+.search-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+  background-color: #39B3B894;
+}
 
-  .search-button img {
-    width: 20px;
-    height: 20px;
-  }
+.search-button img {
+  width: 20px;
+  height: 20px;
+}
 
-  .search-button:hover {
-    background-color: #14cdd394;
-  }
+.search-button:hover {
+  background-color: #14cdd394;
+}

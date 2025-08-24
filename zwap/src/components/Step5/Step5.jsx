@@ -50,7 +50,7 @@ export default function Step5() {
       </div>
 
 
-      <button className="step5-button">Publicar</button>
+      <button className="step5-button" onClick={() => navigate('/perfil')}>Publicar</button>
 
       <div className="steps">
         {[...Array(5)].map((_, i) => (

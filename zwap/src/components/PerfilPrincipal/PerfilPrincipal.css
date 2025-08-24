@@ -1,6 +1,6 @@
 .perfil-container {
   display: flex;
-  padding: 40px;
+  padding: 20px 20px 40px 20px;
   font-family: 'Poppins', sans-serif;
   background-color: #FFF;
   gap: 40px;
@@ -240,6 +240,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 20px;
+    padding: 30px 30px 40px 30px;
 }
 
 .card-publicacion {
@@ -260,7 +261,7 @@
 .img-publicacion {
   width: 99%;
   height: 200px;
-  object-fit: cover;
+  object-fit: cover;  
   display: block;
   border: 1px solid #000;
   border-top-left-radius: 10px;
