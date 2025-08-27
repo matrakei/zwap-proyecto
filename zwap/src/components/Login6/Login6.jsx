@@ -14,7 +14,7 @@ export function Login6() {
   };
 
   // 👇 Textos que se van rotando
-  const mensajes = ["¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!", "¡Привет!", "¡こんにちは!"];
+  const mensajes = ["¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!", "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"];
   const [indice, setIndice] = useState(0);
 
   useEffect(() => {

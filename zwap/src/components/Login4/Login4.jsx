@@ -8,8 +8,7 @@ import appleIcon from '../../assets/Login/apple.png';
 export function Login4() {
   const navigate = useNavigate();
   const [greetingIndex, setGreetingIndex] = useState(0);
-  const greetings = ["¡Hola!", "Hello!", "Bonjour!", "Ciao!", "Hallo!", "Olá!", "Привет!", "こんにちは", "مرحبا", "你好"];
-
+  const greetings = ["¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!", "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"];
   useEffect(() => {
     const interval = setInterval(() => {
       setGreetingIndex((prev) => (prev + 1) % greetings.length);

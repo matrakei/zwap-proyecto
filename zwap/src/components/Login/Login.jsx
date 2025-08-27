@@ -9,7 +9,7 @@ export function Login() {
   const navigate = useNavigate();
   const [saludoIndex, setSaludoIndex] = useState(0);
 
-  const saludos = ["¡Hola!", "Hello!", "Bonjour!", "Hallo!", "Ciao!", "Olá!", "Привет!", "こんにちは!", "안녕하세요!", "مرحبا!"];
+  const saludos = ["¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!", "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"];
 
   useEffect(() => {
     const interval = setInterval(() => {

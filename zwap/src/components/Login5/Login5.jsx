@@ -8,7 +8,7 @@ import appleIcon from '../../assets/Login/apple.png';
 export function Login5() {
   const [files, setFiles] = useState([]);
   const [greetingIndex, setGreetingIndex] = useState(0);
-  const greetings = ["¡Hola!", "Hello!", "Bonjour!", "Ciao!", "Hallo!", "Olá!", "Привет!", "こんにちは", "مرحبا", "你好"];
+  const greetings =["¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!", "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"];
 
   const navigate = useNavigate();
 
