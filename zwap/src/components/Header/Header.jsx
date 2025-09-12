@@ -31,7 +31,7 @@ export const Header = () => {
       </nav>
 
       <div className="user-info">
-        <NavLink to="/" className="perfil-button">
+        <NavLink to="/iniciarsesion" className="perfil-button">
          Nombre y apellido
         <img src={perfilImage} alt="Perfil" className="perfil-img" />
         </NavLink>

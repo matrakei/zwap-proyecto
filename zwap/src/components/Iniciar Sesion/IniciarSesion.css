@@ -1,12 +1,45 @@
-.registro-container1 {
+/* Login.css (scopeado a .login-page) */
+.login-page .registro-container {
   display: flex;
   height: 100vh;
   background-color: #FFF;
   font-family: "Poppins", sans-serif;
 }
 
-/* Columna Izquierda - Login */
-.col-izquierda {
+.login-page .col-izquierda {
+  flex: 1;
+  background-color: #6ec3c3;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  padding: 20px;
+}
+
+.login-page .col-izquierda h1 {
+  font-size: 3rem;
+}
+
+.login-page .col-izquierda p {
+  max-width: 300px;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.login-page .btn-login {
+  background: none;
+  border: 2px solid white;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Columna Derecha */
+.login-page .col-derecha {
   flex: 1;
   background: #FFF;
   display: flex;
@@ -15,46 +48,35 @@
   padding: 0 60px;
 }
 
-.col-izquierda h2 {
+.login-page .col-derecha h2 {
   font-size: 2rem;
   margin-bottom: 20px;
 }
 
-.social-icons {
+.login-page .social-icons {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
 }
 
-.social-icons img {
+.login-page .social-icons img {
   width: 30px;
   cursor: pointer;
 }
 
-form {
+.login-page form {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-form input {
+.login-page form input {
   padding: 8px;
   border: 1px solid #ccc;
   font-family: "Poppins", sans-serif;
 }
 
-.forgot-link {
-  font-size: 0.9rem;
-  color: #6ec3c3;
-  text-decoration: none;
-  margin-bottom: 10px;
-}
-
-.forgot-link:hover {
-  text-decoration: underline;
-}
-
-.btn-siguiente {
+.login-page .btn-siguiente {
   background: black;
   color: white;
   padding: 10px;
@@ -63,51 +85,12 @@ form input {
   font-family: "Poppins", sans-serif;
 }
 
-/* Columna Derecha - Bienvenida */
-.col-derecha1 {
-  flex: 1;
-  background-color: #6ec3c3;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-top-left-radius: 50%;
-  border-bottom-left-radius: 50%;
-  padding: 20px;
-  text-align: center;
-}
-
-.col-derecha h1 {
-  font-size: 3rem;
-}
-
-.col-derecha p {
-  max-width: 300px;
-  margin: 20px 0;
-}
-
-.btn-login {
-  background: none;
-  border: 2px solid white;
-  padding: 10px 20px;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.btn-login:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/* Steps (si los usas en otra pantalla) */
-.step {
+.login-page .step {
   text-align: center;
   font-size: 12px;
 }
 
-.circle {
+.login-page .circle {
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -115,11 +98,11 @@ form input {
   margin: 0 auto 5px;
 }
 
-.step.active .circle {
+.login-page .step.active .circle {
   background-color: black;
 }
 
-.linea {
+.login-page .linea {
   width: 40px;
   height: 2px;
   background: black;

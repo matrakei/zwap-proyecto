@@ -15,6 +15,7 @@ import { Login3 } from './components/Login3/Login3';
 import { Login4 } from './components/Login4/Login4';
 import { Login5 } from './components/Login5/Login5';
 import { Login6 } from './components/Login6/Login6';
+import { IniciarSesion } from './components/Iniciar Sesion/InciarSesion';
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
           <Route path="/login4" element={<Login4 />} />
           <Route path="/login5" element={<Login5 />} />
           <Route path="/login6" element={<Login6 />} />
+          <Route path="/iniciarsesion" element={<IniciarSesion />} />
           <Route path="/home" element={<Home />} />
           <Route path="/favoritos" element={<div>Favoritos</div>} />
           <Route path="/perfil" element={<PerfilPrincipal />} />
