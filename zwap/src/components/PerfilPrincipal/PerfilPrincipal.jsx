@@ -182,7 +182,7 @@ export function PerfilPrincipal() {
 
         <div className="perfil-info-bloque">
           <p className="info-label">Mail</p>
-          <p className="info-texto">Micaperéz@gmail.com</p>
+          <p className="info-texto">micaperez@gmail.com</p>
         </div>
 
         <div className="perfil-info-bloque">

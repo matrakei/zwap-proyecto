@@ -17,6 +17,7 @@ import { Login5 } from './components/Login5/Login5';
 import { Login6 } from './components/Login6/Login6';
 import { IniciarSesion } from './components/Iniciar Sesion/InciarSesion';
 import { RecuperarCuenta } from './components/RecuperarCuenta/RecuperarCuenta';
+import { Favoritos } from './components/Favoritos/Favoritos';
 
 function App() {
   const location = useLocation();
@@ -48,7 +49,7 @@ function App() {
           <Route path="/iniciarsesion" element={<IniciarSesion />} />
           <Route path="/recuperarcuenta" element={<RecuperarCuenta />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/favoritos" element={<div>Favoritos</div>} />
+          <Route path="/favoritos" element={<Favoritos />} />
           <Route path="/perfil" element={<PerfilPrincipal />} />
           <Route path="/perfil/step1" element={<Formulario />} />
           <Route path="/perfil/step2" element={<Step2 />} />
