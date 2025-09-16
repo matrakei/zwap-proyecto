@@ -9,11 +9,15 @@ export function Login6() {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // evita que se recargue la página
-    navigate("/home"); // te lleva a Home
+    e.preventDefault(); 
+    navigate("/home"); 
   };
 
-  // 👇 Textos que se van rotando
+  const handleLogin = (e) => {
+    e.preventDefault(); 
+    navigate("/iniciarsesion"); 
+  };
+
   const mensajes = ["¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!", "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"];
   const [indice, setIndice] = useState(0);
 
@@ -34,7 +38,7 @@ export function Login6() {
           Regístrese con sus datos personales para usar todas las funciones de
           la plataforma
         </p>
-        <button className="btn-login">Iniciar Sesión</button>
+        <button className="btn-login" onClick={handleLogin} >Iniciar Sesión</button>
       </div>
 
       {/* Columna Derecha */}

@@ -35,6 +35,11 @@ export function Login5() {
     navigate("/login6");
   };
 
+  const handleLogin = (e) => {
+    e.preventDefault(); 
+    navigate("/iniciarsesion"); 
+  };
+
   return (
     <div className="registro-container">
       {/* Columna Izquierda */}
@@ -44,7 +49,7 @@ export function Login5() {
           Regístrese con sus datos personales para usar todas las funciones de
           la plataforma
         </p>
-        <button className="btn-login">Iniciar Sesión</button>
+        <button className="btn-login" onClick={handleLogin} >Iniciar Sesión</button>
       </div>
 
       {/* Columna Derecha */}

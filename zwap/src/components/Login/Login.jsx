@@ -24,6 +24,11 @@ export function Login() {
     navigate("/login2");
   };
 
+  const handleLogin = (e) => {
+    e.preventDefault(); 
+    navigate("/iniciarsesion"); 
+  };
+
   return (
     <div className="registro-container">
       {/* Columna Izquierda */}
@@ -33,7 +38,7 @@ export function Login() {
           Regístrese con sus datos personales para usar todas las funciones de
           la plataforma
         </p>
-        <button className="btn-login">Iniciar Sesión</button>
+        <button className="btn-login" onClick={handleLogin} >Iniciar Sesión</button>
       </div>
 
       {/* Columna Derecha */}
@@ -50,7 +55,7 @@ export function Login() {
           <input type="text" placeholder="Nombre de usuario" />
           <input type="text" placeholder="Correo electrónico" />
           <button type="submit" className="btn-siguiente">
-            Siguiente
+            Siguiente 
           </button>
         </form>
 

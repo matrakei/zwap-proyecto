@@ -16,6 +16,11 @@ export function IniciarSesion() {
     navigate("/"); // Al registrarse va a Login
   };
 
+  const handleRecuperarCuenta = (e) => {
+    e.preventDefault();
+    navigate("/recuperarcuenta"); 
+  };
+
   return (
     <div className="registro-container login-page">
       {/* Columna Izquierda - Formulario */}
@@ -30,7 +35,16 @@ export function IniciarSesion() {
         <form onSubmit={handleSubmit}>
           <input type="email" placeholder="Correo electrónico" />
           <input type="password" placeholder="Contraseña" />
-          <a href="#" className="forgot-password">¿Olvidaste tu contraseña?</a>
+
+          {/* Botón Olvidaste tu contraseña */}
+          <button 
+            type="button" 
+            className="btn-recuperar" 
+            onClick={handleRecuperarCuenta}
+          >
+            ¿Olvidaste tu contraseña?
+          </button>
+
           <button type="submit" className="btn-confirmar">Confirmar</button>
         </form>
       </div>
