@@ -29,6 +29,8 @@ function App() {
   || location.pathname === "/login5"
   || location.pathname === "/login6"
   || location.pathname === "/iniciarsesion"
+  || location.pathname === "/recuperarcuenta"
+
   ;
 
   return (
