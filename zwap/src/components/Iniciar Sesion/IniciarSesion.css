@@ -1,4 +1,4 @@
-/* Login.css (scopeado a .login-page) */
+/* General */
 .login-page .registro-container {
   display: flex;
   height: 100vh;
@@ -21,22 +21,38 @@
   margin-bottom: 20px;
 }
 
+/* Social icons estilo botones */
 .login-page .social-icons {
   display: flex;
-  gap: 10px;
+  gap: 6px; /* más pegados */
   margin-bottom: 20px;
 }
 
-.login-page .social-icons img {
-  width: 30px;
+.login-page .social-icons button {
+  background: none;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;   
+  height: 30px;  
+
 }
 
+.login-page .social-icons button img {
+  width: 35px;
+  height: 35px;
+}
+
+/* Formulario */
 .login-page form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  align-items: center; /* centra inputs, link y botón */
+  align-items: center;
 }
 
 .login-page form input {
@@ -44,26 +60,31 @@
   border: 1px solid #ccc;
   font-family: "Poppins", sans-serif;
   width: 100%;
-  max-width: 300px; /* ancho fijo de la columna */
+  max-width: 300px;
 }
 
+/* Botón recuperar */
 .login-page .btn-recuperar {
-  font-size: 15px;
+  font-size: 14px;
   color: #00b3b3;
-  text-decoration: none;
-  text-align: center;;
-  width: 100%;
-  max-width: 300px; 
-  background-color: #FFF;
-  border: #FFF;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: center;
   font-family: "Poppins", sans-serif;
+  margin-top: -5px;
 }
 
+.login-page .btn-recuperar:hover {
+  text-decoration: underline;
+}
+
+/* Botón confirmar */
 .login-page .btn-confirmar {
   background: black;
   color: white;
   padding: 7px;
-  width: 200px; /* más chico que los inputs */
+  width: 200px;
   border: none;
   cursor: pointer;
   font-weight: 600;
@@ -71,7 +92,7 @@
   border-radius: 5px;
 }
 
-
+/* Columna derecha - Bienvenida */
 .login-page .col-derecha-iniciar {
   flex: 1;
   background-color: #62B8BC;

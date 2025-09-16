@@ -9,11 +9,11 @@ export function IniciarSesion() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/Home"); // Al confirmar va a Home
+    navigate("/Home"); 
   };
 
   const handleRegistrarse = () => {
-    navigate("/"); // Al registrarse va a Login
+    navigate("/"); 
   };
 
   const handleRecuperarCuenta = (e) => {
@@ -26,25 +26,23 @@ export function IniciarSesion() {
       {/* Columna Izquierda - Formulario */}
       <div className="col-izquierda-iniciar">
         <h2>Iniciar Sesión</h2>
+
         <div className="social-icons">
-          <img src={googleIcon} alt="Google" />
-          <img src={microsoftIcon} alt="Microsoft" />
-          <img src={appleIcon} alt="Apple" />
+          <button><img src={googleIcon} alt="Google" /></button>
+          <button><img src={microsoftIcon} alt="Microsoft" /></button>
+          <button><img src={appleIcon} alt="Apple" /></button>
         </div>
 
         <form onSubmit={handleSubmit}>
           <input type="email" placeholder="Correo electrónico" />
           <input type="password" placeholder="Contraseña" />
-
-          {/* Botón Olvidaste tu contraseña */}
-          <button 
-            type="button" 
-            className="btn-recuperar" 
+          <button
+            type="button"
+            className="btn-recuperar"
             onClick={handleRecuperarCuenta}
           >
             ¿Olvidaste tu contraseña?
           </button>
-
           <button type="submit" className="btn-confirmar">Confirmar</button>
         </form>
       </div>
@@ -65,3 +63,5 @@ export function IniciarSesion() {
     </div>
   );
 }
+
+export default IniciarSesion;
