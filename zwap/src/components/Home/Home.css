@@ -2,41 +2,48 @@
   display: flex;
   align-items: center;
 }
-  
+
 .filtros-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap; /* para que sea responsive */
   padding: 12px 20px;
   margin: 20px auto;
   border-radius: 20px;
   max-width: 1000px;
-  gap: 16px;
+  gap: 12px;
 }
-  
-.filtros-bar select{
+
+.filtros-bar select {
   background-color: #39B3B894;
   padding: 8px 12px;
   border-radius: 20px;
   outline: none;
   font-size: 14px;
-  flex: 1;
-  margin: 20px auto;
-  transition: background-color 0.3s ease;
   font-family: 'Poppins', sans-serif;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-  
-.filtros-bar input {
-  padding: 8px 1px;
-  background-color: #18898d94;
-  border: 1px solid #ccc;
+
+.filtros-bar select:hover {
+  background-color: #14cdd394;
+}
+
+/* Contenedor de búsqueda */
+.search-container {
+  display: flex;
+  align-items: center;
+  background-color: #39B3B894;
   border-radius: 20px;
-  outline: none;
-  font-size: 14px;
-  flex: 1;
-  margin: 20px auto;
+  padding: 0 8px;
+  height: 36px;
+  overflow: hidden;
+  transition: width 0.3s ease;
+  width: auto; /* se ajusta al contenido */
 }
-  
+
 .search-button {
   background: none;
   border: none;
@@ -44,10 +51,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px;
-  border-radius: 20px;
-  transition: background-color 0.3s ease;
-  background-color: #39B3B894;
 }
 
 .search-button img {
@@ -55,6 +58,21 @@
   height: 20px;
 }
 
-.search-button:hover {
-  background-color: #14cdd394;
+/* Input pegado al botón */
+.search-input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  padding: 0 8px;
+  width: 0; /* cerrado por defecto */
+  opacity: 0;
+  transition: width 0.3s ease, opacity 0.3s ease;
+}
+
+/* Cuando se muestra el input */
+.search-container.active .search-input {
+  width: 160px; /* ancho visible */
+  opacity: 1;
 }
