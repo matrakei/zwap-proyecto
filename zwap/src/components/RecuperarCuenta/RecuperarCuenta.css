@@ -1,0 +1,104 @@
+/* RecuperarCuenta.css */
+.login-page .registro-container {
+    display: flex;
+    height: 100vh;
+    background-color: #FFF;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  /* Columna izquierda - Formulario */
+  .login-page .col-izquierda-recuperar {
+    flex: 1;
+    background: #FFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 60px;
+    text-align: center;
+  }
+  
+  .login-page .candado-icon {
+    width: 60px;
+    margin-bottom: 20px;
+  }
+  
+  .login-page .col-izquierda-recuperar h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .col-izquierda-recuperar form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .col-izquierda-recuperar form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-family: "Poppins", sans-serif;
+    width: 100%;
+  }
+  
+  .col-izquierda-recuperar .crear-cuenta {
+    font-size: 13px;
+    color: #00b3b3;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    margin: 5px 0;
+  }
+  
+  .col-izquierda-recuperar .btn-confirmar {
+    background: black;
+    color: white;
+    padding: 7px;
+    width: 200px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  /* Columna derecha - Mensaje */
+  .login-page .col-derecha-recuperar {
+    flex: 1;
+    background-color: #62B8BC;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .login-page .col-derecha-recuperar h1 {
+    font-size: 3rem;
+  }
+  
+  .login-page .col-derecha-recuperar p {
+    max-width: 300px;
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .login-page .btn-registrarse {
+    background: none;
+    border: 2px solid white;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+  }
+  

@@ -71,10 +71,10 @@
   border-radius: 5px;
 }
 
-/* Columna derecha - Bienvenida */
+
 .login-page .col-derecha-iniciar {
   flex: 1;
-  background-color: #6ec3c3;
+  background-color: #62B8BC;
   color: white;
   display: flex;
   flex-direction: column;
