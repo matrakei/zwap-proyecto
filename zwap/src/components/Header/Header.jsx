@@ -32,7 +32,7 @@ export const Header = () => {
 
       <div className="user-info">
         <NavLink to="/iniciarsesion" className="perfil-button">
-         Micaela Perez
+         Mica Perez
         <img src={perfilImage} alt="Perfil" className="perfil-img" />
         </NavLink>
       </div>

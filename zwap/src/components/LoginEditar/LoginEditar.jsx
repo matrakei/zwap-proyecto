@@ -35,8 +35,8 @@ export function LoginEditar() {
         <h2>Editar Perfil</h2>
 
         <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Nombre Completo" defaultValue="Micaela Pérez"/>
-          <input type="text" placeholder="Nombre de usuario" defaultValue="usuario1"/>
+          <input type="text" placeholder="Nombre Completo" defaultValue="Micaela Perez"/>
+          <input type="text" placeholder="Nombre de usuario" defaultValue="Mica Perez"/>
           <input type="text" placeholder="Correo electrónico" defaultValue="micaperez@gmail.com"/>
           <button type="submit" className="btn-siguiente">
             Siguiente
