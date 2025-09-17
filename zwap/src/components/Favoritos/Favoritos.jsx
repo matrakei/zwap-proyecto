@@ -96,7 +96,7 @@ export function Favoritos() {
                 </div>
               ))
             ) : (
-              <p>No tienes favoritos aún ❤️</p>
+              <p>No tienes favoritos aún </p>
             )}
           </div>
         </div>

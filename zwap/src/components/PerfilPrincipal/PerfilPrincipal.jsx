@@ -190,7 +190,7 @@ export function PerfilPrincipal() {
           <p className="info-texto">11 58272610</p>
         </div>
 
-        <button className="btn-editar">Editar</button>
+        <button className="btn-editar" onClick={() => navigate("/logineditar")}>Editar</button>
       </div>
 
       <div className="perfil-derecha">

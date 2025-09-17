@@ -18,6 +18,12 @@ import { Login6 } from './components/Login6/Login6';
 import { IniciarSesion } from './components/Iniciar Sesion/InciarSesion';
 import { RecuperarCuenta } from './components/RecuperarCuenta/RecuperarCuenta';
 import { Favoritos } from './components/Favoritos/Favoritos';
+import { LoginEditar } from './components/LoginEditar/LoginEditar';
+import { Login2editar } from './components/Login2editar/Login2editar';
+import { Login3editar } from './components/Login3editar/Login3editar';
+import { Login4editar } from './components/Login4editar/Login4editar';
+import { Login5editar } from './components/Login5editar/Login5editar';
+import { Login6editar } from './components/Login6editar/Login6editar';
 
 function App() {
   const location = useLocation();
@@ -31,7 +37,12 @@ function App() {
   || location.pathname === "/login6"
   || location.pathname === "/iniciarsesion"
   || location.pathname === "/recuperarcuenta"
-
+  || location.pathname === "/logineditar"
+  || location.pathname === "/login2editar"
+  || location.pathname === "/login3editar"
+  || location.pathname === "/login4editar"
+  || location.pathname === "/login5editar"
+  || location.pathname === "/login6editar"
   ;
 
   return (
@@ -46,6 +57,12 @@ function App() {
           <Route path="/login4" element={<Login4 />} />
           <Route path="/login5" element={<Login5 />} />
           <Route path="/login6" element={<Login6 />} />
+          <Route path="/logineditar" element={<LoginEditar />} />
+          <Route path="/login2editar" element={<Login2editar />} />
+          <Route path="/login3editar" element={<Login3editar />} />
+          <Route path="/login4editar" element={<Login4editar />} />
+          <Route path="/login5editar" element={<Login5editar />} />
+          <Route path="/login6editar" element={<Login6editar />} />
           <Route path="/iniciarsesion" element={<IniciarSesion />} />
           <Route path="/recuperarcuenta" element={<RecuperarCuenta />} />
           <Route path="/home" element={<Home />} />
