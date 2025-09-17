@@ -1,9 +1,6 @@
 import './Login3editar.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import googleIcon from '../../assets/Login/google.png';
-import microsoftIcon from '../../assets/Login/microsoft.png';
-import appleIcon from '../../assets/Login/apple.png';
 
 export function Login3editar() {
   const navigate = useNavigate();
@@ -40,11 +37,6 @@ export function Login3editar() {
       {/* Columna Derecha */}
       <div className="col-derecha">
         <h2>Editar Perfil</h2>
-        <div className="social-icons">
-          <img src={googleIcon} alt="Google" />
-          <img src={microsoftIcon} alt="Microsoft" />
-          <img src={appleIcon} alt="Apple" />
-        </div>
 
         <form onSubmit={handleSubmit}>
           <input type="text" placeholder="Estado" />

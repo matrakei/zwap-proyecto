@@ -1,9 +1,6 @@
 import './Login5editar.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import googleIcon from '../../assets/Login/google.png';
-import microsoftIcon from '../../assets/Login/microsoft.png';
-import appleIcon from '../../assets/Login/apple.png';
 
 export function Login5editar() {
   const [files, setFiles] = useState([]);
@@ -51,12 +48,6 @@ export function Login5editar() {
       {/* Columna Derecha */}
       <div className="col-derecha">
         <h2>Editar Perfil</h2>
-
-        <div className="social-icons">
-          <img src={googleIcon} alt="Google" />
-          <img src={microsoftIcon} alt="Microsoft" />
-          <img src={appleIcon} alt="Apple" />
-        </div>
 
         <form className="upload-form" onSubmit={handleSubmit}>
           <div
