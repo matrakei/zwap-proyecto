@@ -8,14 +8,51 @@ import { useState, useEffect } from 'react';
 export function Login6() {
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); 
-    navigate("/home"); 
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (password !== confirmPassword) {
+      alert("Las contraseñas no coinciden");
+      return;
+    }
+
+    // Recuperar lo que se guardó en pasos anteriores
+    const datosPrevios = JSON.parse(localStorage.getItem("registroUsuario")) || {};
+
+    const usuario = {
+      ...datosPrevios,
+      Contrasena: password,
+    };
+
+    try {
+      const response = await fetch("http://localhost:3000/usuarios", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(usuario),
+      });
+
+      if (response.ok) {
+        alert("Usuario registrado con éxito 🎉");
+        localStorage.removeItem("registroUsuario"); // limpiar storage
+        navigate("/home");
+      } else {
+        const error = await response.json();
+        alert("Error al registrar usuario: " + (error.message || "Intenta nuevamente"));
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("No se pudo conectar con el servidor.");
+    }
   };
 
   const handleLogin = (e) => {
-    e.preventDefault(); 
-    navigate("/iniciarsesion"); 
+    e.preventDefault();
+    navigate("/iniciarsesion");
   };
 
   const mensajes = ["¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!", "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"];
@@ -38,7 +75,7 @@ export function Login6() {
           Regístrese con sus datos personales para usar todas las funciones de
           la plataforma
         </p>
-        <button className="btn-login" onClick={handleLogin} >Iniciar Sesión</button>
+        <button className="btn-login" onClick={handleLogin}>Iniciar Sesión</button>
       </div>
 
       {/* Columna Derecha */}
@@ -51,10 +88,20 @@ export function Login6() {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Contraseña" />
-          <input type="text" placeholder="Confirmar contraseña" />
+          <input 
+            type="password" 
+            placeholder="Contraseña" 
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <input 
+            type="password" 
+            placeholder="Confirmar contraseña" 
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
           <button type="submit" className="btn-siguiente">
-            Siguiente
+            Finalizar Registro
           </button>
         </form>
 

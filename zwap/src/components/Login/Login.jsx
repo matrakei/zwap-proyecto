@@ -9,24 +9,57 @@ export function Login() {
   const navigate = useNavigate();
   const [saludoIndex, setSaludoIndex] = useState(0);
 
-  const saludos = ["¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!", "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"];
+  const saludos = [
+    "¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!",
+    "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"
+  ];
+
+  // Estado para los datos del formulario
+  const [formData, setFormData] = useState({
+    Nombre: "",
+    NombreUsuario: "",
+    CorreoElectronico: ""
+  });
 
   useEffect(() => {
     const interval = setInterval(() => {
       setSaludoIndex((prev) => (prev + 1) % saludos.length);
-    }, 2000); // cambia cada 2 segundos
-
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    navigate("/login2");
+  // Manejar cambios en los inputs
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleLogin = (e) => {
-    e.preventDefault(); 
-    navigate("/iniciarsesion"); 
+  // Enviar datos al back
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch("http://localhost:3000/usuarios", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+
+      if (res.ok) {
+        alert("Usuario creado con éxito");
+        navigate("/login2");
+      } else {
+        const errorData = await res.json();
+        alert("Error: " + (errorData.message || "No se pudo crear el usuario"));
+      }
+    } catch (error) {
+      console.error("Error al conectar con el back:", error);
+      alert("No se pudo conectar al servidor.");
+    }
+  };
+
+  const handleLogin = () => {
+    navigate("/iniciarsesion");
   };
 
   return (
@@ -38,7 +71,7 @@ export function Login() {
           Regístrese con sus datos personales para usar todas las funciones de
           la plataforma
         </p>
-        <button className="btn-login" onClick={handleLogin} >Iniciar Sesión</button>
+        <button className="btn-login" onClick={handleLogin}>Iniciar Sesión</button>
       </div>
 
       {/* Columna Derecha */}
@@ -51,11 +84,29 @@ export function Login() {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Nombre Completo" />
-          <input type="text" placeholder="Nombre de usuario" />
-          <input type="text" placeholder="Correo electrónico" />
+          <input
+            type="text"
+            name="Nombre"
+            placeholder="Nombre Completo"
+            value={formData.Nombre}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="NombreUsuario"
+            placeholder="Nombre de usuario"
+            value={formData.NombreUsuario}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="CorreoElectronico"
+            placeholder="Correo electrónico"
+            value={formData.CorreoElectronico}
+            onChange={handleChange}
+          />
           <button type="submit" className="btn-siguiente">
-            Siguiente 
+            Siguiente
           </button>
         </form>
 

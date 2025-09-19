@@ -8,7 +8,7 @@ import appleIcon from '../../assets/Login/apple.png';
 export function Login5() {
   const [files, setFiles] = useState([]);
   const [greetingIndex, setGreetingIndex] = useState(0);
-  const greetings =["¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!", "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"];
+  const greetings = ["¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!", "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"];
 
   const navigate = useNavigate();
 
@@ -32,6 +32,14 @@ export function Login5() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Guardar archivos en localStorage (solo nombres para simular)
+    const datosPrevios = JSON.parse(localStorage.getItem("registroUsuario")) || {};
+    localStorage.setItem("registroUsuario", JSON.stringify({
+      ...datosPrevios,
+      Archivos: files.map((file) => file.name)
+    }));
+
     navigate("/login6");
   };
 

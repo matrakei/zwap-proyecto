@@ -10,6 +10,14 @@ export function Login3() {
   const [greetingIndex, setGreetingIndex] = useState(0);
   const greetings = ["¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!", "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"];
 
+  // Estado para manejar inputs de este paso
+  const [formData, setFormData] = useState({
+    Estado: "",
+    Ciudad: "",
+    FechaNacimiento: "",
+    Descripcion: ""
+  });
+
   useEffect(() => {
     const interval = setInterval(() => {
       setGreetingIndex((prev) => (prev + 1) % greetings.length);
@@ -17,8 +25,23 @@ export function Login3() {
     return () => clearInterval(interval);
   }, []);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault(); 
+
+    // Traigo lo que se guardó antes
+    const datosPrevios = JSON.parse(localStorage.getItem("registroUsuario")) || {};
+
+    // Guardo lo nuevo sumado
+    localStorage.setItem("registroUsuario", JSON.stringify({
+      ...datosPrevios,
+      ...formData
+    }));
+
     navigate("/login4"); 
   };
 
@@ -49,10 +72,34 @@ export function Login3() {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Estado" />
-          <input type="text" placeholder="Ciudad" />
-          <input type="text" placeholder="Fecha de nacimiento" />
-          <input type="text" placeholder="Descripcón(Opcional)" />
+          <input
+            type="text"
+            name="Estado"
+            placeholder="Estado"
+            value={formData.Estado}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="Ciudad"
+            placeholder="Ciudad"
+            value={formData.Ciudad}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="FechaNacimiento"
+            placeholder="Fecha de nacimiento"
+            value={formData.FechaNacimiento}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="Descripcion"
+            placeholder="Descripcón(Opcional)"
+            value={formData.Descripcion}
+            onChange={handleChange}
+          />
           <button type="submit" className="btn-siguiente">
             Siguiente
           </button>

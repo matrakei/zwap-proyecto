@@ -9,6 +9,13 @@ export function Login4() {
   const navigate = useNavigate();
   const [greetingIndex, setGreetingIndex] = useState(0);
   const greetings = ["¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!", "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"];
+
+  // Estado para inputs de este paso
+  const [formData, setFormData] = useState({
+    TipoDocumento: "DNI",
+    NumeroDocumento: ""
+  });
+
   useEffect(() => {
     const interval = setInterval(() => {
       setGreetingIndex((prev) => (prev + 1) % greetings.length);
@@ -16,8 +23,21 @@ export function Login4() {
     return () => clearInterval(interval);
   }, []);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
   const handleSubmit = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
+
+    // Traer lo previo y guardar lo nuevo
+    const datosPrevios = JSON.parse(localStorage.getItem("registroUsuario")) || {};
+    localStorage.setItem("registroUsuario", JSON.stringify({
+      ...datosPrevios,
+      ...formData
+    }));
+
     navigate("/login5"); 
   };
 
@@ -51,7 +71,12 @@ export function Login4() {
         <form className="Formulario" onSubmit={handleSubmit}>
           <label>
             Tipo de Documento
-            <select className="DNI">
+            <select
+              className="DNI"
+              name="TipoDocumento"
+              value={formData.TipoDocumento}
+              onChange={handleChange}
+            >
               <option>DNI</option>
               <option>Cédula de identidad</option>
               <option>National Identity Card</option>
@@ -59,7 +84,13 @@ export function Login4() {
               <option>Personalausweis</option>
             </select>
           </label>
-          <input type="text" placeholder="Numero de Documento" />
+          <input
+            type="text"
+            name="NumeroDocumento"
+            placeholder="Numero de Documento"
+            value={formData.NumeroDocumento}
+            onChange={handleChange}
+          />
           <button type="submit" className="btn-siguiente">
             Siguiente
           </button>

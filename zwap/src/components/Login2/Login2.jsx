@@ -10,7 +10,15 @@ export function Login2() {
   const [saludoIndex, setSaludoIndex] = useState(0);
 
   const saludos = ["¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!", "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"];
- 
+
+  // Estado para guardar inputs
+  const [formData, setFormData] = useState({
+    CodigoPais: "",
+    NumeroTelefono: "",
+    Nacionalidad: "",
+    PaisResidencia: ""
+  });
+
   useEffect(() => {
     const interval = setInterval(() => {
       setSaludoIndex((prev) => (prev + 1) % saludos.length);
@@ -19,8 +27,23 @@ export function Login2() {
     return () => clearInterval(interval);
   }, []);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Traigo datos guardados del paso anterior (Login.jsx)
+    const datosPrevios = JSON.parse(localStorage.getItem("registroUsuario")) || {};
+
+    // Guardo todo en localStorage (se va acumulando paso a paso)
+    localStorage.setItem("registroUsuario", JSON.stringify({
+      ...datosPrevios,
+      ...formData
+    }));
+
     navigate("/login3");
   };
 
@@ -51,15 +74,38 @@ export function Login2() {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Codigo de pais" />
-          <input type="text" placeholder="Número de telefono" />
-          <input type="text" placeholder="Nacionalidad" />
-          <input type="text" placeholder="Pais de residencia" />
+          <input
+            type="text"
+            name="CodigoPais"
+            placeholder="Codigo de pais"
+            value={formData.CodigoPais}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="NumeroTelefono"
+            placeholder="Número de telefono"
+            value={formData.NumeroTelefono}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="Nacionalidad"
+            placeholder="Nacionalidad"
+            value={formData.Nacionalidad}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="PaisResidencia"
+            placeholder="Pais de residencia"
+            value={formData.PaisResidencia}
+            onChange={handleChange}
+          />
           <button type="submit" className="btn-siguiente">
             Siguiente
           </button>
         </form>
-
 
         <div className="steps">
           {Array.from({ length: 3 }).map((_, i) => (
