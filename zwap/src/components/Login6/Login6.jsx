@@ -25,7 +25,7 @@ export function Login6() {
     // Mapear campos a lo que el back espera
     const usuario = {
       Nombre: datosPrevios.Nombre || "",
-      Apellido: datosPrevios.Apellido || "ApellidoTest", // 🚨 ajustar según tus formularios
+      Apellido: datosPrevios.Apellido || "ApellidoTest", // ⚠️ ajustar si lo pedís antes
       Dni: datosPrevios.NumeroDocumento || "00000000",
       CorreoElectronico: datosPrevios.CorreoElectronico || "",
       NumeroTelefono: datosPrevios.NumeroTelefono || "",
@@ -40,15 +40,19 @@ export function Login6() {
     try {
       const response = await fetch("http://localhost:3000/usuarios", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(usuario),
       });
 
       if (response.ok) {
-        alert("Usuario registrado con éxito 🎉");
+        const creado = await response.json().catch(() => ({}));
+        const usuarioGuardado = creado?.usuario || usuario;
+
+        // Guardar al usuario en localStorage para usarlo en perfil
+        localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioGuardado));
         localStorage.removeItem("registroUsuario"); // limpiar storage
+
+        alert("Usuario registrado con éxito 🎉");
         navigate("/home");
       } else {
         const error = await response.json();

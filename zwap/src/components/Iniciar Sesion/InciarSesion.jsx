@@ -8,7 +8,6 @@ import { useState } from 'react';
 export function IniciarSesion() {
   const navigate = useNavigate();
 
-  // Estados para los campos del formulario
   const [correo, setCorreo] = useState("");
   const [contrasena, setContrasena] = useState("");
 
@@ -27,12 +26,17 @@ export function IniciarSesion() {
 
       if (res.ok) {
         const data = await res.json();
+
         alert("Inicio de sesión exitoso ✅");
 
-        // Guardar el token y datos de usuario en localStorage
-        localStorage.setItem("usuarioLogueado", JSON.stringify(data));
+        // Guardar usuario y token en localStorage
+        if (data.usuario) {
+          localStorage.setItem("usuarioLogueado", JSON.stringify(data.usuario));
+        }
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+        }
 
-        // Ir a home
         navigate("/home");
       } else {
         const error = await res.json();

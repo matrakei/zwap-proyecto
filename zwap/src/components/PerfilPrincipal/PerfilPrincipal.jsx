@@ -1,5 +1,5 @@
 import './PerfilPrincipal.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import perfilImage from '../../assets/Fotos de prueba/perfil.png';
 
@@ -41,6 +41,18 @@ import Cargar100 from '../../assets/porcentajes/Cargar 100.svg';
 export function PerfilPrincipal() {
   const navigate = useNavigate();
 
+  // 🟢 Datos del usuario logueado
+  const [usuario, setUsuario] = useState(null);
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("usuarioLogueado"));
+    if (userData) {
+      setUsuario(userData);
+    } else {
+      navigate("/iniciarsesion"); // Si no hay usuario logueado -> lo manda al login
+    }
+  }, [navigate]);
+
   const publicaciones = [
     { id: 1, titulo: "Casa 1", autor: "usuario1", disponible: true },
     { id: 2, titulo: "Casa 2", autor: "usuario2", disponible: false },
@@ -54,7 +66,6 @@ export function PerfilPrincipal() {
     casa6, casa7, casa8, casa9, casa10,
   ];
 
-  // Agregar array de ubicaciones
   const ubicaciones = [
     'Argentina, Buenos Aires',
     'Brasil, Brasília',
@@ -76,7 +87,6 @@ export function PerfilPrincipal() {
     'Corea del Sur, Seúl'
   ];
 
-  // Asignar imagen y ubicación a cada publicación
   const publicacionesConImagen = publicaciones.map((pub, index) => ({
     ...pub,
     imagen: imagenes[index % imagenes.length],
@@ -86,7 +96,7 @@ export function PerfilPrincipal() {
   const [favoritos, setFavoritos] = useState([]);
   const [showObjetivo, setShowObjetivo] = useState(false);
   const [objetivoIntercambios, setObjetivoIntercambios] = useState(5);
-  const cantidadIntercambios = 2; // valor de ejemplo
+  const cantidadIntercambios = 2;
 
   const irACrearPublicacion = () => {
     navigate('/perfil/step1');
@@ -164,35 +174,43 @@ export function PerfilPrincipal() {
         </div>
       )}
 
+      {/* 🟢 Columna izquierda con datos reales del usuario */}
       <div className="perfil-izquierda">
         <img
           className="perfil-foto"
           src={perfilImage}
           alt="Foto de perfil"
         />
-        <h2>Micaela Pérez</h2>
+
+        <h2>
+          {usuario ? `${usuario.Nombre || ""} ${usuario.Apellido || ""}` : "Usuario sin nombre"}
+        </h2>
 
         <div className="perfil-info-bloque">
           <p className="info-label">Descripción</p>
           <p className="info-texto">
-            Me encanta viajar, con mis amigos o sola. Tengo dos mascotas e intento
-            llevarlas a mis viajes
+            {usuario?.Descripcion || "Todavía no agregaste una descripción."}
           </p>
         </div>
 
         <div className="perfil-info-bloque">
           <p className="info-label">Mail</p>
-          <p className="info-texto">micaperez@gmail.com</p>
+          <p className="info-texto">{usuario?.CorreoElectronico || "-"}</p>
         </div>
 
         <div className="perfil-info-bloque">
           <p className="info-label">Teléfono</p>
-          <p className="info-texto">11 58272610</p>
+          <p className="info-texto">
+            {usuario?.NumeroTelefono
+              ? `${usuario.CodigoPais ? "+" + usuario.CodigoPais + " " : ""}${usuario.NumeroTelefono}`
+              : "No cargado"}
+          </p>
         </div>
 
         <button className="btn-editar" onClick={() => navigate("/logineditar")}>Editar</button>
       </div>
 
+      {/* Columna derecha igual que antes */}
       <div className="perfil-derecha">
         <div className="estadisticas">
           <div className="card-estadistica intercambio">
