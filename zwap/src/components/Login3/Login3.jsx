@@ -8,7 +8,10 @@ import appleIcon from '../../assets/Login/apple.png';
 export function Login3() {
   const navigate = useNavigate();
   const [greetingIndex, setGreetingIndex] = useState(0);
-  const greetings = ["¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!", "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"];
+  const greetings = [
+    "¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!",
+    "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"
+  ];
 
   // Estado para manejar inputs de este paso
   const [formData, setFormData] = useState({
@@ -31,7 +34,7 @@ export function Login3() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     // Traigo lo que se guardó antes
     const datosPrevios = JSON.parse(localStorage.getItem("registroUsuario")) || {};
@@ -42,12 +45,12 @@ export function Login3() {
       ...formData
     }));
 
-    navigate("/login4"); 
+    navigate("/login4");
   };
 
   const handleLogin = (e) => {
-    e.preventDefault(); 
-    navigate("/iniciarsesion"); 
+    e.preventDefault();
+    navigate("/iniciarsesion");
   };
 
   return (
@@ -59,7 +62,7 @@ export function Login3() {
           Regístrese con sus datos personales para usar todas las funciones de
           la plataforma
         </p>
-        <button className="btn-login" onClick={handleLogin} >Iniciar Sesión</button>
+        <button className="btn-login" onClick={handleLogin}>Iniciar Sesión</button>
       </div>
 
       {/* Columna Derecha */}
@@ -96,7 +99,7 @@ export function Login3() {
           <input
             type="text"
             name="Descripcion"
-            placeholder="Descripcón(Opcional)"
+            placeholder="Descripcón (Opcional)"
             value={formData.Descripcion}
             onChange={handleChange}
           />

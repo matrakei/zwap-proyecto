@@ -9,7 +9,10 @@ export function Login2() {
   const navigate = useNavigate();
   const [saludoIndex, setSaludoIndex] = useState(0);
 
-  const saludos = ["¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!", "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"];
+  const saludos = [
+    "¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!",
+    "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"
+  ];
 
   // Estado para guardar inputs
   const [formData, setFormData] = useState({
@@ -23,7 +26,6 @@ export function Login2() {
     const interval = setInterval(() => {
       setSaludoIndex((prev) => (prev + 1) % saludos.length);
     }, 2000); // cambia cada 2 segundos
-
     return () => clearInterval(interval);
   }, []);
 
@@ -48,8 +50,8 @@ export function Login2() {
   };
 
   const handleLogin = (e) => {
-    e.preventDefault(); 
-    navigate("/iniciarsesion"); 
+    e.preventDefault();
+    navigate("/iniciarsesion");
   };
 
   return (
@@ -61,7 +63,7 @@ export function Login2() {
           Regístrese con sus datos personales para usar todas las funciones de
           la plataforma
         </p>
-        <button className="btn-login" onClick={handleLogin} >Iniciar Sesión</button>
+        <button className="btn-login" onClick={handleLogin}>Iniciar Sesión</button>
       </div>
 
       {/* Columna Derecha */}

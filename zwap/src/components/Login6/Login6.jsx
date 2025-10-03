@@ -22,9 +22,19 @@ export function Login6() {
     // Recuperar lo que se guardó en pasos anteriores
     const datosPrevios = JSON.parse(localStorage.getItem("registroUsuario")) || {};
 
+    // Mapear campos a lo que el back espera
     const usuario = {
-      ...datosPrevios,
-      Contrasena: password,
+      Nombre: datosPrevios.Nombre || "",
+      Apellido: datosPrevios.Apellido || "ApellidoTest", // 🚨 ajustar según tus formularios
+      Dni: datosPrevios.NumeroDocumento || "00000000",
+      CorreoElectronico: datosPrevios.CorreoElectronico || "",
+      NumeroTelefono: datosPrevios.NumeroTelefono || "",
+      Nacionalidad: datosPrevios.Nacionalidad || "",
+      Pais: datosPrevios.PaisResidencia || datosPrevios.Pais || "",
+      ProvinciaEstado: datosPrevios.Estado || "",
+      Ciudad: datosPrevios.Ciudad || "",
+      Direccion: datosPrevios.Direccion || "Dirección pendiente",
+      Contrasena: password
     };
 
     try {
@@ -55,14 +65,16 @@ export function Login6() {
     navigate("/iniciarsesion");
   };
 
-  const mensajes = ["¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!", "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"];
+  const mensajes = [
+    "¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!",
+    "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"
+  ];
   const [indice, setIndice] = useState(0);
 
   useEffect(() => {
     const intervalo = setInterval(() => {
       setIndice((prev) => (prev + 1) % mensajes.length);
-    }, 2000); // cada 2 segundos
-
+    }, 2000);
     return () => clearInterval(intervalo);
   }, []);
 

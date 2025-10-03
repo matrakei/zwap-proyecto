@@ -3,13 +3,45 @@ import { useNavigate } from 'react-router-dom';
 import googleIcon from '../../assets/Login/google.png';
 import microsoftIcon from '../../assets/Login/microsoft.png';
 import appleIcon from '../../assets/Login/apple.png';
+import { useState } from 'react';
 
 export function IniciarSesion() {
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  // Estados para los campos del formulario
+  const [correo, setCorreo] = useState("");
+  const [contrasena, setContrasena] = useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate("/Home"); 
+
+    try {
+      const res = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          CorreoElectronico: correo,
+          Contrasena: contrasena
+        }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        alert("Inicio de sesión exitoso ✅");
+
+        // Guardar el token y datos de usuario en localStorage
+        localStorage.setItem("usuarioLogueado", JSON.stringify(data));
+
+        // Ir a home
+        navigate("/home");
+      } else {
+        const error = await res.json();
+        alert("Error al iniciar sesión: " + (error.message || "Credenciales incorrectas"));
+      }
+    } catch (error) {
+      console.error("Error al conectar:", error);
+      alert("No se pudo conectar con el servidor");
+    }
   };
 
   const handleRegistrarse = () => {
@@ -34,8 +66,18 @@ export function IniciarSesion() {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <input type="email" placeholder="Correo electrónico" />
-          <input type="password" placeholder="Contraseña" />
+          <input 
+            type="email" 
+            placeholder="Correo electrónico"
+            value={correo}
+            onChange={(e) => setCorreo(e.target.value)}
+          />
+          <input 
+            type="password" 
+            placeholder="Contraseña"
+            value={contrasena}
+            onChange={(e) => setContrasena(e.target.value)}
+          />
           <button
             type="button"
             className="btn-recuperar"

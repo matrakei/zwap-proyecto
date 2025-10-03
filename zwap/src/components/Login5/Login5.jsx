@@ -8,7 +8,10 @@ import appleIcon from '../../assets/Login/apple.png';
 export function Login5() {
   const [files, setFiles] = useState([]);
   const [greetingIndex, setGreetingIndex] = useState(0);
-  const greetings = ["¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!", "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"];
+  const greetings = [
+    "¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!",
+    "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"
+  ];
 
   const navigate = useNavigate();
 
@@ -33,8 +36,10 @@ export function Login5() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Guardar archivos en localStorage (solo nombres para simular)
+    // Traigo lo que se guardó antes
     const datosPrevios = JSON.parse(localStorage.getItem("registroUsuario")) || {};
+
+    // Guardo archivos (solo nombres en este caso)
     localStorage.setItem("registroUsuario", JSON.stringify({
       ...datosPrevios,
       Archivos: files.map((file) => file.name)
@@ -44,8 +49,8 @@ export function Login5() {
   };
 
   const handleLogin = (e) => {
-    e.preventDefault(); 
-    navigate("/iniciarsesion"); 
+    e.preventDefault();
+    navigate("/iniciarsesion");
   };
 
   return (
@@ -57,7 +62,7 @@ export function Login5() {
           Regístrese con sus datos personales para usar todas las funciones de
           la plataforma
         </p>
-        <button className="btn-login" onClick={handleLogin} >Iniciar Sesión</button>
+        <button className="btn-login" onClick={handleLogin}>Iniciar Sesión</button>
       </div>
 
       {/* Columna Derecha */}

@@ -8,7 +8,10 @@ import appleIcon from '../../assets/Login/apple.png';
 export function Login4() {
   const navigate = useNavigate();
   const [greetingIndex, setGreetingIndex] = useState(0);
-  const greetings = ["¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!", "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"];
+  const greetings = [
+    "¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!",
+    "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"
+  ];
 
   // Estado para inputs de este paso
   const [formData, setFormData] = useState({
@@ -38,12 +41,12 @@ export function Login4() {
       ...formData
     }));
 
-    navigate("/login5"); 
+    navigate("/login5");
   };
 
   const handleLogin = (e) => {
-    e.preventDefault(); 
-    navigate("/iniciarsesion"); 
+    e.preventDefault();
+    navigate("/iniciarsesion");
   };
 
   return (
@@ -55,7 +58,7 @@ export function Login4() {
           Regístrese con sus datos personales para usar todas las funciones de
           la plataforma
         </p>
-        <button className="btn-login" onClick={handleLogin} >Iniciar Sesión</button>
+        <button className="btn-login" onClick={handleLogin}>Iniciar Sesión</button>
       </div>
 
       {/* Columna Derecha */}

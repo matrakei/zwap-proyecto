@@ -34,33 +34,18 @@ export function Login() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Enviar datos al back
-  const handleSubmit = async (e) => {
+  // Guardar datos en localStorage y pasar al siguiente paso
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    try {
-      const res = await fetch("http://localhost:3000/usuarios", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
-      });
+    // Guardamos el primer bloque de datos en localStorage
+    localStorage.setItem("registroUsuario", JSON.stringify(formData));
 
-      if (res.ok) {
-        alert("Usuario creado con éxito");
-        navigate("/login2");
-      } else {
-        const errorData = await res.json();
-        alert("Error: " + (errorData.message || "No se pudo crear el usuario"));
-      }
-    } catch (error) {
-      console.error("Error al conectar con el back:", error);
-      alert("No se pudo conectar al servidor.");
-    }
+    // Pasamos al siguiente formulario
+    navigate("/login2");
   };
 
-  const handleLogin = () => {
-    navigate("/iniciarsesion");
-  };
+  const handleLogin = () => navigate("/iniciarsesion");
 
   return (
     <div className="registro-container">
