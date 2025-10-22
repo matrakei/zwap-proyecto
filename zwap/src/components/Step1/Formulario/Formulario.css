@@ -1,32 +1,43 @@
+:root {
+  --RAISE-px: 80px; /* cuánto subir el contenido derecho (ajusta) */
+}
+
 .registro-container {
   display: flex;
   min-height: 100vh;
   background-color: #fff;
   font-family: "Poppins", sans-serif;
-  align-items: stretch;
+  align-items: stretch; /* importante para que ambas columnas tengan la misma altura */
 }
-
-
 
 .col-izquierda {
   position: relative;
   flex: 0 0 42%;
-  min-height: 100vh; /* ocupa todo el alto de la página */
+  height: 100%;          /* ocupar exactamente la altura del contenedor */
+  min-height: unset;     /* quitar min-height:100vh para evitar conflictos */
   background-color: #6ec3c3;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 48px 28px; /* más espacio arriba/abajo */
+  padding: 48px 28px;
   box-shadow: inset -20px 0 40px rgba(0,0,0,0.03);
-  border-top-right-radius: 160px;   /* curva grande como en la imagen */
-  border-bottom-right-radius: 160px; /* curva grande como en la imagen */
+  border-top-right-radius: 160px;
+  border-bottom-right-radius: 160px;
   overflow: visible;
 }
 
+.col-derecha {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* opcional: ajustar padding horizontal si hace falta */
+  padding-left: 48px;
+  padding-right: 48px;
+}
 
-
-/* contenido centrado y separado verticalmente */
 .imagenes-content {
   display: flex;
   flex-direction: column;
@@ -109,21 +120,15 @@
   object-fit: cover;
 }
 
-/* bajar el formulario en la columna derecha para que no tape el header */
-.form-wrapper {
-  margin-top: 220px; /* más abajo para que no interfiera con header */
-  padding-bottom: 40px;
-}
-
-/* hacer el formulario un poco más pequeño y centrado en su panel */
 .form-css {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding-top: 100px;
-  max-width: 420px; /* más chico */
+  max-width: 420px;
   width: 100%;
   margin: 0;
+  transform: translateY(calc(-1 * var(--RAISE-px))); /* mueve el formulario hacia arriba */
+  transition: transform .18s ease;
 }
 
 form label {
@@ -153,6 +158,7 @@ form input:focus, form textarea:focus, form select:focus {
   gap: 6px;
 }
 
+
 .btn-siguiente {
   background: #0b1320;
   color: white;
@@ -160,22 +166,27 @@ form input:focus, form textarea:focus, form select:focus {
   border: none;
   cursor: pointer;
   font-family: "Poppins", sans-serif;
-  margin-top: 10px;
+  margin-top: 4px;        /* bajar un poco el espacio para acercar los steps */
   border-radius: 8px;
-  align-self: flex-start;
+  align-self: flex-start; /* asegura que el botón quede al inicio del formulario */
   min-width: 140px;
 }
 
 .steps {
   display: flex;
-  justify-content: center;
-  margin-top: 30px;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 50px;
+  margin-top: 6px;
+  align-self: flex-start;
+  margin-left: 0;
+  transform: translateY(calc(-1 * var(--RAISE-px))); /* mover los steps la misma cantidad */
 }
-
+/* pequeños ajustes estéticos */
 .step {
   text-align: center;
   font-size: 12px;
-  margin: 0 8px;
+  margin: 0 8px 0 0;
 }
 
 .circle {

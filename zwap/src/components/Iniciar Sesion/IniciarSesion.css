@@ -18,7 +18,14 @@
 
 .login-page .col-izquierda-iniciar h2 {
   font-size: 2rem;
-  margin-bottom: 20px;
+  margin: 0 0 20px 0;
+  max-width: 300px;      /* mismo ancho que los inputs */
+  width: 100%;
+  margin-left: auto;     /* centra el bloque dentro de la columna */
+  margin-right: auto;
+  text-align: left;      /* mantiene el texto alineado al inicio del bloque */
+  padding-left: 40px;    /* empuja el texto hacia la derecha dentro del bloque (ajustar aquí) */
+  box-sizing: border-box;
 }
 
 /* Social icons estilo botones */

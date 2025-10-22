@@ -1,106 +1,134 @@
-.step2-container {
-  background-color: #62B8BC;
-  padding: 30px;
-  border-radius: 10px;
-  max-width: 500px;
-  margin: 30px auto;
-  text-align: left;
+.registro-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #fff;
   font-family: "Poppins", sans-serif;
+  align-items: stretch;
 }
 
-
-.step2-title {
-  font-weight: bold;
-  margin-bottom: 30px;
-  font-size: 18px;
+/* 🟦 Columna izquierda igual a Step 1 */
+.col-izquierda {
+  position: relative;
+  flex: 0 0 42%;
+  min-height: 100vh;
+  background-color: #6ec3c3;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 28px;
+  box-shadow: inset -20px 0 40px rgba(0,0,0,0.03);
+  border-top-right-radius: 160px;
+  border-bottom-right-radius: 160px;
+  overflow: visible;
 }
 
-.step2-form {
+.imagenes-content {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  text-align: left;
-}
-
-.step2-form label {
-  font-weight: 600;
-  font-size: 14px;
-  margin-bottom: 5px;
-}
-
-.step2-form label span {
-  margin-left: 6px;
-  cursor: help;
-}
-
-.step2-form input,
-.step2-form select {
-  padding: 8px 12px;
-  border-radius: 4px;
-  border: 1px solid #999;
+  align-items: center;
+  justify-content: flex-start;
   width: 100%;
-  font-size: 14px;
-  font-family: "Poppins", sans-serif;
+  max-width: 320px;
+  text-align: center;
+  gap: 18px;
+  padding-top: 36px;
 }
 
-.step2-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
+.col-izquierda h2 {
+  font-size: 1.9rem;
+  margin: 26px 0 6px 0;
+  font-weight: 700;
 }
 
-.step2-button {
-  display: block;
-  margin: 20px auto;
-  background-color: black;
+.col-izquierda p {
+  max-width: 300px;
+  text-align: center;
+  margin: 0 0 6px 0;
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+
+.dropzone {
+  border: 2px dashed rgba(255,255,255,0.9);
+  border-radius: 12px;
+  padding: 18px;
+  width: 78%;
+  max-width: 260px;
+  min-height: 110px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 8px auto;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  display: grid;
+  place-items: center;
+}
+
+.dropzone.disabled {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.btn-volver {
+  background: #0b1320;
   color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
+  padding: 7px 14px;
+  border-radius: 8px;
   cursor: pointer;
-  font-family: 'Poppins', sans-serif;
-  font-style: Medium italic;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: none;
 }
 
-.step-indicator {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  margin-top: 30px;
-}
-
-.step {
+/* ⚪ Columna derecha */
+.col-derecha {
+  flex: 1;
+  background: #fff;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  font-size: 12px;
+  justify-content: flex-start;
+  padding: 0 60px;
 }
 
-.circle {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  border: 2px solid #000;
-  margin-bottom: 5px;
+.form-css {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 420px;
+  margin-top: 220px;
 }
 
-.step.done .circle {
-  background-color: black;
+form label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+form input, form textarea, form select {
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
+  background: #f9f9f9;
+  transition: border-color .12s ease, box-shadow .12s ease;
+}
+
+form input:focus, form textarea:focus, form select:focus {
+  outline: none;
+  border-color: #6ec3c3;
+  box-shadow: 0 6px 18px rgba(110,195,195,0.12);
+}
+
+.btn-siguiente {
+  background: #0b1320;
   color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  margin-top: 6px;
+  border-radius: 8px;
+  align-self: flex-start;
+  min-width: 140px;
 }
 
-.step.current .circle {
-  background-color: white;
-  border: 2px solid black;
-}
-
-.step.future .circle {
-  border: 2px solid #999;
-}
-
-.step span {
-  margin-top: 3px;
-}
