@@ -9,15 +9,22 @@ export default function Step4() {
   const handleDrop = (e) => {
     e.preventDefault();
     const droppedFiles = Array.from(e.dataTransfer.files);
-    setFiles((prev) => [...prev, ...droppedFiles]);
+    const previews = droppedFiles.map((f) => URL.createObjectURL(f));
+    setFiles((prev) => [...prev, ...previews]);
   };
 
   const handleFileChange = (e) => {
     const selectedFiles = Array.from(e.target.files);
-    setFiles((prev) => [...prev, ...selectedFiles]);
+    const previews = selectedFiles.map((f) => URL.createObjectURL(f));
+    setFiles((prev) => [...prev, ...previews]);
   };
 
   const handleSubmit = () => {
+    // Guardamos las imágenes seleccionadas en el localStorage
+    const publicacionActual = JSON.parse(localStorage.getItem('publicacionEnProceso')) || {};
+    const actualizada = { ...publicacionActual, imagenes: files };
+    localStorage.setItem('publicacionEnProceso', JSON.stringify(actualizada));
+
     navigate('/perfil/step5');
   };
 
@@ -50,7 +57,9 @@ export default function Step4() {
 
       <ul className="file-list">
         {files.map((file, i) => (
-          <li key={i}>{file.name}</li>
+          <li key={i}>
+            <img src={file} alt={`preview-${i}`} className="preview-img" />
+          </li>
         ))}
       </ul>
 

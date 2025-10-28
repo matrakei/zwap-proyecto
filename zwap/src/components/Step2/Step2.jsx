@@ -1,17 +1,24 @@
 import './Step2.css';
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function Step2() {
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState(() => {
     return JSON.parse(localStorage.getItem('publicacionEnProceso')) || {
+      pais: '',
+      provincia: '',
+      ciudad: '',
+      calle: '',
+      tipo: '',
       ambientes: '',
       pisos: '',
       metros: '',
       nombre: '',
       descripcion: '',
-      idPublicacion: null, // si ya existe una publicación en el backend
+      imagenes: [],
+      idPublicacion: null,
     };
   });
 
@@ -31,14 +38,27 @@ export default function Step2() {
 
       const urlBase = 'http://localhost:3000/api/publicaciones';
 
+      const body = JSON.stringify({
+        Pais: datos.pais,
+        ProvinciaEstado: datos.provincia,
+        CiudadLocalidad: datos.ciudad,
+        CalleYNumero: datos.calle,
+        TipoPropiedad: datos.tipo,
+        NumeroAmbientes: datos.ambientes,
+        NumeroPisos: datos.pisos,
+        MetrosCuadrados: datos.metros,
+        NombrePropiedad: datos.nombre,
+        BreveDescripcion: datos.descripcion,
+        Amenities: datos.servicios || [],
+        Fotos: datos.imagenes || [],
+      });
 
-      // Si ya hay un ID guardado, actualiza; si no, crea una nueva publicación
       const response = await fetch(
-        formData.idPublicacion ? `${urlBase}/${formData.idPublicacion}` : urlBase,
+        datos.idPublicacion ? `${urlBase}/${datos.idPublicacion}` : urlBase,
         {
-          method: formData.idPublicacion ? 'PUT' : 'POST',
+          method: datos.idPublicacion ? 'PUT' : 'POST',
           headers,
-          body: JSON.stringify(datos),
+          body,
         }
       );
 
@@ -52,13 +72,10 @@ export default function Step2() {
       const data = await response.json();
       console.log('✅ Publicación guardada/actualizada:', data);
 
-      // Guardar el ID si recién se creó
-      if (data?.id && !formData.idPublicacion) {
-        setFormData((prev) => ({ ...prev, idPublicacion: data.id }));
-        localStorage.setItem(
-          'publicacionEnProceso',
-          JSON.stringify({ ...formData, idPublicacion: data.id })
-        );
+      if (data?.publicacion?.id && !datos.idPublicacion) {
+        const actualizado = { ...datos, idPublicacion: data.publicacion.id };
+        setFormData(actualizado);
+        localStorage.setItem('publicacionEnProceso', JSON.stringify(actualizado));
       }
     } catch (error) {
       console.error('❌ Error al conectar con el backend:', error);
@@ -68,17 +85,14 @@ export default function Step2() {
 
   const handleNext = async (e) => {
     e.preventDefault();
-    // Guarda localmente por si algo falla
     localStorage.setItem('publicacionEnProceso', JSON.stringify(formData));
-    // Enviar al backend
     await enviarAlBackend(formData);
-    // Pasar al siguiente paso
     navigate('/perfil/step3');
   };
 
   return (
     <div className="registro-container">
-      {/* 🟦 Columna izquierda igual que Step 1 */}
+      {/* 🟦 Columna izquierda */}
       <div className="col-izquierda">
         <div className="imagenes-content">
           <h2>Imágenes</h2>

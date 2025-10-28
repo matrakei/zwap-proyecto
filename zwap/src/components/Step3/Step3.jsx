@@ -5,7 +5,6 @@ import { useState } from 'react';
 export default function Step3() {
   const navigate = useNavigate();
 
-  // Recupera info previa de localStorage
   const [formData, setFormData] = useState(() => {
     return JSON.parse(localStorage.getItem('publicacionEnProceso')) || {
       servicios: [],
@@ -24,7 +23,6 @@ export default function Step3() {
     "Cocina equipada",
   ];
 
-  // Maneja checkboxes
   const handleToggle = (service) => {
     setFormData((prev) => {
       const serviciosActualizados = prev.servicios.includes(service)
@@ -34,7 +32,6 @@ export default function Step3() {
     });
   };
 
-  // 👉 Conexión al backend
   const enviarAlBackend = async (datos) => {
     try {
       const token = localStorage.getItem('token');
@@ -43,14 +40,29 @@ export default function Step3() {
         Authorization: token ? `Bearer ${token}` : '',
       };
 
-      const urlBase = 'http://localhost:3000/publicaciones';
+      const urlBase = 'http://localhost:3000/api/publicaciones';
+
+      const body = JSON.stringify({
+        Pais: datos.pais,
+        ProvinciaEstado: datos.provincia,
+        CiudadLocalidad: datos.ciudad,
+        CalleYNumero: datos.calle,
+        TipoPropiedad: datos.tipo,
+        NumeroAmbientes: datos.ambientes,
+        NumeroPisos: datos.pisos,
+        MetrosCuadrados: datos.metros,
+        NombrePropiedad: datos.nombre,
+        BreveDescripcion: datos.descripcion,
+        Amenities: datos.servicios || [],
+        Fotos: datos.imagenes || [],
+      });
 
       const response = await fetch(
         datos.idPublicacion ? `${urlBase}/${datos.idPublicacion}` : urlBase,
         {
           method: datos.idPublicacion ? 'PUT' : 'POST',
           headers,
-          body: JSON.stringify(datos),
+          body,
         }
       );
 
@@ -64,9 +76,8 @@ export default function Step3() {
       const data = await response.json();
       console.log('✅ Servicios guardados/actualizados:', data);
 
-      // Guarda id en localStorage si es nueva publicación
-      if (data?.id && !datos.idPublicacion) {
-        const actualizado = { ...datos, idPublicacion: data.id };
+      if (data?.publicacion?.id && !datos.idPublicacion) {
+        const actualizado = { ...datos, idPublicacion: data.publicacion.id };
         setFormData(actualizado);
         localStorage.setItem('publicacionEnProceso', JSON.stringify(actualizado));
       }
@@ -85,7 +96,7 @@ export default function Step3() {
 
   return (
     <div className="registro-container">
-      {/* 🟦 Columna izquierda igual a Step1/Step2 */}
+      {/* 🟦 Columna izquierda */}
       <div className="col-izquierda">
         <div className="imagenes-content">
           <h2>Imágenes</h2>

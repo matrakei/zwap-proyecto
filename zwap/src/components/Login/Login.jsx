@@ -14,7 +14,6 @@ export function Login() {
     "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"
   ];
 
-  // Estado para los datos del formulario
   const [formData, setFormData] = useState({
     Nombre: "",
     NombreUsuario: "",
@@ -28,47 +27,42 @@ export function Login() {
     return () => clearInterval(interval);
   }, []);
 
-  // Manejar cambios en los inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Guardar datos en localStorage y pasar al siguiente paso
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Guardamos el primer bloque de datos en localStorage
     localStorage.setItem("registroUsuario", JSON.stringify(formData));
-
-    // Pasamos al siguiente formulario
     navigate("/login2");
   };
 
   const handleLogin = () => navigate("/iniciarsesion");
 
   return (
-    <div className="registro-container">
+    <div className="login-container">
       {/* Columna Izquierda */}
-      <div className="col-izquierda">
+      <div className="login-left">
         <h1>{saludos[saludoIndex]}</h1>
         <p>
           Regístrese con sus datos personales para usar todas las funciones de
           la plataforma
         </p>
-        <button className="btn-login" onClick={handleLogin}>Iniciar Sesión</button>
+        <button className="login-btn" onClick={handleLogin}>Iniciar Sesión</button>
       </div>
 
       {/* Columna Derecha */}
-      <div className="col-derecha">
+      <div className="login-right">
         <h2>Registrarse</h2>
-        <div className="social-icons">
+
+        <div className="login-social">
           <img src={googleIcon} alt="Google" />
           <img src={microsoftIcon} alt="Microsoft" />
           <img src={appleIcon} alt="Apple" />
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form className="login-form" onSubmit={handleSubmit}>
           <input
             type="text"
             name="Nombre"
@@ -90,15 +84,15 @@ export function Login() {
             value={formData.CorreoElectronico}
             onChange={handleChange}
           />
-          <button type="submit" className="btn-siguiente">
+          <button type="submit" className="login-next">
             Siguiente
           </button>
         </form>
 
-        <div className="steps">
+        <div className="login-steps">
           {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className={`step ${i === 0 ? 'active' : ''}`}>
-              <div className="circle" />
+            <div key={i} className={`login-step ${i === 0 ? 'active' : ''}`}>
+              <div className="login-circle" />
               <span>Step {i + 1}</span>
             </div>
           ))}
