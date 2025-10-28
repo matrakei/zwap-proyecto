@@ -7,7 +7,6 @@ import { useState, useEffect } from 'react';
 
 export function Login6() {
   const navigate = useNavigate();
-
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -19,13 +18,11 @@ export function Login6() {
       return;
     }
 
-    // Recuperar lo que se guardó en pasos anteriores
     const datosPrevios = JSON.parse(localStorage.getItem("registroUsuario")) || {};
 
-    // Mapear campos a lo que el back espera
     const usuario = {
       Nombre: datosPrevios.Nombre || "",
-      Apellido: datosPrevios.Apellido || "ApellidoTest", // ⚠️ ajustar si lo pedís antes
+      Apellido: datosPrevios.Apellido || "ApellidoTest",
       Dni: datosPrevios.NumeroDocumento || "00000000",
       CorreoElectronico: datosPrevios.CorreoElectronico || "",
       NumeroTelefono: datosPrevios.NumeroTelefono || "",
@@ -47,11 +44,8 @@ export function Login6() {
       if (response.ok) {
         const creado = await response.json().catch(() => ({}));
         const usuarioGuardado = creado?.usuario || usuario;
-
-        // Guardar al usuario en localStorage para usarlo en perfil
         localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioGuardado));
-        localStorage.removeItem("registroUsuario"); // limpiar storage
-
+        localStorage.removeItem("registroUsuario");
         alert("Usuario registrado con éxito 🎉");
         navigate("/home");
       } else {
@@ -83,51 +77,50 @@ export function Login6() {
   }, []);
 
   return (
-    <div className="registro-container">
-      {/* Columna Izquierda */}
-      <div className="col-izquierda">
+    <div className="login-container">
+      {/* COLUMNA IZQUIERDA */}
+      <div className="login-left">
         <h1>{mensajes[indice]}</h1>
-        <p>
-          Regístrese con sus datos personales para usar todas las funciones de
-          la plataforma
-        </p>
-        <button className="btn-login" onClick={handleLogin}>Iniciar Sesión</button>
+        <p>Regístrese con sus datos personales para usar todas las funciones de la plataforma</p>
+        <button className="login-btn" onClick={handleLogin}>Iniciar Sesión</button>
       </div>
 
-      {/* Columna Derecha */}
-      <div className="col-derecha">
+      {/* COLUMNA DERECHA */}
+      <div className="login-right">
         <h2>Registrarse</h2>
-        <div className="social-icons">
+
+        <div className="login-social">
           <img src={googleIcon} alt="Google" />
           <img src={microsoftIcon} alt="Microsoft" />
           <img src={appleIcon} alt="Apple" />
         </div>
 
         <form onSubmit={handleSubmit}>
-          <input 
-            type="password" 
-            placeholder="Contraseña" 
+          <input
+            type="password"
+            placeholder="Contraseña"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <input 
-            type="password" 
-            placeholder="Confirmar contraseña" 
+          <input
+            type="password"
+            placeholder="Confirmar contraseña"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
-          <button type="submit" className="btn-siguiente">
-            Finalizar Registro
+          <button type="submit" className="login-next">
+            Confirmar
           </button>
         </form>
 
-        <div className="steps">
+        {/* STEPS */}
+        <div className="login-steps">
           {[...Array(3)].map((_, i) => (
             <div
               key={i}
-              className={`step ${i < 2 ? 'done' : ''} ${i === 2 ? 'active' : ''}`}
+              className={`login-step ${i < 2 ? 'done' : ''} ${i === 2 ? 'active' : ''}`}
             >
-              <div className="circle">{i < 2 ? '✓' : ''}</div>
+              <div className="login-circle">{i < 2 ? '✓' : ''}</div>
               <span>Step {i + 1}</span>
             </div>
           ))}

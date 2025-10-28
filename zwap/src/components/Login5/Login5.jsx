@@ -36,10 +36,7 @@ export function Login5() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Traigo lo que se guardó antes
     const datosPrevios = JSON.parse(localStorage.getItem("registroUsuario")) || {};
-
-    // Guardo archivos (solo nombres en este caso)
     localStorage.setItem("registroUsuario", JSON.stringify({
       ...datosPrevios,
       Archivos: files.map((file) => file.name)
@@ -54,35 +51,32 @@ export function Login5() {
   };
 
   return (
-    <div className="registro-container">
-      {/* Columna Izquierda */}
-      <div className="col-izquierda">
+    <div className="login-container">
+      {/* COLUMNA IZQUIERDA */}
+      <div className="login-left">
         <h1>{greetings[greetingIndex]}</h1>
-        <p>
-          Regístrese con sus datos personales para usar todas las funciones de
-          la plataforma
-        </p>
-        <button className="btn-login" onClick={handleLogin}>Iniciar Sesión</button>
+        <p>Regístrese con sus datos personales para usar todas las funciones de la plataforma</p>
+        <button className="login-btn" onClick={handleLogin}>Iniciar Sesión</button>
       </div>
 
-      {/* Columna Derecha */}
-      <div className="col-derecha">
+      {/* COLUMNA DERECHA */}
+      <div className="login-right">
         <h2>Registrarse</h2>
 
-        <div className="social-icons">
+        <div className="login-social">
           <img src={googleIcon} alt="Google" />
           <img src={microsoftIcon} alt="Microsoft" />
           <img src={appleIcon} alt="Apple" />
         </div>
 
-        {/* Dropzone de archivos */}
-        <form className="upload-form" onSubmit={handleSubmit}>
+        {/* DROPZONE */}
+        <form className="login-form" onSubmit={handleSubmit}>
           <div
-            className="dropzone2"
+            className="dropzone"
             onDragOver={(e) => e.preventDefault()}
             onDrop={handleDrop}
           >
-            <p>📁 Arrastra archivos a esta zona</p>
+            <p>📁 Arrastra tus archivos aquí</p>
             <input
               type="file"
               accept=".jpg,.png"
@@ -92,7 +86,7 @@ export function Login5() {
               id="fileInput"
             />
             <label htmlFor="fileInput" className="upload-button">
-              Seleccionar archivo desde mi ordenador
+              Seleccionar archivo desde el ordenador
             </label>
           </div>
 
@@ -102,18 +96,19 @@ export function Login5() {
             ))}
           </ul>
 
-          <button type="submit" className="btn-siguiente">
+          <button type="submit" className="login-next">
             Confirmar
           </button>
         </form>
 
-        <div className="steps">
+        {/* STEPS */}
+        <div className="login-steps">
           {[...Array(3)].map((_, i) => (
             <div
               key={i}
-              className={`step ${i < 1 ? 'done' : ''} ${i === 1 ? 'active' : ''}`}
+              className={`login-step ${i < 1 ? 'done' : ''} ${i === 1 ? 'active' : ''}`}
             >
-              <div className="circle">{i < 1 ? '✓' : ''}</div>
+              <div className="login-circle">{i < 1 ? '✓' : ''}</div>
               <span>Step {i + 1}</span>
             </div>
           ))}

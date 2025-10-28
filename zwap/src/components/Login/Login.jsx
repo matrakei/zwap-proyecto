@@ -89,14 +89,16 @@ export function Login() {
           </button>
         </form>
 
+
         <div className="login-steps">
-          {Array.from({ length: 3 }).map((_, i) => (
+           {[...Array(3)].map((_, i) => (
             <div key={i} className={`login-step ${i === 0 ? 'active' : ''}`}>
-              <div className="login-circle" />
-              <span>Step {i + 1}</span>
+             <div className="login-circle" />
+             <span>Step {i + 1}</span>
             </div>
           ))}
         </div>
+
       </div>
     </div>
   );

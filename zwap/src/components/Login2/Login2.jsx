@@ -14,7 +14,6 @@ export function Login2() {
     "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"
   ];
 
-  // Estado para guardar inputs
   const [formData, setFormData] = useState({
     CodigoPais: "",
     NumeroTelefono: "",
@@ -25,7 +24,7 @@ export function Login2() {
   useEffect(() => {
     const interval = setInterval(() => {
       setSaludoIndex((prev) => (prev + 1) % saludos.length);
-    }, 2000); // cambia cada 2 segundos
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 
@@ -36,57 +35,47 @@ export function Login2() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Traigo datos guardados del paso anterior (Login.jsx)
     const datosPrevios = JSON.parse(localStorage.getItem("registroUsuario")) || {};
-
-    // Guardo todo en localStorage (se va acumulando paso a paso)
     localStorage.setItem("registroUsuario", JSON.stringify({
       ...datosPrevios,
       ...formData
     }));
-
     navigate("/login3");
   };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    navigate("/iniciarsesion");
-  };
+  const handleLogin = () => navigate("/iniciarsesion");
 
   return (
-    <div className="registro-container">
+    <div className="login-container">
       {/* Columna Izquierda */}
-      <div className="col-izquierda">
-        <h1 className="saludo-animado">{saludos[saludoIndex]}</h1>
-        <p>
-          Regístrese con sus datos personales para usar todas las funciones de
-          la plataforma
-        </p>
-        <button className="btn-login" onClick={handleLogin}>Iniciar Sesión</button>
+      <div className="login-left">
+        <h1>{saludos[saludoIndex]}</h1>
+        <p>Regístrese con sus datos personales para usar todas las funciones de la plataforma</p>
+        <button className="login-btn" onClick={handleLogin}>Iniciar Sesión</button>
       </div>
 
       {/* Columna Derecha */}
-      <div className="col-derecha">
+      <div className="login-right">
         <h2>Registrarse</h2>
-        <div className="social-icons">
+
+        <div className="login-social">
           <img src={googleIcon} alt="Google" />
           <img src={microsoftIcon} alt="Microsoft" />
           <img src={appleIcon} alt="Apple" />
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form className="login-form" onSubmit={handleSubmit}>
           <input
             type="text"
             name="CodigoPais"
-            placeholder="Codigo de pais"
+            placeholder="Código de país"
             value={formData.CodigoPais}
             onChange={handleChange}
           />
           <input
             type="text"
             name="NumeroTelefono"
-            placeholder="Número de telefono"
+            placeholder="Número de teléfono"
             value={formData.NumeroTelefono}
             onChange={handleChange}
           />
@@ -100,20 +89,18 @@ export function Login2() {
           <input
             type="text"
             name="PaisResidencia"
-            placeholder="Pais de residencia"
+            placeholder="País de residencia"
             value={formData.PaisResidencia}
             onChange={handleChange}
           />
-          <button type="submit" className="btn-siguiente">
-            Siguiente
-          </button>
+          <button type="submit" className="login-next">Siguiente</button>
         </form>
 
-        <div className="steps">
-          {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className={`step ${i === 0 ? 'active' : ''}`}>
-              <div className="circle" />
-              <span>Step {i + 1}</span>
+        <div className="login-steps">
+           {[...Array(3)].map((_, i) => (
+            <div key={i} className={`login-step ${i === 0 ? 'active' : ''}`}>
+             <div className="login-circle" />
+             <span>Step {i + 1}</span>
             </div>
           ))}
         </div>

@@ -8,12 +8,12 @@ import appleIcon from '../../assets/Login/apple.png';
 export function Login3() {
   const navigate = useNavigate();
   const [greetingIndex, setGreetingIndex] = useState(0);
+
   const greetings = [
     "¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!",
     "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"
   ];
 
-  // Estado para manejar inputs de este paso
   const [formData, setFormData] = useState({
     Estado: "",
     Ciudad: "",
@@ -36,10 +36,7 @@ export function Login3() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Traigo lo que se guardó antes
     const datosPrevios = JSON.parse(localStorage.getItem("registroUsuario")) || {};
-
-    // Guardo lo nuevo sumado
     localStorage.setItem("registroUsuario", JSON.stringify({
       ...datosPrevios,
       ...formData
@@ -48,33 +45,28 @@ export function Login3() {
     navigate("/login4");
   };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    navigate("/iniciarsesion");
-  };
+  const handleLogin = () => navigate("/iniciarsesion");
 
   return (
-    <div className="registro-container">
+    <div className="login-container">
       {/* Columna Izquierda */}
-      <div className="col-izquierda">
+      <div className="login-left">
         <h1>{greetings[greetingIndex]}</h1>
-        <p>
-          Regístrese con sus datos personales para usar todas las funciones de
-          la plataforma
-        </p>
-        <button className="btn-login" onClick={handleLogin}>Iniciar Sesión</button>
+        <p>Regístrese con sus datos personales para usar todas las funciones de la plataforma</p>
+        <button className="login-btn" onClick={handleLogin}>Iniciar Sesión</button>
       </div>
 
       {/* Columna Derecha */}
-      <div className="col-derecha">
+      <div className="login-right">
         <h2>Registrarse</h2>
-        <div className="social-icons">
+
+        <div className="login-social">
           <img src={googleIcon} alt="Google" />
           <img src={microsoftIcon} alt="Microsoft" />
           <img src={appleIcon} alt="Apple" />
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form className="login-form" onSubmit={handleSubmit}>
           <input
             type="text"
             name="Estado"
@@ -99,20 +91,19 @@ export function Login3() {
           <input
             type="text"
             name="Descripcion"
-            placeholder="Descripcón (Opcional)"
+            placeholder="Descripción (opcional)"
             value={formData.Descripcion}
             onChange={handleChange}
           />
-          <button type="submit" className="btn-siguiente">
-            Siguiente
-          </button>
+
+          <button type="submit" className="login-next">Siguiente</button>
         </form>
 
-        <div className="steps">
-          {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className={`step ${i === 0 ? 'active' : ''}`}>
-              <div className="circle" />
-              <span>Step {i + 1}</span>
+        <div className="login-steps">
+           {[...Array(3)].map((_, i) => (
+            <div key={i} className={`login-step ${i === 0 ? 'active' : ''}`}>
+             <div className="login-circle" />
+             <span>Step {i + 1}</span>
             </div>
           ))}
         </div>
