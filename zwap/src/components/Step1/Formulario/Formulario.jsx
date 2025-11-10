@@ -37,6 +37,10 @@ export const Formulario = () => {
     navigate('/perfil/step2');
   };
 
+  const handleBack = () => {
+    navigate('/perfil');
+  };
+
   return (
     <div className="registro-container">
       {/* Columna izquierda (idéntica al wireframe del login) */}
@@ -75,13 +79,16 @@ export const Formulario = () => {
               </li>
             ))}
           </ul>
-
         )}
+
+        <button className="btn-volver" onClick={handleBack}>
+          Volver
+        </button>
       </div>
 
       {/* Columna derecha */}
       <div className="col-derecha">
-        <form class="form-css">
+        <form className="form-css">
           <label>País</label>
           <input
             type="text"
