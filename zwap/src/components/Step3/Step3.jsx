@@ -25,65 +25,30 @@ export default function Step3() {
 
   const handleToggle = (service) => {
     setFormData((prev) => {
-      const serviciosActualizados = prev.servicios.includes(service)
+      const serviciosActualizados = prev.servicios?.includes(service)
         ? prev.servicios.filter((s) => s !== service)
-        : [...prev.servicios, service];
+        : [...(prev.servicios || []), service];
       return { ...prev, servicios: serviciosActualizados };
     });
   };
 
   const enviarAlBackend = async (datos) => {
     try {
-      const token = localStorage.getItem('token');
-      const headers = {
-        'Content-Type': 'application/json',
-        Authorization: token ? `Bearer ${token}` : '',
-      };
-
-      const urlBase = 'http://localhost:3000/api/publicaciones';
-
-      const body = JSON.stringify({
-        Pais: datos.pais,
-        ProvinciaEstado: datos.provincia,
-        CiudadLocalidad: datos.ciudad,
-        CalleYNumero: datos.calle,
-        TipoPropiedad: datos.tipo,
-        NumeroAmbientes: datos.ambientes,
-        NumeroPisos: datos.pisos,
-        MetrosCuadrados: datos.metros,
-        NombrePropiedad: datos.nombre,
-        BreveDescripcion: datos.descripcion,
-        Amenities: datos.servicios || [],
-        Fotos: datos.imagenes || [],
+      const response = await fetch(`http://localhost:3001/api/publicaciones/${datos.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...datos,
+          Amenities: datos.servicios || [],
+        }),
       });
 
-      const response = await fetch(
-        datos.idPublicacion ? `${urlBase}/${datos.idPublicacion}` : urlBase,
-        {
-          method: datos.idPublicacion ? 'PUT' : 'POST',
-          headers,
-          body,
-        }
-      );
-
-      if (!response.ok) {
-        const error = await response.json();
-        console.error('Error en backend:', error);
-        alert('Error al guardar servicios');
-        return;
-      }
-
+      if (!response.ok) throw new Error("Error al actualizar servicios");
       const data = await response.json();
-      console.log('✅ Servicios guardados/actualizados:', data);
-
-      if (data?.publicacion?.id && !datos.idPublicacion) {
-        const actualizado = { ...datos, idPublicacion: data.publicacion.id };
-        setFormData(actualizado);
-        localStorage.setItem('publicacionEnProceso', JSON.stringify(actualizado));
-      }
+      localStorage.setItem("publicacionEnProceso", JSON.stringify(data.publicacion));
     } catch (error) {
-      console.error('❌ Error de conexión con backend:', error);
-      alert('No se pudo conectar con el servidor');
+      console.error('❌ Error al conectar con el backend local:', error);
+      alert('No se pudo conectar con el servidor local');
     }
   };
 
@@ -125,7 +90,7 @@ export default function Step3() {
               <label key={i} className="checkbox-label">
                 <input
                   type="checkbox"
-                  checked={formData.servicios.includes(option)}
+                  checked={formData.servicios?.includes(option) || false}
                   onChange={() => handleToggle(option)}
                 />
                 {option}
@@ -138,6 +103,7 @@ export default function Step3() {
           </button>
         </form>
 
+        {/* 🔹 Steps visuales intactos */}
         <div className="steps">
           {[...Array(5)].map((_, i) => (
             <div

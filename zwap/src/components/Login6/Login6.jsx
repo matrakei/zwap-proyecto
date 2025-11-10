@@ -18,33 +18,38 @@ export function Login6() {
       return;
     }
 
+    // Tomamos todo lo acumulado en los pasos previos
     const datosPrevios = JSON.parse(localStorage.getItem("registroUsuario")) || {};
 
+    // Armamos el usuario completo según la estructura del backend local
     const usuario = {
-      Nombre: datosPrevios.Nombre || "",
-      Apellido: datosPrevios.Apellido || "ApellidoTest",
-      Dni: datosPrevios.NumeroDocumento || "00000000",
+      NombreCompleto: datosPrevios.Nombre || "",
+      NombreUsuario: datosPrevios.NombreUsuario || "",
       CorreoElectronico: datosPrevios.CorreoElectronico || "",
+      CodigoPais: datosPrevios.CodigoPais || "",
       NumeroTelefono: datosPrevios.NumeroTelefono || "",
       Nacionalidad: datosPrevios.Nacionalidad || "",
-      Pais: datosPrevios.PaisResidencia || datosPrevios.Pais || "",
+      PaisResidencia: datosPrevios.PaisResidencia || "",
       ProvinciaEstado: datosPrevios.Estado || "",
       Ciudad: datosPrevios.Ciudad || "",
-      Direccion: datosPrevios.Direccion || "Dirección pendiente",
+      FechaNacimiento: datosPrevios.FechaNacimiento || "",
+      Descripcion: datosPrevios.Descripcion || "",
+      TipoDocumento: datosPrevios.TipoDocumento || "",
+      NumeroDocumento: datosPrevios.NumeroDocumento || "",
+      Imagenes: datosPrevios.Archivos || [],
       Contrasena: password
     };
 
     try {
-      const response = await fetch("http://localhost:3000/usuarios", {
+      const response = await fetch("http://localhost:3001/api/usuarios", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(usuario),
       });
 
       if (response.ok) {
-        const creado = await response.json().catch(() => ({}));
-        const usuarioGuardado = creado?.usuario || usuario;
-        localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioGuardado));
+        const data = await response.json();
+        localStorage.setItem("usuarioLogueado", JSON.stringify(data.usuario));
         localStorage.removeItem("registroUsuario");
         alert("Usuario registrado con éxito 🎉");
         navigate("/home");
@@ -54,7 +59,7 @@ export function Login6() {
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("No se pudo conectar con el servidor.");
+      alert("No se pudo conectar con el servidor local.");
     }
   };
 
@@ -113,7 +118,6 @@ export function Login6() {
           </button>
         </form>
 
-        {/* STEPS */}
         <div className="login-steps">
           {[...Array(3)].map((_, i) => (
             <div

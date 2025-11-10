@@ -15,36 +15,35 @@ export function IniciarSesion() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:3000/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          CorreoElectronico: correo,
-          Contrasena: contrasena
-        }),
-      });
+      // ✅ Obtenemos todos los usuarios desde el backend local
+      const res = await fetch("http://localhost:3001/api/usuarios");
+      if (!res.ok) throw new Error("Error al obtener usuarios");
+      const usuarios = await res.json();
 
-      if (res.ok) {
-        const data = await res.json();
+      // 🔍 Buscamos el usuario que coincida con el correo
+      const usuario = usuarios.find(
+        (u) => u.CorreoElectronico === correo
+      );
 
-        alert("Inicio de sesión exitoso ✅");
-
-        // Guardar usuario y token en localStorage
-        if (data.usuario) {
-          localStorage.setItem("usuarioLogueado", JSON.stringify(data.usuario));
-        }
-        if (data.token) {
-          localStorage.setItem("token", data.token);
-        }
-
-        navigate("/home");
-      } else {
-        const error = await res.json();
-        alert("Error al iniciar sesión: " + (error.message || "Credenciales incorrectas"));
+      if (!usuario) {
+        alert("No se encontró un usuario con ese correo electrónico.");
+        return;
       }
+
+      // 🔐 Comprobamos la contraseña
+      if (usuario.Contrasena !== contrasena) {
+        alert("Contraseña incorrecta.");
+        return;
+      }
+
+      // 💾 Guardamos el usuario en localStorage
+      localStorage.setItem("usuarioLogueado", JSON.stringify(usuario));
+      alert("Inicio de sesión exitoso ✅");
+
+      navigate("/home");
     } catch (error) {
-      console.error("Error al conectar:", error);
-      alert("No se pudo conectar con el servidor");
+      console.error("Error al conectar con el servidor local:", error);
+      alert("No se pudo conectar con el servidor local. ¿Está corriendo el backend?");
     }
   };
 

@@ -1,0 +1,59 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "Nombre": "Mai Michanie",
+      "CorreoElectronico": "maia@zwap.com",
+      "Contrasena": "1234"
+    },
+    {
+      "id": 1762779268516,
+      "NombreCompleto": "Matias",
+      "NombreUsuario": "matra",
+      "CorreoElectronico": "matutele08@gmail.com",
+      "CodigoPais": "+54",
+      "NumeroTelefono": "11 62956608",
+      "Nacionalidad": "Argentina",
+      "PaisResidencia": "Argentina",
+      "ProvinciaEstado": "Buenos Aires",
+      "Ciudad": "CABA",
+      "FechaNacimiento": "16/06/2008",
+      "Descripcion": "Soy matias ",
+      "TipoDocumento": "DNI",
+      "NumeroDocumento": "48519913",
+      "Imagenes": [],
+      "Contrasena": "matute"
+    }
+  ],
+  "publicaciones": [
+    {
+      "id": 1762779322006,
+      "Pais": "Argentina",
+      "ProvinciaEstado": "Buenos Aires",
+      "CiudadLocalidad": "CABA",
+      "CalleYNumero": "Libertador 4273",
+      "TipoPropiedad": "Casa",
+      "Imagenes": [],
+      "ambientes": "2",
+      "pisos": "1",
+      "metros": "140",
+      "nombre": "BBBB",
+      "descripcion": "hola hola",
+      "NumeroAmbientes": "2",
+      "NumeroPisos": "1",
+      "MetrosCuadrados": "140",
+      "NombrePropiedad": "BBBB",
+      "BreveDescripcion": "hola hola",
+      "servicios": [
+        "Gimnasio",
+        "Patio o jardín"
+      ],
+      "Amenities": [
+        "Gimnasio",
+        "Patio o jardín"
+      ],
+      "imagenes": []
+    }
+  ],
+  "reseñas": []
+}

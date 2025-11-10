@@ -12,58 +12,27 @@ export default function Step5() {
   }, []);
 
   const handlePublicar = async () => {
-    if (!formData || !formData.idPublicacion) {
+    if (!formData || !formData.id) {
       alert('No se encontró la publicación para actualizar');
       return;
     }
 
     try {
-      const token = localStorage.getItem('token');
-      const headers = {
-        'Content-Type': 'application/json',
-        Authorization: token ? `Bearer ${token}` : '',
-      };
-
-      const url = `http://localhost:3000/api/publicaciones/${formData.idPublicacion}`;
-
-      const body = JSON.stringify({
-        Pais: formData.pais,
-        ProvinciaEstado: formData.provincia,
-        CiudadLocalidad: formData.ciudad,
-        CalleYNumero: formData.calle,
-        TipoPropiedad: formData.tipo,
-        NumeroAmbientes: formData.ambientes,
-        NumeroPisos: formData.pisos,
-        MetrosCuadrados: formData.metros,
-        NombrePropiedad: formData.nombre,
-        BreveDescripcion: formData.descripcion,
-        Amenities: formData.servicios || [],
-        Fotos: formData.imagenes || [],
+      const response = await fetch(`http://localhost:3001/api/publicaciones/${formData.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, publicada: true }),
       });
 
-      const response = await fetch(url, {
-        method: 'PUT',
-        headers,
-        body,
-      });
+      if (!response.ok) throw new Error("Error al publicar");
+      await response.json();
 
-      if (!response.ok) {
-        const err = await response.json();
-        console.error('❌ Error al actualizar:', err);
-        alert('Error al publicar la propiedad.');
-        return;
-      }
-
-      const data = await response.json();
-      console.log('✅ Publicación actualizada correctamente:', data);
-
-      // Limpiar localStorage después de publicar
-      localStorage.removeItem('publicacionEnProceso');
       alert('Publicación completada con éxito 🎉');
+      localStorage.removeItem('publicacionEnProceso');
       navigate('/perfil');
     } catch (error) {
-      console.error('❌ Error de conexión con el servidor:', error);
-      alert('No se pudo conectar con el servidor');
+      console.error('❌ Error al publicar:', error);
+      alert('Error al conectar con el servidor local');
     }
   };
 
@@ -111,6 +80,7 @@ export default function Step5() {
         Publicar
       </button>
 
+      {/* 🔹 Mantengo tus steps */}
       <div className="steps">
         {[...Array(5)].map((_, i) => (
           <div

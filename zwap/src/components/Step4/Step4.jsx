@@ -19,13 +19,26 @@ export default function Step4() {
     setFiles((prev) => [...prev, ...previews]);
   };
 
-  const handleSubmit = () => {
-    // Guardamos las imágenes seleccionadas en el localStorage
+  const handleSubmit = async () => {
     const publicacionActual = JSON.parse(localStorage.getItem('publicacionEnProceso')) || {};
     const actualizada = { ...publicacionActual, imagenes: files };
-    localStorage.setItem('publicacionEnProceso', JSON.stringify(actualizada));
 
-    navigate('/perfil/step5');
+    try {
+      const response = await fetch(`http://localhost:3001/api/publicaciones/${actualizada.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...actualizada, Imagenes: files }),
+      });
+
+      if (!response.ok) throw new Error("Error al actualizar imágenes");
+      const data = await response.json();
+      localStorage.setItem('publicacionEnProceso', JSON.stringify(data.publicacion));
+
+      navigate('/perfil/step5');
+    } catch (err) {
+      console.error(err);
+      alert("Error al conectar con el servidor local");
+    }
   };
 
   return (
@@ -67,6 +80,7 @@ export default function Step4() {
         Siguiente
       </button>
 
+      {/* 🔹 Mantengo steps visuales */}
       <div className="steps">
         {[...Array(5)].map((_, i) => (
           <div

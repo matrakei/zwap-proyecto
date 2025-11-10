@@ -32,22 +32,40 @@ export const Formulario = () => {
     setFormData((prev) => ({ ...prev, imagenes: [...prev.imagenes, ...newPreviews] }));
   };
 
-  const handleNext = () => {
-    localStorage.setItem('publicacionEnProceso', JSON.stringify(formData));
-    navigate('/perfil/step2');
+  // ✅ Conexión con backend local
+  const handleNext = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/api/publicaciones", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          Pais: formData.pais,
+          ProvinciaEstado: formData.provincia,
+          CiudadLocalidad: formData.ciudad,
+          CalleYNumero: formData.calle,
+          TipoPropiedad: formData.tipo,
+          Imagenes: formData.imagenes,
+        }),
+      });
+
+      if (!response.ok) throw new Error("Error al guardar publicación");
+      const data = await response.json();
+      localStorage.setItem("publicacionEnProceso", JSON.stringify(data.publicacion));
+      navigate('/perfil/step2');
+    } catch (err) {
+      alert("Error al conectar con el servidor local.");
+      console.error(err);
+    }
   };
 
-  const handleBack = () => {
-    navigate('/perfil');
-  };
+  const handleBack = () => navigate('/perfil');
 
   return (
     <div className="registro-container">
-      {/* Columna izquierda (idéntica al wireframe del login) */}
       <div className="col-izquierda">
         <h2>Imágenes</h2>
         <p className="step4-subtitle">
-          Subí fotos (mínimo 1, máximo 10)  
+          Subí fotos (mínimo 1, máximo 10)
           <br />
           <small>(Formatos: JPG, PNG)</small>
         </p>
@@ -86,40 +104,19 @@ export const Formulario = () => {
         </button>
       </div>
 
-      {/* Columna derecha */}
       <div className="col-derecha">
         <form className="form-css">
           <label>País</label>
-          <input
-            type="text"
-            name="pais"
-            value={formData.pais}
-            onChange={handleChange} 
-          />
+          <input type="text" name="pais" value={formData.pais} onChange={handleChange} />
 
           <label>Provincia / Estado</label>
-          <input
-            type="text"
-            name="provincia"
-            value={formData.provincia}
-            onChange={handleChange}
-          />
+          <input type="text" name="provincia" value={formData.provincia} onChange={handleChange} />
 
           <label>Ciudad / Localidad</label>
-          <input
-            type="text"
-            name="ciudad"
-            value={formData.ciudad}
-            onChange={handleChange}
-          />
+          <input type="text" name="ciudad" value={formData.ciudad} onChange={handleChange} />
 
           <label>Calle y número</label>
-          <input
-            type="text"
-            name="calle"
-            value={formData.calle}
-            onChange={handleChange}
-          />
+          <input type="text" name="calle" value={formData.calle} onChange={handleChange} />
 
           <label>Tipo de propiedad</label>
           <div className="checkbox-group">
@@ -140,6 +137,7 @@ export const Formulario = () => {
           </button>
         </form>
 
+        {/* 🔹 Mantengo tus steps intactos */}
         <div className="steps">
           {[...Array(5)].map((_, i) => (
             <div key={i} className={`step ${i === 0 ? 'active' : ''}`}>
