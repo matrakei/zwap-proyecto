@@ -92,24 +92,83 @@
 .form-css {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 18px;
   max-width: 420px;
   margin-top: 220px;
 }
 
+/* ✅ CHECKBOXES */
 .checkbox-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  max-height: 260px;
-  overflow-y: auto;
+  gap: 16px;
   padding-right: 10px;
+  max-height: none; /* sin scroll */
+  overflow-y: visible;
 }
 
 .checkbox-label {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
   font-weight: 500;
+  font-size: 1rem;
 }
 
+/* 🔘 Agrandar los checkboxes */
+.checkbox-label input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  accent-color: #6ec3c3; /* color turquesa personalizado */
+  transform: scale(1.1);
+}
+
+/* --- Botón siguiente --- */
+.btn-siguiente {
+  background: #0b1320;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.2s ease;
+}
+
+.btn-siguiente:hover {
+  background: #189aa5;
+}
+
+/* --- Steps visuales --- */
+.steps {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.step {
+  text-align: center;
+  font-size: 11px;
+}
+
+.circle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid black;
+  margin: 0 auto 4px auto;
+}
+
+.step.done .circle {
+  background-color: black;
+  color: white;
+}
+
+.step.active .circle {
+  background-color: black;
+  color: white;
+}

@@ -23,6 +23,24 @@
       "NumeroDocumento": "48519913",
       "Imagenes": [],
       "Contrasena": "matute"
+    },
+    {
+      "id": 1762780168193,
+      "NombreCompleto": "Maia Michanie",
+      "NombreUsuario": "MaiMicha",
+      "CorreoElectronico": "maiarmicha@gmail.com",
+      "CodigoPais": "54",
+      "NumeroTelefono": "1158053003",
+      "Nacionalidad": "Argentina",
+      "PaisResidencia": "Argentina",
+      "ProvinciaEstado": "Buenos Aires",
+      "Ciudad": "caba",
+      "FechaNacimiento": "04/03/08",
+      "Descripcion": "Holaaa, me encanta viajar y pasarla cool con mis amigos. ",
+      "TipoDocumento": "DNI",
+      "NumeroDocumento": "48521774",
+      "Imagenes": [],
+      "Contrasena": "Maia04"
     }
   ],
   "publicaciones": [
@@ -52,7 +70,112 @@
         "Gimnasio",
         "Patio o jardín"
       ],
-      "imagenes": []
+      "imagenes": [],
+      "publicada": true
+    },
+    {
+      "id": 1762780243912,
+      "Pais": "",
+      "ProvinciaEstado": "",
+      "CiudadLocalidad": "",
+      "CalleYNumero": "",
+      "TipoPropiedad": "",
+      "Imagenes": [],
+      "servicios": [],
+      "Amenities": []
+    },
+    {
+      "id": 1762780589775,
+      "Pais": "Argentina",
+      "ProvinciaEstado": "Buenos Aires",
+      "CiudadLocalidad": "CABA",
+      "CalleYNumero": "Libertador 4273",
+      "TipoPropiedad": "Casa",
+      "Imagenes": [],
+      "ambientes": "1",
+      "pisos": "1",
+      "metros": "110",
+      "nombre": "BBBB",
+      "descripcion": "Breve descripcion que escribi yo",
+      "NumeroAmbientes": "1",
+      "NumeroPisos": "1",
+      "MetrosCuadrados": "110",
+      "NombrePropiedad": "BBBB",
+      "BreveDescripcion": "Breve descripcion que escribi yo",
+      "servicios": [
+        "Red Wi-Fi",
+        "Patio o jardín"
+      ],
+      "Amenities": [
+        "Red Wi-Fi",
+        "Patio o jardín"
+      ],
+      "imagenes": [],
+      "publicada": true
+    },
+    {
+      "id": 1762781163521,
+      "Pais": "Argentina",
+      "ProvinciaEstado": "Buenos Aires",
+      "CiudadLocalidad": "CABA",
+      "CalleYNumero": "Libertador 4273",
+      "TipoPropiedad": "Casa",
+      "Imagenes": [],
+      "ambientes": "1",
+      "pisos": "1",
+      "metros": "110",
+      "nombre": "BBBB",
+      "descripcion": "Hola esta es mi casas",
+      "NumeroAmbientes": "1",
+      "NumeroPisos": "1",
+      "MetrosCuadrados": "110",
+      "NombrePropiedad": "BBBB",
+      "BreveDescripcion": "Hola esta es mi casas",
+      "servicios": [
+        "Pileta",
+        "Patio o jardín",
+        "Estacionamiento",
+        "Aire acondicionado"
+      ],
+      "Amenities": [
+        "Pileta",
+        "Patio o jardín",
+        "Estacionamiento",
+        "Aire acondicionado"
+      ],
+      "imagenes": [],
+      "publicada": true
+    },
+    {
+      "id": 1762781852082,
+      "Pais": "Argentina",
+      "ProvinciaEstado": "Buenos Aires",
+      "CiudadLocalidad": "CABA",
+      "CalleYNumero": "Libertador 4273",
+      "TipoPropiedad": "Casa",
+      "Imagenes": [],
+      "ambientes": "1",
+      "pisos": "2",
+      "metros": "110",
+      "nombre": "BBBB",
+      "descripcion": "s",
+      "NumeroAmbientes": "1",
+      "NumeroPisos": "2",
+      "MetrosCuadrados": "110",
+      "NombrePropiedad": "BBBB",
+      "BreveDescripcion": "s",
+      "servicios": [
+        "Pileta",
+        "Aire acondicionado",
+        "Patio o jardín"
+      ],
+      "Amenities": [
+        "Pileta",
+        "Aire acondicionado",
+        "Patio o jardín"
+      ],
+      "imagenes": [],
+      "publicada": true
     }
   ],
   "reseñas": []

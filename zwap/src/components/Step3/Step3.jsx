@@ -59,6 +59,11 @@ export default function Step3() {
     navigate('/perfil/step4');
   };
 
+  if (!formData.servicios) {
+  setFormData((prev) => ({ ...prev, servicios: [] }));
+  return null; // evita render hasta que se actualice
+  }
+
   return (
     <div className="registro-container">
       {/* 🟦 Columna izquierda */}
