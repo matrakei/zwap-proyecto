@@ -1,0 +1,29 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "Nombre": "Usuario Demo",
+      "CorreoElectronico": "demo@zwap.com",
+      "Contrasena": "123456",
+      "Dni": "12345678",
+      "Pais": "Argentina"
+    }
+  ],
+  "publicaciones": [
+    {
+      "id": 1,
+      "Pais": "Argentina",
+      "ProvinciaEstado": "CABA",
+      "CiudadLocalidad": "Buenos Aires",
+      "CalleYNumero": "Av. Siempre Viva 742",
+      "TipoPropiedad": "Casa",
+      "NumeroAmbientes": "3",
+      "NumeroPisos": "1",
+      "MetrosCuadrados": "90",
+      "NombrePropiedad": "Depto Demo",
+      "BreveDescripcion": "Vista al río",
+      "Amenities": [],
+      "Fotos": []
+    }
+  ]
+}

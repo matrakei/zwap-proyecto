@@ -1,0 +1,23 @@
+{
+  "name": "local-api",
+  "version": "1.0.0",
+  "description": "API local para Zwap con json-server",
+  "type": "module",
+  "scripts": {
+    "dev": "json-server --watch db.json --routes routes.json --port 3001 --delay 400",
+    "clean": "rm -f db.json && echo '{\"usuarios\":[],\"publicaciones\":[]}' > db.json"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "json-server": "^1.0.0-beta.0"
+  },
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
