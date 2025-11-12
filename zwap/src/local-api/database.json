@@ -337,6 +337,49 @@
       ],
       "imagenes": [],
       "publicada": true
+    },
+    {
+      "id": 1762957416793,
+      "Pais": "Angola",
+      "ProvinciaEstado": "luanda",
+      "CiudadLocalidad": "rubiranska",
+      "CalleYNumero": "1287",
+      "TipoPropiedad": "",
+      "Imagenes": [
+        "blob:http://localhost:5173/d73ac44e-e25e-4e12-a090-4d7ae840ed57"
+      ],
+      "ambientes": "4+",
+      "pisos": "3+",
+      "metros": "1070",
+      "nombre": "Maia super capa",
+      "descripcion": "Es una casa hermosa y super grande tiene pileta cool",
+      "NumeroAmbientes": "4+",
+      "NumeroPisos": "3+",
+      "MetrosCuadrados": "1070",
+      "NombrePropiedad": "Maia super capa",
+      "BreveDescripcion": "Es una casa hermosa y super grande tiene pileta cool",
+      "servicios": [
+        "Pileta",
+        "Gimnasio",
+        "Patio o jardín",
+        "Red Wi-Fi",
+        "Aire acondicionado",
+        "Cocina equipada",
+        "Estacionamiento"
+      ],
+      "Amenities": [
+        "Pileta",
+        "Gimnasio",
+        "Patio o jardín",
+        "Red Wi-Fi",
+        "Aire acondicionado",
+        "Cocina equipada",
+        "Estacionamiento"
+      ],
+      "imagenes": [
+        "blob:http://localhost:5173/d73ac44e-e25e-4e12-a090-4d7ae840ed57"
+      ],
+      "publicada": true
     }
   ],
   "reseñas": []

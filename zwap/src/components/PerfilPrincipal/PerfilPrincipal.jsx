@@ -30,12 +30,9 @@ export function PerfilPrincipal() {
   const navigate = useNavigate();
 
   const [usuario, setUsuario] = useState(null);
-
-  // 🔹 mantenemos todo lo que viene del back y lo filtramos aparte
   const [allPublicaciones, setAllPublicaciones] = useState([]);
   const [publicaciones, setPublicaciones] = useState([]);
 
-  // estados de fetch visibles
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -54,7 +51,7 @@ export function PerfilPrincipal() {
     }
   }, [navigate]);
 
-  // 🟢 fetch publicaciones SIEMPRE al montar (independiente del usuario)
+  // 🟢 fetch publicaciones SIEMPRE al montar
   useEffect(() => {
     let cancelled = false;
 
@@ -72,7 +69,6 @@ export function PerfilPrincipal() {
         const raw = await res.text();
         console.log("◀ Raw response:", raw);
 
-        // intentamos parsear
         let data;
         try {
           data = JSON.parse(raw);
@@ -97,16 +93,23 @@ export function PerfilPrincipal() {
     return () => { cancelled = true; };
   }, []);
 
-  // 🟢 cada vez que cambia usuario o allPublicaciones, recalculamos las propias
+  // 🟢 recalcular publicaciones del usuario o todas
   useEffect(() => {
-    const propias =
-      (usuario?.id || usuario?.CorreoElectronico)
-        ? allPublicaciones.filter((pub) =>
-            pub.CorreoElectronico === usuario?.CorreoElectronico ||
-            pub.AutorId === usuario?.id ||
-            pub.autorId === usuario?.id
-          )
-        : allPublicaciones;
+    if (!allPublicaciones || allPublicaciones.length === 0) {
+      setPublicaciones([]);
+      return;
+    }
+
+    const propias = allPublicaciones.filter((pub) => {
+      // ✅ Si no tiene autor, se muestra igualmente
+      if (!pub.CorreoElectronico && !pub.AutorId && !pub.autorId) return true;
+
+      return (
+        pub.CorreoElectronico === usuario?.CorreoElectronico ||
+        pub.AutorId === usuario?.id ||
+        pub.autorId === usuario?.id
+      );
+    });
 
     setPublicaciones(propias);
   }, [usuario, allPublicaciones]);
@@ -211,10 +214,7 @@ export function PerfilPrincipal() {
         <div className="publicaciones">
           <h3>Mis Publicaciones</h3>
 
-          {/* estados de carga / error */}
-          {loading && (
-            <p style={{ padding: "10px 30px", color: "#444" }}>Cargando publicaciones…</p>
-          )}
+          {loading && <p style={{ padding: "10px 30px", color: "#444" }}>Cargando publicaciones…</p>}
           {error && (
             <p style={{ padding: "10px 30px", color: "#b00020" }}>
               Error al cargar publicaciones: {error}
@@ -222,47 +222,38 @@ export function PerfilPrincipal() {
           )}
 
           <div className="grid-publicaciones">
-            {!loading && !error && publicaciones.length > 0 ? (
-              publicaciones.map((pub) => {
-                const img =
-                  (pub.Fotos && pub.Fotos[0]) ||
-                  (pub.Imagenes && pub.Imagenes[0]) ||
-                  (pub.imagenes && pub.imagenes[0]) ||
-                  "https://via.placeholder.com/300x200?text=Sin+Imagen";
+            {!loading && !error && publicaciones.map((pub) => {
+              const img =
+                (pub.Fotos && pub.Fotos[0]) ||
+                (pub.Imagenes && pub.Imagenes[0]) ||
+                (pub.imagenes && pub.imagenes[0]) ||
+                "https://via.placeholder.com/300x200?text=Sin+Imagen";
 
-                const nombre = pub.NombrePropiedad || pub.Nombre || "Propiedad sin nombre";
-                const ciudad = pub.Ciudad || pub.CiudadLocalidad || "-";
-                const pais = pub.Pais || "-";
-                const estado = pub.Estado === "No disponible" ? "NO DISPONIBLE" : "DISPONIBLE";
+              const nombre = pub.NombrePropiedad || pub.Nombre || "Propiedad sin nombre";
+              const ciudad = pub.Ciudad || pub.CiudadLocalidad || "-";
+              const pais = pub.Pais || "-";
+              const estado = pub.Estado === "No disponible" ? "NO DISPONIBLE" : "DISPONIBLE";
 
-                return (
-                  <div key={pub.id} className="card-publicacion">
-                    <div className="imagen-container">
-                      <img src={img} alt={nombre} className="img-publicacion" />
-                      <button className="btn-favorito" onClick={() => toggleFavorito(pub.id)}>
-                        {favoritos.includes(pub.id)
-                          ? <span className="si--heart-fill"></span>
-                          : <span className="si--heart-line"></span>}
-                      </button>
-                      <div className="estado-badge">{estado}</div>
-                    </div>
-
-                    <div className="info-publicacion">
-                      <h4>{nombre}</h4>
-                      <p className="subtexto-card">📍 {ciudad}, {pais}</p>
-                      <div className="autor-publicacion">👤 {usuario?.Nombre || "Usuario"}</div>
-                    </div>
+              return (
+                <div key={pub.id} className="card-publicacion">
+                  <div className="imagen-container">
+                    <img src={img} alt={nombre} className="img-publicacion" />
+                    <button className="btn-favorito" onClick={() => toggleFavorito(pub.id)}>
+                      {favoritos.includes(pub.id)
+                        ? <span className="si--heart-fill"></span>
+                        : <span className="si--heart-line"></span>}
+                    </button>
+                    <div className="estado-badge">{estado}</div>
                   </div>
-                );
-              })
-            ) : (
-              !loading &&
-              !error && (
-                <p style={{ fontSize: "0.95rem", color: "#444", gridColumn: "1/-1" }}>
-                  No tenés publicaciones todavía.
-                </p>
-              )
-            )}
+
+                  <div className="info-publicacion">
+                    <h4>{nombre}</h4>
+                    <p className="subtexto-card">📍 {ciudad}, {pais}</p>
+                    <div className="autor-publicacion">👤 {usuario?.Nombre || "Usuario"}</div>
+                  </div>
+                </div>
+              );
+            })}
 
             {/* crear nueva */}
             <div className="card-publicacion nueva" onClick={irACrearPublicacion}>
