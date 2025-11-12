@@ -41,6 +41,24 @@
       "NumeroDocumento": "48521774",
       "Imagenes": [],
       "Contrasena": "Maia04"
+    },
+    {
+      "id": 1762865581000,
+      "NombreCompleto": "Matias",
+      "NombreUsuario": "matra",
+      "CorreoElectronico": "matutele08@gmail.com",
+      "CodigoPais": "54",
+      "NumeroTelefono": "1162956608",
+      "Nacionalidad": "Argentina",
+      "PaisResidencia": "Argentina",
+      "ProvinciaEstado": "Buenos Aires",
+      "Ciudad": "caba",
+      "FechaNacimiento": "16/06/2008",
+      "Descripcion": "Holaa como estasss",
+      "TipoDocumento": "DNI",
+      "NumeroDocumento": "48519913",
+      "Imagenes": [],
+      "Contrasena": "contraseña"
     }
   ],
   "publicaciones": [
@@ -172,6 +190,149 @@
       "Amenities": [
         "Pileta",
         "Aire acondicionado",
+        "Patio o jardín"
+      ],
+      "imagenes": [],
+      "publicada": true
+    },
+    {
+      "id": 1762865734613,
+      "Pais": "Argentina",
+      "ProvinciaEstado": "Buenos Aires",
+      "CiudadLocalidad": "CABA",
+      "CalleYNumero": "Libertador 4273",
+      "TipoPropiedad": "Casa",
+      "Imagenes": [],
+      "ambientes": "1",
+      "pisos": "1",
+      "metros": "110",
+      "nombre": "BBBB",
+      "descripcion": "ewg",
+      "NumeroAmbientes": "1",
+      "NumeroPisos": "1",
+      "MetrosCuadrados": "110",
+      "NombrePropiedad": "BBBB",
+      "BreveDescripcion": "ewg",
+      "servicios": [
+        "Pileta",
+        "Red Wi-Fi"
+      ],
+      "Amenities": [
+        "Pileta",
+        "Red Wi-Fi"
+      ],
+      "imagenes": [],
+      "publicada": true
+    },
+    {
+      "id": 1762866239715,
+      "Pais": "Argentina",
+      "ProvinciaEstado": "Buenos Aires",
+      "CiudadLocalidad": "CABA",
+      "CalleYNumero": "Libertador 4273",
+      "TipoPropiedad": "Casa",
+      "Imagenes": [],
+      "ambientes": "1",
+      "pisos": "1",
+      "metros": "110",
+      "nombre": "BBBB",
+      "descripcion": "sdvsv",
+      "NumeroAmbientes": "1",
+      "NumeroPisos": "1",
+      "MetrosCuadrados": "110",
+      "NombrePropiedad": "BBBB",
+      "BreveDescripcion": "sdvsv",
+      "servicios": [
+        "Gimnasio",
+        "Patio o jardín",
+        "Cocina equipada"
+      ],
+      "Amenities": [
+        "Gimnasio",
+        "Patio o jardín",
+        "Cocina equipada"
+      ],
+      "imagenes": [],
+      "publicada": true
+    },
+    {
+      "id": 1762866619080,
+      "Pais": "Argentina",
+      "ProvinciaEstado": "Buenos Aires",
+      "CiudadLocalidad": "CABA",
+      "CalleYNumero": "Libertador 4273",
+      "TipoPropiedad": "Departamento",
+      "Imagenes": [],
+      "ambientes": "3",
+      "pisos": "3+",
+      "metros": "3343",
+      "nombre": "adasev",
+      "descripcion": "advea",
+      "NumeroAmbientes": "3",
+      "NumeroPisos": "3+",
+      "MetrosCuadrados": "3343",
+      "NombrePropiedad": "adasev",
+      "BreveDescripcion": "advea",
+      "servicios": [
+        "Pileta"
+      ],
+      "Amenities": [
+        "Pileta"
+      ],
+      "imagenes": [],
+      "publicada": true
+    },
+    {
+      "id": 1762867185735,
+      "Pais": "Argentina",
+      "ProvinciaEstado": "Buenos Aires",
+      "CiudadLocalidad": "CABA",
+      "CalleYNumero": "Libertador 4273",
+      "TipoPropiedad": "Departamento",
+      "Imagenes": [],
+      "ambientes": "4+",
+      "pisos": "3+",
+      "metros": "66666666",
+      "nombre": "srfbs",
+      "descripcion": "no funciona",
+      "NumeroAmbientes": "4+",
+      "NumeroPisos": "3+",
+      "MetrosCuadrados": "66666666",
+      "NombrePropiedad": "srfbs",
+      "BreveDescripcion": "no funciona",
+      "servicios": [
+        "Patio o jardín",
+        "Estacionamiento"
+      ],
+      "Amenities": [
+        "Patio o jardín",
+        "Estacionamiento"
+      ],
+      "imagenes": [],
+      "publicada": true
+    },
+    {
+      "id": 1762867718104,
+      "Pais": "Argentina",
+      "ProvinciaEstado": "Buenos Aires",
+      "CiudadLocalidad": "CABA",
+      "CalleYNumero": "Libertador 4273",
+      "TipoPropiedad": "Casa",
+      "Imagenes": [],
+      "ambientes": "4+",
+      "pisos": "1",
+      "metros": "21333",
+      "nombre": "asfifwe",
+      "descripcion": "wrvrvewv",
+      "NumeroAmbientes": "4+",
+      "NumeroPisos": "1",
+      "MetrosCuadrados": "21333",
+      "NombrePropiedad": "asfifwe",
+      "BreveDescripcion": "wrvrvewv",
+      "servicios": [
+        "Patio o jardín"
+      ],
+      "Amenities": [
         "Patio o jardín"
       ],
       "imagenes": [],

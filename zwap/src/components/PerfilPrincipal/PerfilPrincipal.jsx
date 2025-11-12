@@ -29,15 +29,22 @@ import Cargar100 from '../../assets/porcentajes/Cargar 100.svg';
 export function PerfilPrincipal() {
   const navigate = useNavigate();
 
-  // Usuario logueado
   const [usuario, setUsuario] = useState(null);
+
+  // 🔹 mantenemos todo lo que viene del back y lo filtramos aparte
+  const [allPublicaciones, setAllPublicaciones] = useState([]);
   const [publicaciones, setPublicaciones] = useState([]);
+
+  // estados de fetch visibles
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   const [favoritos, setFavoritos] = useState([]);
   const [showObjetivo, setShowObjetivo] = useState(false);
   const [objetivoIntercambios, setObjetivoIntercambios] = useState(5);
   const cantidadIntercambios = 2;
 
-  // 🟢 Cargar usuario logueado
+  // 🟢 usuario logueado
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("usuarioLogueado"));
     if (userData) {
@@ -47,35 +54,64 @@ export function PerfilPrincipal() {
     }
   }, [navigate]);
 
-  // 🟢 Cargar publicaciones reales desde el backend local
+  // 🟢 fetch publicaciones SIEMPRE al montar (independiente del usuario)
   useEffect(() => {
-     const fetchPublicaciones = async () => {
+    let cancelled = false;
+
+    const fetchPublicaciones = async () => {
       try {
-       const res = await fetch("http://localhost:3001/api/publicaciones");
-       const data = await res.json();
+        setLoading(true);
+        setError(null);
 
-        // 🔹 Tu API devuelve un array directamente, así que data ya ES el array
-        const todas = Array.isArray(data)
-        ? data
-       : data.publicaciones || [];
+        console.log("▶ Fetch /api/publicaciones …");
+        const res = await fetch("http://localhost:3001/api/publicaciones", {
+          headers: { "Cache-Control": "no-cache" },
+        });
+        console.log("◀ Status:", res.status);
 
-       // Si el usuario está logueado, filtramos solo las suyas
-       const publicacionesUsuario = usuario?.id
-        ? todas.filter((pub) => pub.autorId === usuario.id)
-        : todas;
+        const raw = await res.text();
+        console.log("◀ Raw response:", raw);
 
-        setPublicaciones(publicacionesUsuario);
-        } catch (err) {
-        console.error("❌ Error al cargar publicaciones:", err.message || err);
+        // intentamos parsear
+        let data;
+        try {
+          data = JSON.parse(raw);
+        } catch (e) {
+          console.error("❌ Error parseando JSON:", e);
+          throw new Error("Respuesta del servidor inválida (no JSON)");
         }
-      
+
+        const arr = Array.isArray(data) ? data : (data.publicaciones || []);
+        console.log("◀ Items parseados:", arr.length);
+
+        if (!cancelled) setAllPublicaciones(arr);
+      } catch (e) {
+        console.error("❌ Error al cargar publicaciones:", e);
+        if (!cancelled) setError(e.message || "Error desconocido");
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
     };
 
+    fetchPublicaciones();
+    return () => { cancelled = true; };
+  }, []);
 
-    if (usuario) fetchPublicaciones();
-  }, [usuario]);
+  // 🟢 cada vez que cambia usuario o allPublicaciones, recalculamos las propias
+  useEffect(() => {
+    const propias =
+      (usuario?.id || usuario?.CorreoElectronico)
+        ? allPublicaciones.filter((pub) =>
+            pub.CorreoElectronico === usuario?.CorreoElectronico ||
+            pub.AutorId === usuario?.id ||
+            pub.autorId === usuario?.id
+          )
+        : allPublicaciones;
 
-  // ❤️ Favoritos
+    setPublicaciones(propias);
+  }, [usuario, allPublicaciones]);
+
+  // ❤️ favoritos
   const toggleFavorito = (id) => {
     setFavoritos((prev) =>
       prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]
@@ -83,35 +119,15 @@ export function PerfilPrincipal() {
   };
 
   const favoritosCount = favoritos.length;
-  const usuariosFavoritos = favoritosCount; // simplificado
-  const porcentaje = Math.min(
-    100,
-    Math.round((cantidadIntercambios / objetivoIntercambios) * 100)
-  );
+  const usuariosFavoritos = favoritosCount;
+  const porcentaje = Math.min(100, Math.round((cantidadIntercambios / objetivoIntercambios) * 100));
   const porcentajeRedondeado = Math.round(porcentaje / 5) * 5;
 
   const imagenesPorcentaje = {
-    0: Cargar0,
-    5: Cargar5,
-    10: Cargar10,
-    15: Cargar15,
-    20: Cargar20,
-    25: Cargar25,
-    30: Cargar30,
-    35: Cargar35,
-    40: Cargar40,
-    45: Cargar45,
-    50: Cargar50,
-    55: Cargar55,
-    60: Cargar60,
-    65: Cargar65,
-    70: Cargar70,
-    75: Cargar75,
-    80: Cargar80,
-    85: Cargar85,
-    90: Cargar90,
-    95: Cargar95,
-    100: Cargar100,
+    0: Cargar0, 5: Cargar5, 10: Cargar10, 15: Cargar15, 20: Cargar20,
+    25: Cargar25, 30: Cargar30, 35: Cargar35, 40: Cargar40, 45: Cargar45,
+    50: Cargar50, 55: Cargar55, 60: Cargar60, 65: Cargar65, 70: Cargar70,
+    75: Cargar75, 80: Cargar80, 85: Cargar85, 90: Cargar90, 95: Cargar95, 100: Cargar100,
   };
   const imagenPorcentaje = imagenesPorcentaje[porcentajeRedondeado];
 
@@ -119,6 +135,7 @@ export function PerfilPrincipal() {
 
   return (
     <div className="perfil-container">
+      {/* modal objetivo */}
       {showObjetivo && (
         <div className="modal-objetivo">
           <div className="modal-objetivo-content">
@@ -140,7 +157,7 @@ export function PerfilPrincipal() {
         </div>
       )}
 
-      {/* 🟩 Columna izquierda */}
+      {/* izquierda */}
       <div className="perfil-izquierda">
         <img className="perfil-foto" src={perfilImage} alt="Foto de perfil" />
         <h2>{usuario ? `${usuario.Nombre || ""} ${usuario.Apellido || ""}` : "Usuario sin nombre"}</h2>
@@ -171,7 +188,7 @@ export function PerfilPrincipal() {
         </button>
       </div>
 
-      {/* 🟦 Columna derecha */}
+      {/* derecha */}
       <div className="perfil-derecha">
         <div className="estadisticas">
           <div className="card-estadistica intercambio">
@@ -190,47 +207,64 @@ export function PerfilPrincipal() {
           </div>
         </div>
 
-        {/* 🏠 Publicaciones reales */}
+        {/* publicaciones */}
         <div className="publicaciones">
           <h3>Mis Publicaciones</h3>
+
+          {/* estados de carga / error */}
+          {loading && (
+            <p style={{ padding: "10px 30px", color: "#444" }}>Cargando publicaciones…</p>
+          )}
+          {error && (
+            <p style={{ padding: "10px 30px", color: "#b00020" }}>
+              Error al cargar publicaciones: {error}
+            </p>
+          )}
+
           <div className="grid-publicaciones">
-            {publicaciones.length > 0 ? (
-              publicaciones.map((pub) => (
-                <div key={pub.id} className="card-publicacion">
-                  <div className="imagen-container">
-                    <img
-                      src={pub.imagenes?.[0] || "https://via.placeholder.com/300x200?text=Sin+Imagen"}
-                      alt={pub.Nombre || "Propiedad"}
-                      className="img-publicacion"
-                    />
-                    <button
-                      className="btn-favorito"
-                      onClick={() => toggleFavorito(pub.id)}
-                    >
-                      {favoritos.includes(pub.id) ? (
-                        <span className="si--heart-fill"></span>
-                      ) : (
-                        <span className="si--heart-line"></span>
-                      )}
-                    </button>
-                    <div className="estado-badge">
-                      DISPONIBLE
+            {!loading && !error && publicaciones.length > 0 ? (
+              publicaciones.map((pub) => {
+                const img =
+                  (pub.Fotos && pub.Fotos[0]) ||
+                  (pub.Imagenes && pub.Imagenes[0]) ||
+                  (pub.imagenes && pub.imagenes[0]) ||
+                  "https://via.placeholder.com/300x200?text=Sin+Imagen";
+
+                const nombre = pub.NombrePropiedad || pub.Nombre || "Propiedad sin nombre";
+                const ciudad = pub.Ciudad || pub.CiudadLocalidad || "-";
+                const pais = pub.Pais || "-";
+                const estado = pub.Estado === "No disponible" ? "NO DISPONIBLE" : "DISPONIBLE";
+
+                return (
+                  <div key={pub.id} className="card-publicacion">
+                    <div className="imagen-container">
+                      <img src={img} alt={nombre} className="img-publicacion" />
+                      <button className="btn-favorito" onClick={() => toggleFavorito(pub.id)}>
+                        {favoritos.includes(pub.id)
+                          ? <span className="si--heart-fill"></span>
+                          : <span className="si--heart-line"></span>}
+                      </button>
+                      <div className="estado-badge">{estado}</div>
+                    </div>
+
+                    <div className="info-publicacion">
+                      <h4>{nombre}</h4>
+                      <p className="subtexto-card">📍 {ciudad}, {pais}</p>
+                      <div className="autor-publicacion">👤 {usuario?.Nombre || "Usuario"}</div>
                     </div>
                   </div>
-                  <div className="info-publicacion">
-                    <h4>{pub.Nombre || "Propiedad sin nombre"}</h4>
-                    <p className="subtexto-card">📍 {pub.Pais}, {pub.Ciudad}</p>
-                    <div className="autor-publicacion">👤 {usuario?.Nombre}</div>
-                  </div>
-                </div>
-              ))
+                );
+              })
             ) : (
-              <p style={{ fontSize: "0.95rem", color: "#444", gridColumn: "1/-1" }}>
-                No tenés publicaciones todavía.
-              </p>
+              !loading &&
+              !error && (
+                <p style={{ fontSize: "0.95rem", color: "#444", gridColumn: "1/-1" }}>
+                  No tenés publicaciones todavía.
+                </p>
+              )
             )}
 
-            {/* ➕ Botón crear nueva publicación */}
+            {/* crear nueva */}
             <div className="card-publicacion nueva" onClick={irACrearPublicacion}>
               <span className="mas-grande">+</span>
             </div>

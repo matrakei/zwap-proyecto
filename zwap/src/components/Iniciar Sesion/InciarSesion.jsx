@@ -15,35 +15,37 @@ export function IniciarSesion() {
     e.preventDefault();
 
     try {
-      // ✅ Obtenemos todos los usuarios desde el backend local
-      const res = await fetch("http://localhost:3001/api/usuarios");
-      if (!res.ok) throw new Error("Error al obtener usuarios");
-      const usuarios = await res.json();
+      // 🔹 Enviamos los datos de login al backend local
+      const res = await fetch("http://localhost:3001/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          CorreoElectronico: correo.trim(),
+          Contrasena: contrasena,
+        }),
+      });
 
-      // 🔍 Buscamos el usuario que coincida con el correo
-      const usuario = usuarios.find(
-        (u) => u.CorreoElectronico === correo
-      );
-
-      if (!usuario) {
-        alert("No se encontró un usuario con ese correo electrónico.");
-        return;
+      if (!res.ok) {
+        if (res.status === 401) {
+          alert("Correo o contraseña incorrectos ❌");
+          return;
+        }
+        throw new Error("Error al iniciar sesión");
       }
 
-      // 🔐 Comprobamos la contraseña
-      if (usuario.Contrasena !== contrasena) {
-        alert("Contraseña incorrecta.");
-        return;
-      }
+      // 🔹 Si el login fue exitoso
+      const data = await res.json();
+      const usuario = data.usuario;
 
-      // 💾 Guardamos el usuario en localStorage
+      // 💾 Guardamos el usuario logueado en localStorage
       localStorage.setItem("usuarioLogueado", JSON.stringify(usuario));
-      alert("Inicio de sesión exitoso ✅");
 
+      alert("Inicio de sesión exitoso ✅");
       navigate("/home");
+
     } catch (error) {
-      console.error("Error al conectar con el servidor local:", error);
-      alert("No se pudo conectar con el servidor local. ¿Está corriendo el backend?");
+      console.error("❌ Error al conectar con el servidor local:", error);
+      alert("No se pudo conectar con el servidor local. Asegurate de que el backend esté corriendo.");
     }
   };
 
@@ -58,7 +60,7 @@ export function IniciarSesion() {
 
   return (
     <div className="registro-container login-page">
-      {/* Columna Izquierda - Formulario */}
+      {/* 🟦 Columna Izquierda - Formulario */}
       <div className="col-izquierda-iniciar">
         <h2>Iniciar Sesión</h2>
 
@@ -74,12 +76,14 @@ export function IniciarSesion() {
             placeholder="Correo electrónico"
             value={correo}
             onChange={(e) => setCorreo(e.target.value)}
+            required
           />
           <input 
             type="password" 
             placeholder="Contraseña"
             value={contrasena}
             onChange={(e) => setContrasena(e.target.value)}
+            required
           />
           <button
             type="button"
@@ -92,7 +96,7 @@ export function IniciarSesion() {
         </form>
       </div>
 
-      {/* Columna Derecha - Mensaje */}
+      {/* ⚪ Columna Derecha - Mensaje */}
       <div className="col-derecha-iniciar">
         <h1>¡Bienvenido!</h1>
         <p>
