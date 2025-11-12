@@ -60,29 +60,21 @@ export function PerfilPrincipal() {
         setLoading(true);
         setError(null);
 
-        console.log("▶ Fetch /api/publicaciones …");
         const res = await fetch("http://localhost:3001/api/publicaciones", {
           headers: { "Cache-Control": "no-cache" },
         });
-        console.log("◀ Status:", res.status);
-
         const raw = await res.text();
-        console.log("◀ Raw response:", raw);
 
         let data;
         try {
           data = JSON.parse(raw);
         } catch (e) {
-          console.error("❌ Error parseando JSON:", e);
           throw new Error("Respuesta del servidor inválida (no JSON)");
         }
 
         const arr = Array.isArray(data) ? data : (data.publicaciones || []);
-        console.log("◀ Items parseados:", arr.length);
-
         if (!cancelled) setAllPublicaciones(arr);
       } catch (e) {
-        console.error("❌ Error al cargar publicaciones:", e);
         if (!cancelled) setError(e.message || "Error desconocido");
       } finally {
         if (!cancelled) setLoading(false);
@@ -101,9 +93,7 @@ export function PerfilPrincipal() {
     }
 
     const propias = allPublicaciones.filter((pub) => {
-      // ✅ Si no tiene autor, se muestra igualmente
       if (!pub.CorreoElectronico && !pub.AutorId && !pub.autorId) return true;
-
       return (
         pub.CorreoElectronico === usuario?.CorreoElectronico ||
         pub.AutorId === usuario?.id ||
@@ -114,11 +104,56 @@ export function PerfilPrincipal() {
     setPublicaciones(propias);
   }, [usuario, allPublicaciones]);
 
-  // ❤️ favoritos
-  const toggleFavorito = (id) => {
-    setFavoritos((prev) =>
-      prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]
-    );
+  // 🟢 cargar favoritos del backend al iniciar sesión
+  useEffect(() => {
+    const fetchFavoritos = async () => {
+      if (!usuario?.CorreoElectronico) return;
+      try {
+        const res = await fetch(`http://localhost:3001/api/favoritos/${usuario.CorreoElectronico}`);
+        if (res.ok) {
+          const data = await res.json();
+          setFavoritos(data.map((p) => p.id));
+        }
+      } catch (err) {
+        console.error("Error al traer favoritos:", err);
+      }
+    };
+    fetchFavoritos();
+  }, [usuario]);
+
+  // ❤️ favoritos (conexión al backend)
+  const toggleFavorito = async (publicacionId) => {
+    if (!usuario?.CorreoElectronico) {
+      alert("Tenés que iniciar sesión para guardar favoritos");
+      return;
+    }
+
+    const esFavorito = favoritos.includes(publicacionId);
+    const metodo = esFavorito ? "DELETE" : "POST";
+
+    try {
+      const res = await fetch("http://localhost:3001/api/favoritos", {
+        method: metodo,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          correo: usuario.CorreoElectronico,
+          publicacionId,
+        }),
+      });
+
+      if (!res.ok) throw new Error("Error al actualizar favoritos");
+
+      const data = await res.json();
+      console.log("⭐ Favoritos actualizados:", data);
+
+      setFavoritos((prev) =>
+        esFavorito
+          ? prev.filter((f) => f !== publicacionId)
+          : [...prev, publicacionId]
+      );
+    } catch (err) {
+      console.error("❌ Error al guardar favorito:", err);
+    }
   };
 
   const favoritosCount = favoritos.length;
