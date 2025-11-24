@@ -25,9 +25,8 @@
       "Contrasena": "matute",
       "Favoritos": [
         1762779322006,
-        1762780243912,
-        1762780589775,
-        1762781163521
+        1762781163521,
+        1762865734613
       ]
     },
     {
@@ -61,6 +60,44 @@
       "Ciudad": "caba",
       "FechaNacimiento": "16/06/2008",
       "Descripcion": "Holaa como estasss",
+      "TipoDocumento": "DNI",
+      "NumeroDocumento": "48519913",
+      "Imagenes": [],
+      "Contrasena": "contraseña"
+    },
+    {
+      "id": 1764024466481,
+      "Favoritos": [],
+      "NombreCompleto": "Matias Vernet",
+      "NombreUsuario": "matra",
+      "CorreoElectronico": "matutele08@gmail.com",
+      "CodigoPais": "54",
+      "NumeroTelefono": "11 62956608",
+      "Nacionalidad": "Argentino",
+      "PaisResidencia": "Argentina",
+      "ProvinciaEstado": "Buenos Aires",
+      "Ciudad": "CABA",
+      "FechaNacimiento": "16/6/2008",
+      "Descripcion": "Hola",
+      "TipoDocumento": "DNI",
+      "NumeroDocumento": "48519913",
+      "Imagenes": [],
+      "Contrasena": "contraseña"
+    },
+    {
+      "id": 1764025585284,
+      "Favoritos": [],
+      "NombreCompleto": "Matias Vernet",
+      "NombreUsuario": "matraaa",
+      "CorreoElectronico": "matutele08@gmail.com",
+      "CodigoPais": "54",
+      "NumeroTelefono": "11 62956608",
+      "Nacionalidad": "Argentino",
+      "PaisResidencia": "Argentina",
+      "ProvinciaEstado": "Buenos Aires",
+      "Ciudad": "CABA",
+      "FechaNacimiento": "16/6/2008",
+      "Descripcion": "Hola",
       "TipoDocumento": "DNI",
       "NumeroDocumento": "48519913",
       "Imagenes": [],

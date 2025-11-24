@@ -6,11 +6,21 @@ export function Login2editar() {
   const navigate = useNavigate();
   const [saludoIndex, setSaludoIndex] = useState(0);
 
+  // 🔹 Estado para almacenar los datos del usuario
+  const [usuario, setUsuario] = useState(null);
+
   const saludos = [
     "¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!",
     "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"
   ];
- 
+
+  // 🔹 Cargar usuario desde localStorage
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("usuarioLogueado"));
+    if (data) setUsuario(data);
+  }, []);
+
+  // 🔹 Animación de saludos
   useEffect(() => {
     const interval = setInterval(() => {
       setSaludoIndex((prev) => (prev + 1) % saludos.length);
@@ -26,6 +36,7 @@ export function Login2editar() {
 
   return (
     <div className="registro-container">
+
       {/* Columna Izquierda */}
       <div className="col-izquierda">
         <h1 className="saludo-animado">{saludos[saludoIndex]}</h1>
@@ -40,10 +51,30 @@ export function Login2editar() {
         <h2>Editar Perfil</h2>
 
         <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Código de país" />
-          <input type="text" placeholder="Número de teléfono" />
-          <input type="text" placeholder="Nacionalidad" />
-          <input type="text" placeholder="País de residencia" />
+          <input
+            type="text"
+            placeholder="Código de país"
+            defaultValue={usuario?.CodigoPais || ""}
+          />
+
+          <input
+            type="text"
+            placeholder="Número de teléfono"
+            defaultValue={usuario?.NumeroTelefono || ""}
+          />
+
+          <input
+            type="text"
+            placeholder="Nacionalidad"
+            defaultValue={usuario?.Nacionalidad || ""}
+          />
+
+          <input
+            type="text"
+            placeholder="País de residencia"
+            defaultValue={usuario?.PaisResidencia || ""}
+          />
+
           <button type="submit" className="btn-siguiente">
             Guardar y Continuar
           </button>

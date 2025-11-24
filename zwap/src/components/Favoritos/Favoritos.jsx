@@ -34,7 +34,7 @@ export function Favoritos() {
 
   const [showObjetivo, setShowObjetivo] = useState(false);
   const [objetivoIntercambios, setObjetivoIntercambios] = useState(5);
-  const cantidadIntercambios = 2; // Lo mismo que PerfilPrincipal
+  const cantidadIntercambios = 2;
 
   // 🟢 usuario logueado
   useEffect(() => {
@@ -42,7 +42,7 @@ export function Favoritos() {
     if (data) setUsuario(data);
   }, []);
 
-  // 🟢 traer favoritos del backend
+  // 🟢 traer favoritos
   useEffect(() => {
     const fetchFavoritos = async () => {
       if (!usuario?.CorreoElectronico) return;
@@ -53,7 +53,7 @@ export function Favoritos() {
         );
         if (!res.ok) throw new Error("Error al cargar favoritos");
 
-        const data = await res.json(); // [{id: x}]
+        const data = await res.json();
         setFavoritos(data.map((f) => f.id));
       } catch (err) {
         console.error(err);
@@ -64,7 +64,7 @@ export function Favoritos() {
     fetchFavoritos();
   }, [usuario]);
 
-  // 🟢 traer todas las publicaciones
+  // 🟢 publicaciones
   useEffect(() => {
     const fetchPublicaciones = async () => {
       try {
@@ -91,17 +91,17 @@ export function Favoritos() {
     fetchPublicaciones();
   }, []);
 
-  // 🟢 filtrar publicaciones favoritas
+  // 🟢 filtrar favoritos
   const publicacionesFavoritas = publicaciones.filter((pub) =>
     favoritos.includes(pub.id)
   );
 
-  // 🟢 cantidad de usuarios distintos
+  // usuarios distintos
   const usuariosFavoritos = new Set(
     publicacionesFavoritas.map((pub) => pub.CorreoElectronico || pub.AutorId)
   ).size;
 
-  // ❤️ toggle favorito
+  // ❤️ toggle
   const toggleFavorito = async (publicacionId) => {
     if (!usuario?.CorreoElectronico) {
       alert("Tenés que iniciar sesión");
@@ -131,7 +131,7 @@ export function Favoritos() {
     }
   };
 
-  // porcentaje objetivo (igual al perfil)
+  // porcentaje
   const porcentaje = Math.min(
     100,
     Math.round((cantidadIntercambios / objetivoIntercambios) * 100)
@@ -169,13 +169,15 @@ export function Favoritos() {
 
   return (
     <div className="perfil-container">
-      {/* IZQUIERDA – Mini perfil (idéntico al perfil principal) */}
+      {/* IZQUIERDA */}
       <div className="perfil-izquierda">
         <img className="perfil-foto" src={perfilImage} alt="Foto Perfil" />
+
+        {/* ✔️ NOMBRE IGUAL A PERFIL PRINCIPAL */}
         <h2>
-          {usuario
-            ? `${usuario.Nombre || ""} ${usuario.Apellido || ""}`
-            : "Usuario sin nombre"}
+          {usuario?.NombreUsuario ||
+            usuario?.NombreCompleto ||
+            "Usuario sin nombre"}
         </h2>
 
         <div className="perfil-info-bloque">
@@ -202,21 +204,15 @@ export function Favoritos() {
         </div>
       </div>
 
-      {/* DERECHA – ESTADÍSTICAS + FAVORITOS (idéntico a Perfil) */}
+      {/* DERECHA */}
       <div className="perfil-derecha">
         <div className="estadisticas">
-          {/* TARJETA INTERCAMBIOS */}
           <div className="card-estadistica intercambio">
-            <button
-              className="btn-mas"
-              onClick={() => setShowObjetivo(true)}
-            >
+            <button className="btn-mas" onClick={() => setShowObjetivo(true)}>
               +
             </button>
 
-            <span className="numero-estadistica">
-              {objetivoIntercambios}
-            </span>
+            <span className="numero-estadistica">{objetivoIntercambios}</span>
             <span className="titulo-estadistica">Intercambios</span>
             <span className="subtexto-estadistica">En 4 países</span>
             <img
@@ -226,10 +222,16 @@ export function Favoritos() {
             />
           </div>
 
-          {/* TARJETA FAVORITOS */}
           <div className="card-estadistica favorito">
-            <span className="si--heart-fill" style={{ position: "absolute", top: 12, right: 14 }}></span>
-            <span className="numero-estadistica">{publicacionesFavoritas.length}</span>
+            <span
+              className="si--heart-fill"
+              style={{ position: "absolute", top: 12, right: 14 }}
+            ></span>
+
+            <span className="numero-estadistica">
+              {publicacionesFavoritas.length}
+            </span>
+
             <span className="titulo-estadistica">Favoritos</span>
             <span className="subtexto-estadistica">
               de {usuariosFavoritos} usuarios
@@ -237,37 +239,7 @@ export function Favoritos() {
           </div>
         </div>
 
-        {/* MODAL OBJETIVO */}
-        {showObjetivo && (
-          <div className="modal-objetivo">
-            <div className="modal-objetivo-content">
-              <button className="modal-close" onClick={() => setShowObjetivo(false)}>
-                ×
-              </button>
-              <h2>
-                <b>Objetivo</b>{" "}
-                <span style={{ color: "#39B3B8" }}>Zwap</span>
-              </h2>
-              <p>¿Cuántos intercambios querés lograr?</p>
-
-              <select
-                value={objetivoIntercambios}
-                onChange={(e) => {
-                  setObjetivoIntercambios(Number(e.target.value));
-                  setShowObjetivo(false);
-                }}
-              >
-                {[...Array(6).keys()].map((val) => (
-                  <option key={val} value={val}>
-                    {val}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-        )}
-
-        {/* GRILLA DE FAVORITOS (idéntica al perfil) */}
+        {/* GRILLA DE FAVORITOS */}
         <div className="publicaciones">
           <h3>Mis Favoritos</h3>
 
@@ -287,6 +259,7 @@ export function Favoritos() {
 
                 const ciudad = pub.Ciudad || pub.CiudadLocalidad || "-";
                 const pais = pub.Pais || "-";
+
                 const estado =
                   pub.Estado === "No disponible"
                     ? "NO DISPONIBLE"
@@ -295,11 +268,7 @@ export function Favoritos() {
                 return (
                   <div key={pub.id} className="card-publicacion">
                     <div className="imagen-container">
-                      <img
-                        src={img}
-                        alt={nombre}
-                        className="img-publicacion"
-                      />
+                      <img src={img} alt={nombre} className="img-publicacion" />
 
                       <button
                         className="btn-favorito"
@@ -320,8 +289,13 @@ export function Favoritos() {
                       <p className="subtexto-card">
                         📍 {ciudad}, {pais}
                       </p>
+
+                      {/* ✔️ NOMBRE EXACTO COMO EN PERFIL PRINCIPAL */}
                       <div className="autor-publicacion">
-                        👤 {pub.autor || usuario?.Nombre}
+                        👤{" "}
+                        {usuario?.NombreUsuario ||
+                          usuario?.NombreCompleto ||
+                          "Usuario"}
                       </div>
                     </div>
                   </div>

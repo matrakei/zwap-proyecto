@@ -31,11 +31,9 @@ export function PerfilPrincipal() {
 
   const [usuario, setUsuario] = useState(null);
 
-  // 🔹 mantenemos todo lo que viene del back y lo filtramos aparte
   const [allPublicaciones, setAllPublicaciones] = useState([]);
   const [publicaciones, setPublicaciones] = useState([]);
 
-  // estados de fetch visibles
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -54,7 +52,13 @@ export function PerfilPrincipal() {
     }
   }, [navigate]);
 
-  // 🟢 fetch publicaciones SIEMPRE al montar (independiente del usuario)
+  // 🟢 foto perfil (actualizado)
+  const fotoPerfil =
+    usuario?.FotoPerfil
+      ? usuario.FotoPerfil
+      : (usuario?.Imagenes?.[0] || perfilImage);
+
+  // 🟢 fetch publicaciones
   useEffect(() => {
     let cancelled = false;
 
@@ -68,7 +72,6 @@ export function PerfilPrincipal() {
         });
         const raw = await res.text();
 
-        // intentamos parsear
         let data;
         try {
           data = JSON.parse(raw);
@@ -89,7 +92,7 @@ export function PerfilPrincipal() {
     return () => { cancelled = true; };
   }, []);
 
-  // 🟢 cada vez que cambia usuario o allPublicaciones, recalculamos las propias
+  // 🟢 filtrar publicaciones del usuario
   useEffect(() => {
     if (!allPublicaciones || allPublicaciones.length === 0) {
       setPublicaciones([]);
@@ -108,7 +111,7 @@ export function PerfilPrincipal() {
     setPublicaciones(propias);
   }, [usuario, allPublicaciones]);
 
-  // 🟢 cargar favoritos del backend al iniciar sesión
+  // 🟢 cargar favoritos
   useEffect(() => {
     const fetchFavoritos = async () => {
       if (!usuario?.CorreoElectronico) return;
@@ -125,7 +128,7 @@ export function PerfilPrincipal() {
     fetchFavoritos();
   }, [usuario]);
 
-  // ❤️ favoritos (conexión al backend)
+  // ❤️ favoritos
   const toggleFavorito = async (publicacionId) => {
     if (!usuario?.CorreoElectronico) {
       alert("Tenés que iniciar sesión para guardar favoritos");
@@ -147,9 +150,6 @@ export function PerfilPrincipal() {
 
       if (!res.ok) throw new Error("Error al actualizar favoritos");
 
-      const data = await res.json();
-      console.log("⭐ Favoritos actualizados:", data);
-
       setFavoritos((prev) =>
         esFavorito
           ? prev.filter((f) => f !== publicacionId)
@@ -162,7 +162,10 @@ export function PerfilPrincipal() {
 
   const favoritosCount = favoritos.length;
   const usuariosFavoritos = favoritosCount;
-  const porcentaje = Math.min(100, Math.round((cantidadIntercambios / objetivoIntercambios) * 100));
+  const porcentaje = Math.min(
+    100,
+    Math.round((cantidadIntercambios / objetivoIntercambios) * 100)
+  );
   const porcentajeRedondeado = Math.round(porcentaje / 5) * 5;
 
   const imagenesPorcentaje = {
@@ -171,12 +174,14 @@ export function PerfilPrincipal() {
     50: Cargar50, 55: Cargar55, 60: Cargar60, 65: Cargar65, 70: Cargar70,
     75: Cargar75, 80: Cargar80, 85: Cargar85, 90: Cargar90, 95: Cargar95, 100: Cargar100,
   };
+
   const imagenPorcentaje = imagenesPorcentaje[porcentajeRedondeado];
 
   const irACrearPublicacion = () => navigate('/perfil/step1');
 
   return (
     <div className="perfil-container">
+
       {/* modal objetivo */}
       {showObjetivo && (
         <div className="modal-objetivo">
@@ -201,8 +206,8 @@ export function PerfilPrincipal() {
 
       {/* izquierda */}
       <div className="perfil-izquierda">
-        <img className="perfil-foto" src={perfilImage} alt="Foto de perfil" />
-        <h2>{usuario ? `${usuario.Nombre || ""} ${usuario.Apellido || ""}` : "Usuario sin nombre"}</h2>
+        <img className="perfil-foto" src={fotoPerfil} alt="Foto de perfil" />
+        <h2>{usuario?.NombreUsuario || usuario?.NombreCompleto || "Usuario"}</h2>
 
         <div className="perfil-info-bloque">
           <p className="info-label">Descripción</p>
@@ -253,10 +258,10 @@ export function PerfilPrincipal() {
         <div className="publicaciones">
           <h3>Mis Publicaciones</h3>
 
-          {/* estados de carga / error */}
           {loading && (
             <p style={{ padding: "10px 30px", color: "#444" }}>Cargando publicaciones…</p>
           )}
+
           {error && (
             <p style={{ padding: "10px 30px", color: "#b00020" }}>
               Error al cargar publicaciones: {error}
@@ -292,7 +297,7 @@ export function PerfilPrincipal() {
                     <div className="info-publicacion">
                       <h4>{nombre}</h4>
                       <p className="subtexto-card">📍 {ciudad}, {pais}</p>
-                      <div className="autor-publicacion">👤 {usuario?.Nombre || "Usuario"}</div>
+                      <div className="autor-publicacion">👤 {usuario?.NombreUsuario || "Usuario"}</div>
                     </div>
                   </div>
                 );
@@ -310,6 +315,7 @@ export function PerfilPrincipal() {
             <div className="card-publicacion nueva" onClick={irACrearPublicacion}>
               <span className="mas-grande">+</span>
             </div>
+
           </div>
         </div>
       </div>

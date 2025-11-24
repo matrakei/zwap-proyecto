@@ -6,8 +6,21 @@ export function LoginEditar() {
   const navigate = useNavigate();
   const [saludoIndex, setSaludoIndex] = useState(0);
 
-  const saludos = ["¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!", "¡Olá!", "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"];
+  // 🔹 Estado para guardar los datos del usuario logueado
+  const [usuario, setUsuario] = useState(null);
 
+  const saludos = [
+    "¡Hola!", "¡Hello!", "¡Bonjour!", "¡Ciao!", "¡Hallo!", "¡Olá!",
+    "¡Привет!", "¡こんにちは!", "¡مرحبا!", "¡你好!", "¡Shalom!"
+  ];
+
+  // 🔹 Cargar usuario desde localStorage
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("usuarioLogueado"));
+    if (data) setUsuario(data);
+  }, []);
+
+  // 🔹 Animación de saludos
   useEffect(() => {
     const interval = setInterval(() => {
       setSaludoIndex((prev) => (prev + 1) % saludos.length);
@@ -23,11 +36,14 @@ export function LoginEditar() {
 
   return (
     <div className="registro-container">
+      
       {/* Columna Izquierda */}
       <div className="col-izquierda">
         <h1>{saludos[saludoIndex]}</h1>
         <p>Edita tus datos personales para mantener tu perfil actualizado.</p>
-        <button className="btn-login" onClick={() => navigate("/perfil")}>Volver al perfil</button>
+        <button className="btn-login" onClick={() => navigate("/perfil")}>
+          Volver al perfil
+        </button>
       </div>
 
       {/* Columna Derecha */}
@@ -35,9 +51,24 @@ export function LoginEditar() {
         <h2>Editar Perfil</h2>
 
         <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Nombre Completo" defaultValue="Micaela Perez"/>
-          <input type="text" placeholder="Nombre de usuario" defaultValue="Mica Perez"/>
-          <input type="text" placeholder="Correo electrónico" defaultValue="micaperez@gmail.com"/>
+          <input 
+            type="text"
+            placeholder="Nombre Completo"
+            defaultValue={usuario?.NombreCompleto || usuario?.Nombre || ""}
+          />
+
+          <input
+            type="text"
+            placeholder="Nombre de usuario"
+            defaultValue={usuario?.NombreUsuario || ""}
+          />
+
+          <input
+            type="text"
+            placeholder="Correo electrónico"
+            defaultValue={usuario?.CorreoElectronico || ""}
+          />
+
           <button type="submit" className="btn-siguiente">
             Siguiente
           </button>
