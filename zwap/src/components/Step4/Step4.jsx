@@ -6,31 +6,62 @@ export default function Step4() {
   const [files, setFiles] = useState([]);
   const navigate = useNavigate();
 
-  const handleDrop = (e) => {
+  // 🔥 Convertir archivo a Base64
+  const fileToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  };
+
+  // 🔥 Cuando arrastran archivos
+  const handleDrop = async (e) => {
     e.preventDefault();
     const droppedFiles = Array.from(e.dataTransfer.files);
-    const previews = droppedFiles.map((f) => URL.createObjectURL(f));
-    setFiles((prev) => [...prev, ...previews]);
+
+    const base64Images = await Promise.all(
+      droppedFiles.map((f) => fileToBase64(f))
+    );
+
+    setFiles((prev) => [...prev, ...base64Images]);
   };
 
-  const handleFileChange = (e) => {
+  // 🔥 Cuando seleccionan archivos desde el input
+  const handleFileChange = async (e) => {
     const selectedFiles = Array.from(e.target.files);
-    const previews = selectedFiles.map((f) => URL.createObjectURL(f));
-    setFiles((prev) => [...prev, ...previews]);
+
+    const base64Images = await Promise.all(
+      selectedFiles.map((f) => fileToBase64(f))
+    );
+
+    setFiles((prev) => [...prev, ...base64Images]);
   };
 
+  // 🔥 Guardar en el backend (solo BASE64)
   const handleSubmit = async () => {
-    const publicacionActual = JSON.parse(localStorage.getItem('publicacionEnProceso')) || {};
-    const actualizada = { ...publicacionActual, imagenes: files };
+    const publicacionActual =
+      JSON.parse(localStorage.getItem('publicacionEnProceso')) || {};
+
+    const actualizada = { 
+      ...publicacionActual, 
+      imagenes: files,    // 👈 BASE64
+      Imagenes: files      // 👈 BASE64
+    };
 
     try {
-      const response = await fetch(`http://localhost:3001/api/publicaciones/${actualizada.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...actualizada, Imagenes: files }),
-      });
+      const response = await fetch(
+        `http://localhost:3001/api/publicaciones/${actualizada.id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(actualizada),
+        }
+      );
 
       if (!response.ok) throw new Error("Error al actualizar imágenes");
+
       const data = await response.json();
       localStorage.setItem('publicacionEnProceso', JSON.stringify(data.publicacion));
 
@@ -46,7 +77,7 @@ export default function Step4() {
       <h2 className="step4-title">Fotos</h2>
       <p className="step4-subtitle">
         <strong>Subir fotos (mínimo 1, máximo 10)</strong><br />
-        <small>(Formatos: cualquier imagen)</small>
+        <small>(Acepta cualquier tipo de imagen)</small>
       </p>
 
       <div
@@ -58,7 +89,7 @@ export default function Step4() {
 
         <input
           type="file"
-          accept="image/*"     // ⭐ AHORA ACEPTA TODO
+          accept="image/*"
           multiple
           onChange={handleFileChange}
           style={{ display: 'none' }}
@@ -82,7 +113,6 @@ export default function Step4() {
         Siguiente
       </button>
 
-      {/* 🔹 Mantengo steps visuales */}
       <div className="steps">
         {[...Array(5)].map((_, i) => (
           <div
