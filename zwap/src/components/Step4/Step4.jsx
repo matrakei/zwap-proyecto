@@ -46,7 +46,7 @@ export default function Step4() {
       <h2 className="step4-title">Fotos</h2>
       <p className="step4-subtitle">
         <strong>Subir fotos (mínimo 1, máximo 10)</strong><br />
-        <small>(Formatos: .jpg, .png)</small>
+        <small>(Formatos: cualquier imagen)</small>
       </p>
 
       <div
@@ -55,14 +55,16 @@ export default function Step4() {
         onDrop={handleDrop}
       >
         <p>📁 Arrastrá archivos a esta zona </p>
+
         <input
           type="file"
-          accept=".jpg,.png"
+          accept="image/*"     // ⭐ AHORA ACEPTA TODO
           multiple
           onChange={handleFileChange}
           style={{ display: 'none' }}
           id="fileInput"
         />
+
         <label htmlFor="fileInput" className="upload-button">
           O seleccioná tus archivos desde el ordenador
         </label>

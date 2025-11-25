@@ -513,6 +513,34 @@
       "publicada": true,
       "CorreoElectronico": "maiarmicha@gmail.com",
       "AutorId": 1764074202659
+    },
+    {
+      "id": 1764077864275,
+      "Pais": "Argentina ",
+      "ProvinciaEstado": "Buenos Aires",
+      "CiudadLocalidad": "CABA",
+      "CalleYNumero": "Maure 4273",
+      "TipoPropiedad": "Casa",
+      "Imagenes": []
+    },
+    {
+      "id": 1764077901853,
+      "Pais": "",
+      "ProvinciaEstado": "",
+      "CiudadLocalidad": "",
+      "CalleYNumero": "",
+      "TipoPropiedad": "",
+      "Imagenes": [
+        "blob:http://localhost:5173/097cf8ce-1b5c-42ce-a19d-6a799cad681c"
+      ],
+      "servicios": [],
+      "Amenities": [],
+      "imagenes": [
+        "blob:http://localhost:5173/097cf8ce-1b5c-42ce-a19d-6a799cad681c"
+      ],
+      "publicada": true,
+      "CorreoElectronico": "matutele08@gmail.com",
+      "AutorId": 1762865581000
     }
   ],
   "reseñas": []
