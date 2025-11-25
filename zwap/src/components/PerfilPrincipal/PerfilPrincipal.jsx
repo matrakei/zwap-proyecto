@@ -92,19 +92,19 @@ export function PerfilPrincipal() {
     return () => { cancelled = true; };
   }, []);
 
-  // 🟢 filtrar publicaciones del usuario
+  // 🟢 filtrar publicaciones (FIX aplicado)
   useEffect(() => {
-    if (!allPublicaciones || allPublicaciones.length === 0) {
+    if (!usuario || !allPublicaciones) {
       setPublicaciones([]);
       return;
     }
 
     const propias = allPublicaciones.filter((pub) => {
-      if (!pub.CorreoElectronico && !pub.AutorId && !pub.autorId) return true;
+      const autor = pub.CorreoElectronico || pub.AutorId || pub.autorId;
+      if (!autor) return false;
       return (
-        pub.CorreoElectronico === usuario?.CorreoElectronico ||
-        pub.AutorId === usuario?.id ||
-        pub.autorId === usuario?.id
+        autor === usuario.CorreoElectronico ||
+        autor === usuario.id
       );
     });
 
@@ -120,9 +120,11 @@ export function PerfilPrincipal() {
         if (res.ok) {
           const data = await res.json();
           setFavoritos(data.map((p) => p.id));
+        } else {
+          setFavoritos([]); // 🟢 FIX importante
         }
       } catch (err) {
-        console.error("Error al traer favoritos:", err);
+        setFavoritos([]); // 🟢 FIX importante
       }
     };
     fetchFavoritos();

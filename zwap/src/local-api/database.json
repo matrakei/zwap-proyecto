@@ -24,9 +24,7 @@
       "Imagenes": [],
       "Contrasena": "matute",
       "Favoritos": [
-        1762779322006,
-        1762781163521,
-        1762865734613
+        1764077438518
       ]
     },
     {
@@ -45,7 +43,10 @@
       "TipoDocumento": "DNI",
       "NumeroDocumento": "48521774",
       "Imagenes": [],
-      "Contrasena": "Maia04"
+      "Contrasena": "Maia04",
+      "Favoritos": [
+        1764077657159
+      ]
     },
     {
       "id": 1762865581000,
@@ -102,6 +103,26 @@
       "NumeroDocumento": "48519913",
       "Imagenes": [],
       "Contrasena": "contraseña"
+    },
+    {
+      "id": 1764074202659,
+      "Favoritos": [],
+      "FotoPerfil": null,
+      "NombreCompleto": "Maia Michanie",
+      "NombreUsuario": "Maia",
+      "CorreoElectronico": "maiarmicha@gmail.com",
+      "CodigoPais": "54 ",
+      "NumeroTelefono": "1162956608",
+      "Nacionalidad": "Argentino",
+      "PaisResidencia": "Argentina",
+      "ProvinciaEstado": "Buenos Aires",
+      "Ciudad": "caba",
+      "FechaNacimiento": "16/06/2008",
+      "Descripcion": "Holaa como estasss",
+      "TipoDocumento": "DNI",
+      "NumeroDocumento": "48521774",
+      "Imagenes": [],
+      "Contrasena": "hola"
     }
   ],
   "publicaciones": [
@@ -380,6 +401,118 @@
       ],
       "imagenes": [],
       "publicada": true
+    },
+    {
+      "id": 1764074450615,
+      "Pais": "Argentina ",
+      "ProvinciaEstado": "Buenos Aires",
+      "CiudadLocalidad": "CABA",
+      "CalleYNumero": "Libertador 4273",
+      "TipoPropiedad": "Casa",
+      "Imagenes": [],
+      "ambientes": "2",
+      "pisos": "3+",
+      "metros": "210",
+      "nombre": "ORT",
+      "descripcion": "Escuela ",
+      "NumeroAmbientes": "2",
+      "NumeroPisos": "3+",
+      "MetrosCuadrados": "210",
+      "NombrePropiedad": "ORT",
+      "BreveDescripcion": "Escuela ",
+      "servicios": [
+        "Red Wi-Fi",
+        "Aire acondicionado"
+      ],
+      "Amenities": [
+        "Red Wi-Fi",
+        "Aire acondicionado"
+      ],
+      "imagenes": [],
+      "publicada": true
+    },
+    {
+      "id": 1764077203972,
+      "Pais": "Argentina ",
+      "ProvinciaEstado": "Buenos Aires",
+      "CiudadLocalidad": "CABA",
+      "CalleYNumero": "Libertador 4273",
+      "TipoPropiedad": "Casa",
+      "Imagenes": [],
+      "ambientes": "2",
+      "pisos": "1",
+      "metros": "210",
+      "nombre": "ORT",
+      "NumeroAmbientes": "2",
+      "NumeroPisos": "1",
+      "MetrosCuadrados": "210",
+      "NombrePropiedad": "ORT",
+      "servicios": [
+        "Pileta",
+        "Red Wi-Fi"
+      ],
+      "Amenities": [
+        "Pileta",
+        "Red Wi-Fi"
+      ],
+      "imagenes": [],
+      "publicada": true
+    },
+    {
+      "id": 1764077438518,
+      "Pais": "Argentina ",
+      "ProvinciaEstado": "Buenos Aires",
+      "CiudadLocalidad": "CABA",
+      "CalleYNumero": "Libertador 4273",
+      "TipoPropiedad": "",
+      "Imagenes": [],
+      "ambientes": "1",
+      "pisos": "2",
+      "metros": "210",
+      "nombre": "jaca",
+      "NumeroAmbientes": "1",
+      "NumeroPisos": "2",
+      "MetrosCuadrados": "210",
+      "NombrePropiedad": "jaca",
+      "servicios": [
+        "Pileta",
+        "Calefacción"
+      ],
+      "Amenities": [
+        "Pileta",
+        "Calefacción"
+      ],
+      "imagenes": [],
+      "publicada": true,
+      "CorreoElectronico": "matutele08@gmail.com",
+      "AutorId": 1762865581000
+    },
+    {
+      "id": 1764077657159,
+      "Pais": "Argentina ",
+      "ProvinciaEstado": "Buenos Aires",
+      "CiudadLocalidad": "CABA",
+      "CalleYNumero": "Maure 4273",
+      "TipoPropiedad": "Casa",
+      "Imagenes": [],
+      "ambientes": "4+",
+      "pisos": "3+",
+      "metros": "160",
+      "nombre": "Escuela",
+      "NumeroAmbientes": "4+",
+      "NumeroPisos": "3+",
+      "MetrosCuadrados": "160",
+      "NombrePropiedad": "Escuela",
+      "servicios": [
+        "Gimnasio"
+      ],
+      "Amenities": [
+        "Gimnasio"
+      ],
+      "imagenes": [],
+      "publicada": true,
+      "CorreoElectronico": "maiarmicha@gmail.com",
+      "AutorId": 1764074202659
     }
   ],
   "reseñas": []

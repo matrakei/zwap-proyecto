@@ -51,13 +51,16 @@ export function Favoritos() {
         const res = await fetch(
           `http://localhost:3001/api/favoritos/${usuario.CorreoElectronico}`
         );
-        if (!res.ok) throw new Error("Error al cargar favoritos");
+
+        if (!res.ok) {
+          setFavoritos([]); // FIX
+          return;
+        }
 
         const data = await res.json();
         setFavoritos(data.map((f) => f.id));
       } catch (err) {
-        console.error(err);
-        setError(err.message);
+        setFavoritos([]); // FIX
       }
     };
 
@@ -81,7 +84,6 @@ export function Favoritos() {
         const arr = Array.isArray(data) ? data : data.publicaciones || [];
         setPublicaciones(arr);
       } catch (err) {
-        console.error(err);
         setError(err.message);
       } finally {
         setLoading(false);
@@ -96,7 +98,6 @@ export function Favoritos() {
     favoritos.includes(pub.id)
   );
 
-  // usuarios distintos
   const usuariosFavoritos = new Set(
     publicacionesFavoritas.map((pub) => pub.CorreoElectronico || pub.AutorId)
   ).size;
@@ -126,12 +127,9 @@ export function Favoritos() {
           ? prev.filter((f) => f !== publicacionId)
           : [...prev, publicacionId]
       );
-    } catch (err) {
-      console.error(err);
-    }
+    } catch (err) {}
   };
 
-  // porcentaje
   const porcentaje = Math.min(
     100,
     Math.round((cantidadIntercambios / objetivoIntercambios) * 100)
@@ -173,7 +171,6 @@ export function Favoritos() {
       <div className="perfil-izquierda">
         <img className="perfil-foto" src={perfilImage} alt="Foto Perfil" />
 
-        {/* ✔️ NOMBRE IGUAL A PERFIL PRINCIPAL */}
         <h2>
           {usuario?.NombreUsuario ||
             usuario?.NombreCompleto ||
@@ -290,7 +287,6 @@ export function Favoritos() {
                         📍 {ciudad}, {pais}
                       </p>
 
-                      {/* ✔️ NOMBRE EXACTO COMO EN PERFIL PRINCIPAL */}
                       <div className="autor-publicacion">
                         👤{" "}
                         {usuario?.NombreUsuario ||

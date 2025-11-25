@@ -134,7 +134,16 @@ app.delete("/api/favoritos", async (req, res) => {
 app.get("/api/favoritos/:correo", async (req, res) => {
   const db = await readDB();
   const usuario = db.usuarios.find((u) => u.CorreoElectronico === req.params.correo);
-  if (!usuario) return res.status(404).json({ message: "Usuario no encontrado" });
+
+  if (!usuario) {
+    return res.status(404).json({ message: "Usuario no encontrado" });
+  }
+
+  // 🛠 Si Favoritos no existe, lo inicializamos
+  if (!Array.isArray(usuario.Favoritos)) {
+    usuario.Favoritos = [];
+    await saveDB(db); // lo guardamos para evitar futuros errores
+  }
 
   const favoritosPublicaciones = db.publicaciones.filter((p) =>
     usuario.Favoritos.includes(p.id)
@@ -142,6 +151,7 @@ app.get("/api/favoritos/:correo", async (req, res) => {
 
   res.json(favoritosPublicaciones);
 });
+
 
 // ---------------------------------------------------
 app.listen(3001, () => {

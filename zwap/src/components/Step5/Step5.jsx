@@ -5,10 +5,14 @@ import { useEffect, useState } from 'react';
 export default function Step5() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState(null);
+  const [usuario, setUsuario] = useState(null);
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem('publicacionEnProceso'));
+    const user = JSON.parse(localStorage.getItem("usuarioLogueado"));
+
     setFormData(data);
+    setUsuario(user);
   }, []);
 
   const handlePublicar = async () => {
@@ -16,12 +20,24 @@ export default function Step5() {
       alert('No se encontró la publicación para actualizar');
       return;
     }
+    if (!usuario) {
+      alert("No se encontró el usuario logueado.");
+      return;
+    }
+
+    // 🟢 AGREGAMOS EL AUTOR A LA PUBLICACIÓN
+    const dataParaGuardar = {
+      ...formData,
+      publicada: true,
+      CorreoElectronico: usuario.CorreoElectronico,
+      AutorId: usuario.id,
+    };
 
     try {
       const response = await fetch(`http://localhost:3001/api/publicaciones/${formData.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, publicada: true }),
+        body: JSON.stringify(dataParaGuardar),
       });
 
       if (!response.ok) throw new Error("Error al publicar");
@@ -80,7 +96,6 @@ export default function Step5() {
         Publicar
       </button>
 
-      {/* 🔹 Mantengo tus steps */}
       <div className="steps">
         {[...Array(5)].map((_, i) => (
           <div
